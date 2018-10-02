@@ -83,6 +83,7 @@ export class MainComponent implements OnInit {
       let calArr = [];
       calArr.push(calenderModel1);
       this.oportunityInstanceModel.days = calArr;
+      console.log("One Time:::"+JSON.stringify(this.oportunityInstanceModel));
     }
     else if (this.session_type_id == "Everyday") {
 
@@ -111,7 +112,7 @@ export class MainComponent implements OnInit {
         calArr.push(calenderModel);
       });
       this.oportunityInstanceModel.days = calArr;
-
+      console.log("Everyday:::"+JSON.stringify(this.oportunityInstanceModel));
     }
     else if (this.session_type_id == "Quarterly") {
       let calArr = [];
@@ -122,7 +123,7 @@ export class MainComponent implements OnInit {
         calArr.push(calenderModel);
       }
       this.oportunityInstanceModel.days = calArr;
-
+      console.log("Quarterly:::"+JSON.stringify(this.oportunityInstanceModel));
     }
 
     else if (this.session_type_id == "Half Yearly") {
@@ -134,7 +135,7 @@ export class MainComponent implements OnInit {
         calArr.push(calenderModel);
       }
       this.oportunityInstanceModel.days = calArr;
-
+      console.log("Half Yearly:::"+JSON.stringify(this.oportunityInstanceModel));
     }
   }
 

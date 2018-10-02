@@ -101,7 +101,7 @@ export class HalfyearlyComponent implements OnInit {
   }
 
   handleChange(event) {
-    console.log("Half handle change");
+    //console.log("Half handle change");
     this.dateChanged.emit(this.quaterlyModelArray);
   }
 
@@ -113,7 +113,7 @@ export class HalfyearlyComponent implements OnInit {
     if (this.secondHalfyearly.length > 0) {
       this.quaterlyModelArray.quaterlyModel.push(this.secondHalfyearly[0]);
     }
-    console.log("halfYearlyModelArray" + JSON.stringify(this.quaterlyModelArray));
+    //console.log("halfYearlyModelArray" + JSON.stringify(this.quaterlyModelArray));
     this.handleChange(event);
   }
 
