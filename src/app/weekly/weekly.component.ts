@@ -83,10 +83,10 @@ export class WeeklyComponent implements OnInit {
   }
 
   yearMonthHandler(event) {
-    console.log(event);
-    console.log(this.strDate);
-    let now = moment().format("YYYY-MM-DD HH:mm:ss");
-
+    let now = moment(this.strDate).format("YYYY-MM-DD ");
+    let now1 = moment(this.endsDate).format("YYYY-MM-DD ");
+    console.log("strDate--->" + now);
+    console.log("endsDate--->" + now1);
 
 
   }
