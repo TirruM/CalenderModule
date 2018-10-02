@@ -19,7 +19,7 @@
 
     <app-byweekly *ngIf="session_type_id === 'Bi-weekly'"></app-byweekly>
 
-    <app-monthly *ngIf="session_type_id === 'Monthly'"></app-monthly>
+    <app-monthly *ngIf="session_type_id === 'Monthly'" (monthlyCalendarChanged)="monthlyCalendarChangeHandler($event)"></app-monthly>
 
     <app-quarterly *ngIf="session_type_id === 'Quarterly'" (dateChanged)="quartelyDateChangedHandler($event)"></app-quarterly>
 

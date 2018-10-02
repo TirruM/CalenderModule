@@ -35,7 +35,7 @@ export class MainComponent implements OnInit {
   oportunityInstanceModel: OportunityInstance = <OportunityInstance>{};
   everyDayModel: EveryDayModel = <EveryDayModel>{};
   quaterlyModel: QuaterlyModel = <QuaterlyModel>{};
-
+  public monthlyCalendarObj: Array<CalenderModel>;
   constructor(public datepipe: DatePipe) {
     this.start_date = this.start_date;
   }
@@ -70,6 +70,11 @@ export class MainComponent implements OnInit {
     this.quaterlyModel = quaterlyModel;
   }
 
+  monthlyCalendarChangeHandler(monthlyCalendarObj: Array<CalenderModel>) {
+    this.monthlyCalendarObj = monthlyCalendarObj;
+
+  }
+
   saveCalender(payload: NgForm): void {
     this.oportunityInstanceModel.session_type_id = this.session_type_id;
     this.oportunityInstanceModel.start_time = this.datepipe.transform(this.start_time, 'hh:MM:ss a');
@@ -83,7 +88,7 @@ export class MainComponent implements OnInit {
       let calArr = [];
       calArr.push(calenderModel1);
       this.oportunityInstanceModel.days = calArr;
-      console.log("One Time:::"+JSON.stringify(this.oportunityInstanceModel));
+      console.log("One Time:::" + JSON.stringify(this.oportunityInstanceModel));
     }
     else if (this.session_type_id == "Everyday") {
 
@@ -112,9 +117,8 @@ export class MainComponent implements OnInit {
         calArr.push(calenderModel);
       });
       this.oportunityInstanceModel.days = calArr;
-      console.log("Everyday:::"+JSON.stringify(this.oportunityInstanceModel));
-    }
-    else if (this.session_type_id == "Quarterly") {
+      console.log("Everyday:::" + JSON.stringify(this.oportunityInstanceModel));
+    } else if (this.session_type_id == "Half Yearly") {
       let calArr = [];
       for (var i = 0; i < this.quaterlyModel.quaterlyModel.length; i++) {
         let calenderModel = new CalenderModel();
@@ -123,9 +127,13 @@ export class MainComponent implements OnInit {
         calArr.push(calenderModel);
       }
       this.oportunityInstanceModel.days = calArr;
-      console.log("Quarterly:::"+JSON.stringify(this.oportunityInstanceModel));
+      console.log("Half Yearly:::" + JSON.stringify(this.oportunityInstanceModel));
     }
-
+    else if (this.session_type_id == "Monthly") {
+      this.oportunityInstanceModel.days = [];
+      this.oportunityInstanceModel.days = this.monthlyCalendarObj;
+      console.log("Monthly:::" + JSON.stringify(this.oportunityInstanceModel));
+    }
     else if (this.session_type_id == "Half Yearly") {
       let calArr = [];
       for (var i = 0; i < this.quaterlyModel.quaterlyModel.length; i++) {
@@ -135,7 +143,7 @@ export class MainComponent implements OnInit {
         calArr.push(calenderModel);
       }
       this.oportunityInstanceModel.days = calArr;
-      console.log("Half Yearly:::"+JSON.stringify(this.oportunityInstanceModel));
+      console.log("Half Yearly:::" + JSON.stringify(this.oportunityInstanceModel));
     }
   }
 
@@ -153,11 +161,11 @@ export class MainComponent implements OnInit {
         return date;
       };
     while (currentDate <= endDate) {
-      
+
       var d = currentDate.getDay();
       if (weekDays) {
         if (d == 0 || d == 6) {
-          
+
         } else {
           dates.push(currentDate);
         }

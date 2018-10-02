@@ -313,6 +313,4 @@ export class HalfyearlyComponent implements OnInit {
 
     }
   }
-
-
 }
