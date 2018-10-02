@@ -1,0 +1,180 @@
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { CalenderModel } from '../models/calender';
+import { OportunityInstance } from '../models/oppertunityInstance';
+import { EveryDayModel } from './../models/everydaymodel';
+import { QuaterlyModel } from './../models/quaterlymodel';
+
+@Component({
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
+})
+export class MainComponent implements OnInit {
+
+  public start_time: Date;
+  public end_time: Date;
+
+  selectedDate: string;
+  start_date: string = '';
+
+  session_type_id = "One Time";
+  dsession: any[] = [
+    { id: 1, name: 'One Time' },
+    { id: 2, name: 'Everyday' },
+    { id: 3, name: 'Weekly' },
+    { id: 4, name: 'Bi-weekly' },
+    { id: 5, name: 'Monthly' },
+    { id: 6, name: 'Quarterly' },
+    { id: 7, name: 'Half Yearly' },
+    { id: 8, name: 'Annually' }
+  ];
+
+  calendarModel: CalenderModel = <CalenderModel>{};
+  oportunityInstanceModel: OportunityInstance = <OportunityInstance>{};
+  everyDayModel: EveryDayModel = <EveryDayModel>{};
+  quaterlyModel: QuaterlyModel = <QuaterlyModel>{};
+
+  constructor(public datepipe: DatePipe) {
+    this.start_date = this.start_date;
+  }
+
+  ngOnInit() {
+
+  }
+
+  // for radio button handler
+  handleChange(event) {
+    var index = this.dsession.findIndex((ds: any) => {
+      return ds.id + "" === event.target.id;
+    });
+    if (index > -1) {
+      this.session_type_id = this.dsession[index].name;
+    }
+  }
+
+  dateChangedHandler(selectedDate: string) {
+    this.selectedDate = selectedDate;
+  }
+
+  everyDateChangedHandler(everyDayModel: EveryDayModel) {
+    this.everyDayModel = everyDayModel
+  }
+
+  quartelyDateChangedHandler(quaterlyModel: QuaterlyModel) {
+    this.quaterlyModel = quaterlyModel;
+  }
+
+  halfyearlyDateChangedHandler(quaterlyModel: QuaterlyModel) {
+    this.quaterlyModel = quaterlyModel;
+  }
+
+  saveCalender(payload: NgForm): void {
+    this.oportunityInstanceModel.session_type_id = this.session_type_id;
+    this.oportunityInstanceModel.start_time = this.datepipe.transform(this.start_time, 'hh:MM:ss a');
+    this.oportunityInstanceModel.end_time = this.datepipe.transform(this.end_time, 'hh:MM:ss a');
+
+    if (this.session_type_id == "One Time") {
+      let calenderModel1 = new CalenderModel();
+
+      calenderModel1.start_date = this.datepipe.transform(this.selectedDate, 'dd-MM-yyyy');
+      calenderModel1.end_date = this.datepipe.transform(this.selectedDate, 'dd-MM-yyyy');
+      let calArr = [];
+      calArr.push(calenderModel1);
+      this.oportunityInstanceModel.days = calArr;
+    }
+    else if (this.session_type_id == "Everyday") {
+
+      var startTime = this.everyDayModel.startDate;
+      var endTime = this.everyDayModel.endDate;
+
+      var calDate = new Date(startTime);
+      var year = calDate.getFullYear();
+      var month = calDate.getMonth() + 1;
+      var date = calDate.getDate();
+
+      var ecalDate = new Date(endTime);
+      var eyear = ecalDate.getFullYear();
+      var emonth = ecalDate.getMonth();
+      var edate = ecalDate.getDate();
+
+      var dates = this.getDates(new Date(year, month - 1, date), new Date(eyear, emonth, edate), this.everyDayModel.weeksDays);
+      var pipe = new DatePipe('en-US');
+      let calArr = [];
+
+      dates.forEach(function (date) {
+        let calenderModel = new CalenderModel();
+        calenderModel.start_date = pipe.transform(date, 'dd-MM-yyyy');
+        calenderModel.end_date = pipe.transform(date, 'dd-MM-yyyy');
+
+        calArr.push(calenderModel);
+      });
+      this.oportunityInstanceModel.days = calArr;
+
+    }
+    else if (this.session_type_id == "Quarterly") {
+      let calArr = [];
+      for (var i = 0; i < this.quaterlyModel.quaterlyModel.length; i++) {
+        let calenderModel = new CalenderModel();
+        calenderModel.start_date = this.quaterlyModel.quaterlyModel[i].start_date;
+        calenderModel.end_date = this.quaterlyModel.quaterlyModel[i].end_date;
+        calArr.push(calenderModel);
+      }
+      this.oportunityInstanceModel.days = calArr;
+
+    }
+
+    else if (this.session_type_id == "Half Yearly") {
+      let calArr = [];
+      for (var i = 0; i < this.quaterlyModel.quaterlyModel.length; i++) {
+        let calenderModel = new CalenderModel();
+        calenderModel.start_date = this.quaterlyModel.quaterlyModel[i].start_date;
+        calenderModel.end_date = this.quaterlyModel.quaterlyModel[i].end_date;
+        calArr.push(calenderModel);
+      }
+      this.oportunityInstanceModel.days = calArr;
+
+    }
+  }
+
+
+
+  public getDates(startDate, endDate, weekDays): any {
+
+    var day = startDate;
+    let dates = [],
+      currentDate = startDate,
+      addDays = function (days) {
+        let date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+
+        return date;
+      };
+    while (currentDate <= endDate) {
+      
+      var d = currentDate.getDay();
+      if (weekDays) {
+        if (d == 0 || d == 6) {
+          
+        } else {
+          dates.push(currentDate);
+        }
+      } else {
+        dates.push(currentDate);
+      }
+
+      currentDate = addDays.call(currentDate, 1);
+    }
+
+    return dates;
+
+  }
+
+  /* 
+  $scope.start=new Date(2015,6,1); $scope.end= new Date(2015,8,1);
+   $scope.weekends = [];
+    var day = angular.copy($scope.start);
+     while(day < $scope.end){ var d = day.getDay(); if(d === 0 || d === 6)
+    { $scope.weekends.push(new Date(day)); } day.setDate(day.getDate()+1); } */
+}

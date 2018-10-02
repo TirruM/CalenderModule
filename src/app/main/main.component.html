@@ -1,0 +1,55 @@
+<form #payload="ngForm" (ngSubmit)=saveCalender(payload)>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-md-3" *ngFor="let s of dsession">
+                    <label class="radio-inline">
+                        <input type="radio" [(ngModel)]="session_type_id" [name]="session_type_id" [id]="s.id" [value]="s.name"
+                            (change)="handleChange($event)"> {{s.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-onetimecalender *ngIf="session_type_id === 'One Time'" (dateChanged)="dateChangedHandler($event)"></app-onetimecalender>
+
+    <app-everyday *ngIf="session_type_id === 'Everyday'" (dateChanged)="everyDateChangedHandler($event)"></app-everyday>
+
+    <app-weekly *ngIf="session_type_id === 'Weekly'"></app-weekly>
+
+    <app-byweekly *ngIf="session_type_id === 'Bi-weekly'"></app-byweekly>
+
+    <app-monthly *ngIf="session_type_id === 'Monthly'"></app-monthly>
+
+    <app-quarterly *ngIf="session_type_id === 'Quarterly'" (dateChanged)="quartelyDateChangedHandler($event)"></app-quarterly>
+
+    <app-halfyearly *ngIf="session_type_id === 'Half Yearly'" (dateChanged)="halfyearlyDateChangedHandler($event)"></app-halfyearly>
+
+    <app-annually *ngIf="session_type_id === 'Annually'"></app-annually>
+
+
+    <div style="margin-top:30px;"></div>
+    <div class="form-row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="start_time">Start Time</label>
+                <timepicker [(ngModel)]="start_time" name="start_time" id="start_time"></timepicker>
+                <!-- <input type="text" class="form-control" id="start_time" name="start_time"> -->
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="end_time">End Time</label>
+                <timepicker [(ngModel)]="end_time" name="end_time" id="end_time"></timepicker>
+                <!--<input type="text" class="form-control" id="end_time" name="end_time"> -->
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+    </div>
+</form>
+
+{{payload.value | json}}
