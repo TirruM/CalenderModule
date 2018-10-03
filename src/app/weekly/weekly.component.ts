@@ -57,13 +57,13 @@ export class WeeklyComponent implements OnInit {
     console.log("startDate-->", this.startDate);
   }
 
-  chosenMonthHandler(normalizedMonth: Moment, datepicker: OwlDateTimeComponent<Moment>) {
+  chosenMonthHandler(normalizedMonth: Moment, datePicker: OwlDateTimeComponent<Moment>) {
 
     const ctrlValue = this.startDate.value;
     console.log("ctrValue", ctrlValue);
     ctrlValue.month(normalizedMonth.month());
     this.startDate.setValue(ctrlValue);
-    datepicker.close();
+    datePicker.close();
   }
 
   chosenEndYearHandler(normalizedYear: Moment) {
@@ -74,13 +74,13 @@ export class WeeklyComponent implements OnInit {
     this.endDate.setValue(ctrlValue);
   }
 
-  chosenEndMonthHandler(normalizedMonth: Moment, datepicker: OwlDateTimeComponent<Moment>) {
+  chosenEndMonthHandler(normalizedMonth: Moment, datePicker: OwlDateTimeComponent<Moment>) {
     const ctrlValue = this.endDate.value;
     ctrlValue.month(normalizedMonth.month());
     console.log("ctrValue222", ctrlValue);
 
     this.endDate.setValue(ctrlValue);
-    datepicker.close();
+    datePicker.close();
   }
 
   yearMonthHandler(event) {

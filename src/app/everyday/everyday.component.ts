@@ -1,4 +1,4 @@
-import { EveryDayModel } from './../models/everydaymodel';
+import { EveryDayModel } from '../models/everyDayModel';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
@@ -11,12 +11,9 @@ export class EverydayComponent implements OnInit {
 
   public startDate: Date;
   public endDate: Date;
-  public weeksDays: boolean;
-  public govholiyDays: boolean;
+  public weeksDays: boolean = false;
+  public govHolyDays: boolean = false;
 
-
-    weeksDays  = false;
-    govholiyDays = false;
 
   everDayModel: EveryDayModel = <EveryDayModel>{};
 
@@ -26,20 +23,20 @@ export class EverydayComponent implements OnInit {
     this.everDayModel.startDate = this.startDate;
     this.everDayModel.endDate = this.endDate;
     this.everDayModel.weeksDays = this.weeksDays;
-    this.everDayModel.govHolidays = this.govholiyDays;
+    this.everDayModel.govHolidays = this.govHolyDays;
     this.dateChanged.emit(this.everDayModel);
   }
 
   onWeekdaysChange() {
     this.weeksDays = !this.weeksDays;
     this.handleChange(event);
-    }
-    onGovHolidaysChange() {
-    this.govholiyDays = !this.govholiyDays;
+  }
+  onGovHolidaysChange() {
+    this.govHolyDays = !this.govHolyDays;
     this.handleChange(event);
-    }
+  }
 
-  constructor(public datepipe: DatePipe) { }
+  constructor(public datePipe: DatePipe) { }
 
   ngOnInit() {
 

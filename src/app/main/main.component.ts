@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { CalenderModel } from '../models/calender';
 import { OportunityInstance } from '../models/oppertunityInstance';
-import { EveryDayModel } from './../models/everydaymodel';
+import { EveryDayModel } from '../models/everyDayModel';
 import { QuaterlyModel } from './../models/quaterlymodel';
 
 @Component({
@@ -36,7 +36,8 @@ export class MainComponent implements OnInit {
   everyDayModel: EveryDayModel = <EveryDayModel>{};
   quaterlyModel: QuaterlyModel = <QuaterlyModel>{};
   public monthlyCalendarObj: Array<CalenderModel>;
-  constructor(public datepipe: DatePipe) {
+  public annuallyCalendarObj: Array<CalenderModel>;
+  constructor(public datePipe: DatePipe) {
     this.start_date = this.start_date;
   }
 
@@ -62,11 +63,11 @@ export class MainComponent implements OnInit {
     this.everyDayModel = everyDayModel
   }
 
-  quartelyDateChangedHandler(quaterlyModel: QuaterlyModel) {
+  quarterlyDateChangedHandler(quaterlyModel: QuaterlyModel) {
     this.quaterlyModel = quaterlyModel;
   }
 
-  halfyearlyDateChangedHandler(quaterlyModel: QuaterlyModel) {
+  halfYearlyDateChangedHandler(quaterlyModel: QuaterlyModel) {
     this.quaterlyModel = quaterlyModel;
   }
 
@@ -74,17 +75,22 @@ export class MainComponent implements OnInit {
     this.monthlyCalendarObj = monthlyCalendarObj;
 
   }
+  annuallyCalendarChangeHandler(annuallyCalendarObj: Array<CalenderModel>) {
+    this.annuallyCalendarObj = annuallyCalendarObj;
+
+  }
+
 
   saveCalender(payload: NgForm): void {
     this.oportunityInstanceModel.session_type_id = this.session_type_id;
-    this.oportunityInstanceModel.start_time = this.datepipe.transform(this.start_time, 'hh:MM:ss a');
-    this.oportunityInstanceModel.end_time = this.datepipe.transform(this.end_time, 'hh:MM:ss a');
+    this.oportunityInstanceModel.start_time = this.datePipe.transform(this.start_time, 'hh:MM:ss a');
+    this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:MM:ss a');
 
     if (this.session_type_id == "One Time") {
       let calenderModel1 = new CalenderModel();
 
-      calenderModel1.start_date = this.datepipe.transform(this.selectedDate, 'dd-MM-yyyy');
-      calenderModel1.end_date = this.datepipe.transform(this.selectedDate, 'dd-MM-yyyy');
+      calenderModel1.start_date = this.datePipe.transform(this.selectedDate, 'dd-MM-yyyy');
+      calenderModel1.end_date = this.datePipe.transform(this.selectedDate, 'dd-MM-yyyy');
       let calArr = [];
       calArr.push(calenderModel1);
       this.oportunityInstanceModel.days = calArr;
@@ -144,16 +150,10 @@ export class MainComponent implements OnInit {
       this.oportunityInstanceModel.days = this.monthlyCalendarObj;
       console.log("Monthly:::" + JSON.stringify(this.oportunityInstanceModel));
     }
-    else if (this.session_type_id == "Half Yearly") {
-      let calArr = [];
-      for (var i = 0; i < this.quaterlyModel.quaterlyModel.length; i++) {
-        let calenderModel = new CalenderModel();
-        calenderModel.start_date = this.quaterlyModel.quaterlyModel[i].start_date;
-        calenderModel.end_date = this.quaterlyModel.quaterlyModel[i].end_date;
-        calArr.push(calenderModel);
-      }
-      this.oportunityInstanceModel.days = calArr;
-      console.log("Half Yearly:::" + JSON.stringify(this.oportunityInstanceModel));
+    else if (this.session_type_id == "Annually") {
+      this.oportunityInstanceModel.days = [];
+      this.oportunityInstanceModel.days = this.annuallyCalendarObj;
+      console.log("Annually:::" + JSON.stringify(this.oportunityInstanceModel));
     }
   }
 

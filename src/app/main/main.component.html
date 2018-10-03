@@ -21,11 +21,11 @@
 
     <app-monthly *ngIf="session_type_id === 'Monthly'" (monthlyCalendarChanged)="monthlyCalendarChangeHandler($event)"></app-monthly>
 
-    <app-quarterly *ngIf="session_type_id === 'Quarterly'" (dateChanged)="quartelyDateChangedHandler($event)"></app-quarterly>
+    <app-quarterly *ngIf="session_type_id === 'Quarterly'" (dateChanged)="quarterlyDateChangedHandler($event)"></app-quarterly>
 
-    <app-halfyearly *ngIf="session_type_id === 'Half Yearly'" (dateChanged)="halfyearlyDateChangedHandler($event)"></app-halfyearly>
+    <app-halfyearly *ngIf="session_type_id === 'Half Yearly'" (dateChanged)="halfYearlyDateChangedHandler($event)"></app-halfyearly>
 
-    <app-annually *ngIf="session_type_id === 'Annually'"></app-annually>
+    <app-annually *ngIf="session_type_id === 'Annually'" (annuallyCalendarChanged)="annuallyCalendarChangeHandler($event)"></app-annually>
 
 
     <div style="margin-top:30px;"></div>
