@@ -11,8 +11,12 @@ export class EverydayComponent implements OnInit {
 
   public startDate: Date;
   public endDate: Date;
-  public weeksDays: boolean = false;
-  public govholiyDays: boolean = false;
+  public weeksDays: boolean;
+  public govholiyDays: boolean;
+
+
+    weeksDays  = false;
+    govholiyDays = false;
 
   everDayModel: EveryDayModel = <EveryDayModel>{};
 
