@@ -3,11 +3,12 @@
     <div class="row">
       <div class="col-md-3">
         <label for="options">Options:</label>
-        <div *ngFor="let option of selectOption">
+        <div class="checkcontainer" *ngFor="let option of selectOption">
           <label>
             <input type="checkbox" name="options" [value]="option.value" [id]="option.id" [(ngModel)]="option.checked"
               (click)="checkBoxChangeEvent($event)" />
             {{option.name}}
+            <span class="checkmark"></span>
           </label>
         </div>
       </div>

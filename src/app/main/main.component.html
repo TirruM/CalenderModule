@@ -1,11 +1,13 @@
+<h4 class="h3-style">When is the session happening...</h4>
 <form #payload="ngForm" (ngSubmit)=saveCalender(payload)>
     <div class="form-group">
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-md-3" *ngFor="let s of dsession">
-                    <label class="radio-inline">
+                    <label class="radio-inline checkcontainer">
                         <input type="radio" [(ngModel)]="session_type_id" [name]="session_type_id" [id]="s.id" [value]="s.id"
                             (change)="handleChange($event)"> {{s.name}}
+                        <span class="radiobtn"></span>
                     </label>
                 </div>
             </div>
@@ -49,9 +51,7 @@
     </div>
     <div class="col-sm-12">
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Submit">
+            <input type="submit" class="btn btn-primary btn-style" value="ADD 1 MORE">
         </div>
     </div>
 </form>
-
-<!-- {{payload.value | json}} -->
