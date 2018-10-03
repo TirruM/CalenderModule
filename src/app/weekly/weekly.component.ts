@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { CalenderModel } from '../models/calender';
+
 import {
   DateTimeAdapter,
   OWL_DATE_TIME_FORMATS,
@@ -10,6 +13,7 @@ import {
 import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
 import * as _moment from 'moment';
 import { Moment } from 'moment';
+import { Logs } from 'selenium-webdriver';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
@@ -41,8 +45,16 @@ export class WeeklyComponent implements OnInit {
   public selectedMoment: string;
   public strDate: Date;
   public endsDate: Date;
+  public fromYear: number;
+  public toYear: number;
+  public fromMonth: number;
+  public toMonth: number;
+  public weeklyCalendarObj: Array<CalenderModel> = [];
 
-  constructor() { }
+
+  @Output() public weeklyCalendarChanged = new EventEmitter();
+
+  constructor(public datePipe: DatePipe) { }
 
   ngOnInit() {
   }
@@ -84,21 +96,93 @@ export class WeeklyComponent implements OnInit {
   }
 
   yearMonthHandler(event) {
-    if (this.strDate !== undefined) {
-      let now = moment(this.strDate).format("MMM YYYY");
-      // this.startDate = now;
-    } else if (this.endsDate !== undefined) {
-      let now1 = moment(this.endsDate).format("MMM YYYY");
-      // this.endDate = now1;
+    let now = moment(this.strDate).format("MMM YYYY");
+    this.fromYear = moment(this.strDate).format("YYYY");
+    this.fromMonth = moment(this.strDate).format("MM");
+
+    let now1 = moment(this.endsDate).format("MMM YYYY");
+    this.toYear = moment(this.endsDate).format("YYYY");
+    this.toMonth = moment(this.endsDate).format("MM");
+  }
+
+  handleChange(event) {
+    console.log(moment(this.selectedMoment).format("DD/MM/YYYY"))
+    var year = moment(this.selectedMoment).format("YYYY");
+    var month = moment(this.selectedMoment).format("MM");
+    var date = moment(this.selectedMoment).format("DD");
+
+    let now = new Date(new Date(year, month - 1, date));
+    console.log("selected weekDay", now);
+
+    if (this.strDate !== null && this.endsDate !== null) {
+      this.prepareWeekObj(now.getDay(), month);
     }
+  }
 
+  prepareWeekObj(now, month1: any) {
+    console.log("selected month1", month1);
+    var calDate = new Date(this.strDate);
+    var year = calDate.getFullYear();
+    var month = calDate.getMonth();
+    var date = calDate.getDate();
 
-    console.log("strDate--->" + this.startDate);
-    console.log("endsDate--->" + this.endsDate);
+    var eCalDate = new Date(this.endsDate);
+    var eYear = eCalDate.getFullYear();
+    var eMonth = eCalDate.getMonth();
+    var eDate = eCalDate.getDate();
+    var dates = this.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), now, month1);
+    var pipe = new DatePipe('en-US');
+    let calArr = [];
+    let byWeeklyArr = [];
+    var i = 0;
+    dates.forEach(function (date) {
+      if (i % 2 === 0) {
+        console.log("i/2==0 val---->" + i % 2);
+        let calenderModel = new CalenderModel();
+        calenderModel.start_date = pipe.transform(date, 'dd-MM-yyyy');
+        calenderModel.end_date = pipe.transform(date, 'dd-MM-yyyy');
+
+        byWeeklyArr.push(calenderModel);
+      } else {
+        console.log("i/2 !=0 val---->" + i % 2);
+      }
+      i++;
+      let calenderModel = new CalenderModel();
+      calenderModel.start_date = pipe.transform(date, 'dd-MM-yyyy');
+      calenderModel.end_date = pipe.transform(date, 'dd-MM-yyyy');
+
+      calArr.push(calenderModel);
+    });
+    this.weeklyCalendarObj = calArr;
+    console.log("calArr---->", JSON.stringify(this.weeklyCalendarObj));
+    console.log("byWeeklyArr---->", JSON.stringify(byWeeklyArr));
+     this.weeklyCalendarChanged.emit(this.weeklyCalendarObj);
+    console.log("dates length", dates.length);
+    console.log("dates length", byWeeklyArr.length);
+
 
 
   }
 
 
 
+  public getDates(startDate, endDate, weekDays, month1): any {
+    var day = startDate;
+    let dates = [],
+      currentDate = startDate,
+      addDays = function (days) {
+        let date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+
+        return date;
+      };
+    while (currentDate <= endDate) {
+      var d = currentDate.getDay();
+      if (d == weekDays) {
+        dates.push(currentDate);
+      }
+      currentDate = addDays.call(currentDate, 1);
+    }
+    return dates;
+  }
 }

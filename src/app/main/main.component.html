@@ -15,11 +15,13 @@
 
     <app-everyday *ngIf="session_type_id === 'Everyday'" (dateChanged)="everyDateChangedHandler($event)"></app-everyday>
 
-    <app-weekly *ngIf="session_type_id === 'Weekly'"></app-weekly>
+    <app-weekly *ngIf="session_type_id === 'Weekly'" (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-weekly>
 
-    <app-byweekly *ngIf="session_type_id === 'Bi-weekly'"></app-byweekly>
+    <app-byweekly *ngIf="session_type_id === 'Bi-weekly'" (biWeeklyCalendarChanged)="biWeeklyCalendarChangedHandler($event)"></app-byweekly>
 
-    <app-monthly *ngIf="session_type_id === 'Monthly'" (monthlyCalendarChanged)="monthlyCalendarChangeHandler($event)"></app-monthly>
+    <app-monthly *ngIf="
+        session_type_id==='Monthly'" (monthlyCalendarChanged)=" monthlyCalendarChangeHandler($event)">
+    </app-monthly>
 
     <app-quarterly *ngIf="session_type_id === 'Quarterly'" (dateChanged)="quarterlyDateChangedHandler($event)"></app-quarterly>
 
