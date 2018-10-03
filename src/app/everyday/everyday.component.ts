@@ -2,6 +2,7 @@ import { EveryDayModel } from '../models/everyDayModel';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
   selector: 'app-everyday',
   templateUrl: './everyday.component.html',
@@ -11,8 +12,8 @@ export class EverydayComponent implements OnInit {
 
   public startDate: Date;
   public endDate: Date;
-  public weeksDays: boolean = false;
-  public govHolyDays: boolean = false;
+  public weeksDays = false;
+  public govHolyDays = false;
 
 
   everDayModel: EveryDayModel = <EveryDayModel>{};
