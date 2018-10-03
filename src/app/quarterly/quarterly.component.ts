@@ -17,6 +17,7 @@ export class QuarterlyComponent implements OnInit {
   fourCheckBox: boolean = true;
   quaterlyModelArray: QuaterlyModel = <QuaterlyModel>{};
 
+
   @Output() public dateChanged = new EventEmitter();
 
   selectOption: any[] = [
@@ -54,7 +55,7 @@ export class QuarterlyComponent implements OnInit {
 
   // Max moment: April 25 2018, 20:30
   public max = new Date(2018, 3, 25, 20, 30);
-  constructor(public datepipe: DatePipe) {
+  constructor(public datePipe: DatePipe) {
     this.quaterlyModelArray.quaterlyModel = [];
   }
 
@@ -116,8 +117,8 @@ export class QuarterlyComponent implements OnInit {
     //console.log("month" + month);
     var monthStartDay = new Date(year, month, 1);
     var monthEndDay = new Date(year, month + 1, 0);
-    var min = this.datepipe.transform(monthStartDay, 'dd');
-    var max = this.datepipe.transform(monthEndDay, 'dd');
+    var min = this.datePipe.transform(monthStartDay, 'dd');
+    var max = this.datePipe.transform(monthEndDay, 'dd');
 
     this.min = new Date(this.selectYear, month, Number.parseInt(min));
     this.max = new Date(this.selectYear, month, Number.parseInt(max));
@@ -173,7 +174,7 @@ export class QuarterlyComponent implements OnInit {
       this.firstQuart = [];
 
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.janDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.janDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstQuart.push(calenderModel1);
@@ -187,7 +188,7 @@ export class QuarterlyComponent implements OnInit {
       this.firstQuart = [];
 
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.febDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.febDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
 
@@ -201,7 +202,7 @@ export class QuarterlyComponent implements OnInit {
       this.firstQuart = [];
 
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.marchDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.marchDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstQuart.push(calenderModel1);
@@ -214,7 +215,7 @@ export class QuarterlyComponent implements OnInit {
       this.secondQuart = [];
 
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.aprDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.aprDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.secondQuart.push(calenderModel1);
@@ -226,7 +227,7 @@ export class QuarterlyComponent implements OnInit {
       this.juneDate = null;
       this.secondQuart = [];
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.mayDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.mayDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.secondQuart.push(calenderModel1);
@@ -238,7 +239,7 @@ export class QuarterlyComponent implements OnInit {
       this.aprDate = null;
       this.secondQuart = [];
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.juneDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.juneDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.secondQuart.push(calenderModel1);
@@ -251,7 +252,7 @@ export class QuarterlyComponent implements OnInit {
 
       this.thirdQuart = [];
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.julDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.julDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.thirdQuart.push(calenderModel1);
@@ -263,11 +264,11 @@ export class QuarterlyComponent implements OnInit {
       this.sepDate = null;
       this.thirdQuart = [];
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.augDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.augDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.thirdQuart.push(calenderModel1);
-      
+
       this.prepareQuaterlyObj();
     } else if (val == 8) {
       this.getDateTimeEvent(val);
@@ -275,7 +276,7 @@ export class QuarterlyComponent implements OnInit {
       this.julDate = null;
       this.thirdQuart = [];
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.sepDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.sepDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.thirdQuart.push(calenderModel1);
@@ -286,7 +287,7 @@ export class QuarterlyComponent implements OnInit {
       this.novDate = null;
       this.fourthQuart = [];
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.octDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.octDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.fourthQuart.push(calenderModel1);
@@ -297,7 +298,7 @@ export class QuarterlyComponent implements OnInit {
       this.decDate = null;
       this.fourthQuart = [];
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.novDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.novDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.fourthQuart.push(calenderModel1);
@@ -308,7 +309,7 @@ export class QuarterlyComponent implements OnInit {
       this.octDate = null;
       this.thirdQuart = [];
       let calenderModel1 = new CalenderModel();
-      var apr = this.datepipe.transform(this.decDate, 'yyyy-MM-dd');
+      var apr = this.datePipe.transform(this.decDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.fourthQuart.push(calenderModel1);

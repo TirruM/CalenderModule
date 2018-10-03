@@ -47,7 +47,7 @@ export class HalfyearlyComponent implements OnInit {
   // Max moment: April 25 2018, 20:30
   public max = new Date(2018, 3, 25, 20, 30);
 
-  constructor(public datepipe: DatePipe) {
+  constructor(public datePipe: DatePipe) {
     this.quaterlyModelArray.quaterlyModel = [];
   }
 
@@ -87,8 +87,8 @@ export class HalfyearlyComponent implements OnInit {
     //console.log("month" + month);
     var monthStartDay = new Date(year, month, 1);
     var monthEndDay = new Date(year, month + 1, 0);
-    var min = this.datepipe.transform(monthStartDay, 'dd');
-    var max = this.datepipe.transform(monthEndDay, 'dd');
+    var min = this.datePipe.transform(monthStartDay, 'dd');
+    var max = this.datePipe.transform(monthEndDay, 'dd');
 
     this.min = new Date(this.selectYear, month, Number.parseInt(min));
     this.max = new Date(this.selectYear, month, Number.parseInt(max));
@@ -128,7 +128,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.firstHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.janDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.janDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
@@ -145,7 +145,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.firstHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.febDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.febDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
@@ -161,7 +161,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.firstHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.marchDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.marchDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
@@ -177,7 +177,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.firstHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.aprDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.aprDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
@@ -193,7 +193,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.firstHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.mayDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.mayDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
@@ -209,7 +209,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.firstHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.juneDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.juneDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
@@ -225,7 +225,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.secondHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.julDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.julDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
@@ -241,7 +241,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.secondHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.augDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.augDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
@@ -257,7 +257,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.secondHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.sepDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.sepDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
@@ -273,7 +273,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.secondHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.octDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.octDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
@@ -289,7 +289,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.secondHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.novDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.novDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
@@ -305,7 +305,7 @@ export class HalfyearlyComponent implements OnInit {
 
       this.secondHalfyearly = [];
       let calenderModel1 = new CalenderModel();
-      var jan = this.datepipe.transform(this.decDate, 'yyyy-MM-dd');
+      var jan = this.datePipe.transform(this.decDate, 'yyyy-MM-dd');
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);

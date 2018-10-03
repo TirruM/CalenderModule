@@ -37,6 +37,9 @@ export class MainComponent implements OnInit {
   quaterlyModel: QuaterlyModel = <QuaterlyModel>{};
   public monthlyCalendarObj: Array<CalenderModel>;
   public annuallyCalendarObj: Array<CalenderModel>;
+  public weeklyCalendarObj: Array<CalenderModel>;
+  public biWeeklyCalendarObj: Array<CalenderModel>;
+
   constructor(public datePipe: DatePipe) {
     this.start_date = this.start_date;
   }
@@ -80,6 +83,17 @@ export class MainComponent implements OnInit {
 
   }
 
+  weeklyCalendarChangedHandler(weeklyCalendarObj: Array<CalenderModel>) {
+    this.weeklyCalendarObj = weeklyCalendarObj;
+    console.log("week calendar in main" + JSON.stringify(this.weeklyCalendarObj));
+  }
+
+  biWeeklyCalendarChangedHandler(biWeeklyCalendarObj: Array<CalenderModel>) {
+    this.biWeeklyCalendarObj = biWeeklyCalendarObj;
+    console.log("bi week calendar in main" + JSON.stringify(this.biWeeklyCalendarObj));
+  }
+
+
 
   saveCalender(payload: NgForm): void {
     this.oportunityInstanceModel.session_type_id = this.session_type_id;
@@ -106,12 +120,12 @@ export class MainComponent implements OnInit {
       var month = calDate.getMonth() + 1;
       var date = calDate.getDate();
 
-      var ecalDate = new Date(endTime);
-      var eyear = ecalDate.getFullYear();
-      var emonth = ecalDate.getMonth();
-      var edate = ecalDate.getDate();
+      var eCalDate = new Date(endTime);
+      var eYear = eCalDate.getFullYear();
+      var eMonth = eCalDate.getMonth();
+      var eDate = eCalDate.getDate();
 
-      var dates = this.getDates(new Date(year, month - 1, date), new Date(eyear, emonth, edate), this.everyDayModel.weeksDays);
+      var dates = this.getDates(new Date(year, month - 1, date), new Date(eYear, eMonth, eDate), this.everyDayModel.weeksDays);
       var pipe = new DatePipe('en-US');
       let calArr = [];
 
@@ -154,6 +168,14 @@ export class MainComponent implements OnInit {
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.annuallyCalendarObj;
       console.log("Annually:::" + JSON.stringify(this.oportunityInstanceModel));
+    } else if (this.session_type_id == "Weekly") {
+      this.oportunityInstanceModel.days = [];
+      this.oportunityInstanceModel.days = this.weeklyCalendarObj;
+      console.log("Weekly:::" + JSON.stringify(this.oportunityInstanceModel));
+    } else if (this.session_type_id == "Bi-weekly") {
+      this.oportunityInstanceModel.days = [];
+      this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
+      console.log("Bi Weekly:::" + JSON.stringify(this.oportunityInstanceModel));
     }
   }
 
