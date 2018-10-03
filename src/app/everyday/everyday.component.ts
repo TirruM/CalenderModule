@@ -19,7 +19,6 @@ export class EverydayComponent implements OnInit {
   @Output() public dateChanged = new EventEmitter();
 
   handleChange(event) {
-    //console.log("handle change");
     this.everDayModel.startDate = this.startDate;
     this.everDayModel.endDate = this.endDate;
     this.everDayModel.weeksDays = this.weeksDays;
@@ -29,12 +28,11 @@ export class EverydayComponent implements OnInit {
 
   onWeekdaysChange() {
     this.weeksDays = !this.weeksDays;
-    this.handleChange(event); 
+    this.handleChange(event);
     }
-    
     onGovHolidaysChange() {
     this.govholiyDays = !this.govholiyDays;
-    this.handleChange(event); 
+    this.handleChange(event);
     }
 
   constructor(public datepipe: DatePipe) { }
