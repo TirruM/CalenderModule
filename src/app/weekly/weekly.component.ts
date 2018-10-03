@@ -54,6 +54,7 @@ export class WeeklyComponent implements OnInit {
     const ctrlValue = this.startDate.value;
     ctrlValue.year(normalizedYear.year());
     this.startDate.setValue(ctrlValue);
+    console.log("startDate-->", this.startDate);
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datepicker: OwlDateTimeComponent<Moment>) {
@@ -83,16 +84,21 @@ export class WeeklyComponent implements OnInit {
   }
 
   yearMonthHandler(event) {
-    let now = moment(this.strDate).format("YYYY-MM-DD ");
-    let now1 = moment(this.endsDate).format("YYYY-MM-DD ");
-    console.log("strDate--->" + now);
-    console.log("endsDate--->" + now1);
+    if (this.strDate !== undefined) {
+      let now = moment(this.strDate).format("MMM YYYY");
+      // this.startDate = now;
+    } else if (this.endsDate !== undefined) {
+      let now1 = moment(this.endsDate).format("MMM YYYY");
+      // this.endDate = now1;
+    }
+
+
+    console.log("strDate--->" + this.startDate);
+    console.log("endsDate--->" + this.endsDate);
 
 
   }
 
-  selectStr() {
-    console.log("triiiii");
-  }
+
 
 }

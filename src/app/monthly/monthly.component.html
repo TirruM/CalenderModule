@@ -2,7 +2,8 @@
   <div class="form-group">
     <input type="text" [(ngModel)]="noOfDays" (focus)="numberofDays($event)">
     <label for="">Date Time:</label>
-    <owl-date-time-inline [(ngModel)]="dateTimeRange" [selectMode]="'range'" [pickerType]="'calendar'" #dt3 (click)="handleChange($event)"></owl-date-time-inline>
+    <owl-date-time-inline [(ngModel)]="dateTimeRange" [selectMode]="'range'" [pickerType]="'calendar'" 
+    #dt3 (click)="handleChange($event)"></owl-date-time-inline>
 
     <!-- <input placeholder="Date Time Range:"
                [style.width]="'350px'"

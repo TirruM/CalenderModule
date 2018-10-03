@@ -50,6 +50,7 @@ export class MonthlyComponent implements OnInit {
   }
 
   handleChange(event) {
+    console.log("kiran---->" + this.dateTimeRange);
     let now = moment(this.dateTimeRange[0]).format("YYYY-MM-DD ");
     this.monthlyCalendarObj = [];
     let dateArray = [];
@@ -75,17 +76,18 @@ export class MonthlyComponent implements OnInit {
         this.monthlyCalendarObj.push(calenderModel);
         if (i == this.noOfDays - 1) {
           this.dateTimeRange.push(nextDay);
-
+          console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[j]));
           for (var j = 0; j < this.dateTimeRange.length; j++) {
             console.log(JSON.stringify(this.dateTimeRange.length));
             if (this.dateTimeRange[j] === null) {
-              console.log(JSON.stringify(this.dateTimeRange[j]));
+              console.log("sdfsdf null " + JSON.stringify(this.dateTimeRange[j]));
               this.dateTimeRange.splice(j, 1);
-              console.log(JSON.stringify(this.dateTimeRange[j]));
+              console.log("sdfsdf after removal null" + JSON.stringify(this.dateTimeRange[j]));
             }
+
           }
 
-          console.log(JSON.stringify(this.dateTimeRange));
+          console.log("trrrr" + this.dateTimeRange);
         }
       }
 

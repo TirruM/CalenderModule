@@ -118,6 +118,16 @@ export class MainComponent implements OnInit {
       });
       this.oportunityInstanceModel.days = calArr;
       console.log("Everyday:::" + JSON.stringify(this.oportunityInstanceModel));
+    } else if (this.session_type_id == "Quarterly") {
+      let calArr = [];
+      for (var i = 0; i < this.quaterlyModel.quaterlyModel.length; i++) {
+        let calenderModel = new CalenderModel();
+        calenderModel.start_date = this.quaterlyModel.quaterlyModel[i].start_date;
+        calenderModel.end_date = this.quaterlyModel.quaterlyModel[i].end_date;
+        calArr.push(calenderModel);
+      }
+      this.oportunityInstanceModel.days = calArr;
+      console.log("Quaterly Yearly:::" + JSON.stringify(this.oportunityInstanceModel));
     } else if (this.session_type_id == "Half Yearly") {
       let calArr = [];
       for (var i = 0; i < this.quaterlyModel.quaterlyModel.length; i++) {
