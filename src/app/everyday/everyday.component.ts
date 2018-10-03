@@ -24,8 +24,7 @@ export class EverydayComponent implements OnInit {
     this.everDayModel.endDate = this.endDate;
     this.everDayModel.weeksDays = this.weeksDays;
     this.everDayModel.govHolidays = this.govholiyDays;
-
-    this.dateChanged.emit(this.everDayModel)
+    this.dateChanged.emit(this.everDayModel);
   }
 
   onWeekdaysChange() {
