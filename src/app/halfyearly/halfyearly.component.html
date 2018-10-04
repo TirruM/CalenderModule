@@ -1,14 +1,17 @@
-<div class="form-row">
-  <div class="col-sm-4">
-    <div class="form-group">
-      <div class="form-check">
+<div class="form-group">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-12">
         <label for="options">Options:</label>
-        <div *ngFor="let option of selectOption">
-          <label>
-            <input type="checkbox" name="options" [value]="option.value" [id]="option.id" [(ngModel)]="option.checked"
-              (click)="checkBoxChangeEvent($event)" />
-            {{option.name}}
-          </label>
+        <div class="form-row">
+          <div class="col-md-3 col-sm-6" *ngFor="let option of selectOption">
+            <label class="checkcontainer">
+              <input type="checkbox" name="options" [value]="option.value" [id]="option.id" [(ngModel)]="option.checked"
+                (click)="checkBoxChangeEvent($event)" />
+              {{option.name}}
+              <span class="checkmark"></span>
+            </label>
+          </div>
         </div>
       </div>
     </div>

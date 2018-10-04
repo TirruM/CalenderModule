@@ -3,7 +3,7 @@
     <div class="form-group">
         <div class="col-sm-12">
             <div class="row">
-                <div class="col-md-3" *ngFor="let s of dsession">
+                <div class="col-md-3 col-sm-6 col-xs-6" *ngFor="let s of dsession">
                     <label class="radio-inline checkcontainer">
                         <input type="radio" [(ngModel)]="session_type_id" [name]="session_type_id" [id]="s.id" [value]="s.id"
                             (change)="handleChange($event)"> {{s.name}}
@@ -34,14 +34,14 @@
 
     <div style="margin-top:30px;"></div>
     <div class="form-row">
-        <div class="col-sm-6">
+        <div class="col-md-6 col-sm-12">
             <div class="form-group">
                 <label for="start_time">Start Time</label>
                 <timepicker [(ngModel)]="start_time" name="start_time" id="start_time"></timepicker>
                 <!-- <input type="text" class="form-control" id="start_time" name="start_time"> -->
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-md-6 col-sm-12">
             <div class="form-group">
                 <label for="end_time">End Time</label>
                 <timepicker [(ngModel)]="end_time" name="end_time" id="end_time"></timepicker>
