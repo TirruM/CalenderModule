@@ -2,6 +2,13 @@
 
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 
+.remove-arrow .owl-dt-control-arrow-button .owl-dt-control-button-content{
+    display: none !important;
+}
+
+.mar-bot-10{
+    margin-bottom: 10px;
+}
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected{
     background-color: #ffd902 !important;
 }
@@ -49,6 +56,11 @@ input[type=checkbox], input[type=radio]{
     width: 20px;
     background-color: #ffffff;
     box-shadow: 0 .125rem .50rem rgba(0,0,0,0.2)!important; 
+}
+
+.change-top-left{
+    top: 2px !important;
+    left: -12px !important;
 }
 
 .checkmark::after {
