@@ -42,6 +42,7 @@ export class MainComponent implements OnInit {
   public annuallyCalendarObj: Array<CalenderModel>;
   public weeklyCalendarObj: Array<CalenderModel>;
   public biWeeklyCalendarObj: Array<CalenderModel>;
+  public everyDayCalendarObj: Array<CalenderModel>;
 
   utilsObj: Utils = new Utils(this.datePipe);
 
@@ -70,8 +71,8 @@ export class MainComponent implements OnInit {
     this.selectedDate = selectedDate;
   }
 
-  everyDateChangedHandler(everyDayModel: EveryDayModel) {
-    this.everyDayModel = everyDayModel
+  everyDateChangedHandler(everyDayCalendarObj: Array<CalenderModel>) {
+    this.everyDayCalendarObj = everyDayCalendarObj
   }
 
   quarterlyDateChangedHandler(quarterlyModel: QuarterlyModel) {
@@ -121,30 +122,8 @@ export class MainComponent implements OnInit {
       var startTime = this.everyDayModel.startDate;
       var endTime = this.everyDayModel.endDate;
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      var calDate = new Date(startTime);
-      var year = calDate.getFullYear();
-      var month = calDate.getMonth() + 1;
-      var date = calDate.getDate();
-
-      var eCalDate = new Date(endTime);
-      var eYear = eCalDate.getFullYear();
-      var eMonth = eCalDate.getMonth();
-      var eDate = eCalDate.getDate();
-
-      //var dates = this.getDates(new Date(year, month - 1, date), new Date(eYear, eMonth, eDate), this.everyDayModel.weeksDays);
-      var dates = this.utilsObj.getDates(new Date(year, month - 1, date), new Date(eYear, eMonth, eDate),
-        this.everyDayModel.weeksDays, 0);
-      var pipe = new DatePipe('en-US');
-      let calArr = [];
-
-      dates.forEach(function (date) {
-        let calenderModel = new CalenderModel();
-        calenderModel.start_date = pipe.transform(date, 'dd-MM-yyyy');
-        calenderModel.end_date = pipe.transform(date, 'dd-MM-yyyy');
-
-        calArr.push(calenderModel);
-      });
-      this.oportunityInstanceModel.days = calArr;
+      this.oportunityInstanceModel.days = [];
+      this.oportunityInstanceModel.days = this.everyDayCalendarObj;
       console.log("Everyday:::" + JSON.stringify(this.oportunityInstanceModel));
     } else if (this.session_type_id == "3") {
       this.session_type_name = "Weekly";

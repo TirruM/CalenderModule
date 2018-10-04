@@ -12,7 +12,6 @@ export class Utils {
     }
 
     public getDates(startDate, endDate, isExceptWeekDays, selectedWeekDay): any {
-
         var day = startDate;
         let dates = [],
             currentDate = startDate,
@@ -23,7 +22,6 @@ export class Utils {
                 return date;
             };
         while (currentDate <= endDate) {
-
             var d = currentDate.getDay();
             if (isExceptWeekDays) {
                 if (d == 0 || d == 6) {
@@ -32,7 +30,12 @@ export class Utils {
                     dates.push(currentDate);
                 }
             } else {
+                
                 if (d == selectedWeekDay) {
+                    dates.push(currentDate);
+                }
+                else {
+                   
                     dates.push(currentDate);
                 }
             }
