@@ -150,6 +150,7 @@ export class ByweeklyComponent implements OnInit {
     var dates = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), false, now);
     var pipe = new DatePipe('en-US');
     let byWeeklyArr = [];
+    
     var i = 0;
     dates.forEach(function (date) {
       if (i % 2 === 0) {
