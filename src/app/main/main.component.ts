@@ -24,14 +24,14 @@ export class MainComponent implements OnInit {
   session_type_name = "One Time";
   session_type_id = "1";
   dsession: any[] = [
-    { id: 1, name: 'One Time' },
-    { id: 2, name: 'Everyday' },
-    { id: 3, name: 'Weekly' },
-    { id: 4, name: 'Bi-weekly' },
-    { id: 5, name: 'Monthly' },
-    { id: 6, name: 'Quarterly' },
-    { id: 7, name: 'Half Yearly' },
-    { id: 8, name: 'Annually' }
+    { id: "1", name: 'One Time' },
+    { id: "2", name: 'Everyday' },
+    { id: "3", name: 'Weekly' },
+    { id: "4", name: 'Bi-weekly' },
+    { id: "5", name: 'Monthly' },
+    { id: "6", name: 'Quarterly' },
+    { id: "7", name: 'Half Yearly' },
+    { id: "8", name: 'Annually' }
   ];
 
   calendarModel: CalenderModel = <CalenderModel>{};
@@ -58,6 +58,7 @@ export class MainComponent implements OnInit {
     var index = this.dsession.findIndex((ds: any) => {
       return ds.id + "" === event.target.id;
     });
+
     if (index > -1) {
       this.session_type_id = this.dsession[index].id;
       this.session_type_name = this.dsession[index].name;
@@ -97,16 +98,19 @@ export class MainComponent implements OnInit {
   }
 
   saveCalender(payload: NgForm): void {
+
     this.oportunityInstanceModel.session_type_id = this.session_type_id;
     this.oportunityInstanceModel.start_time = this.datePipe.transform(this.start_time, 'hh:MM:ss a');
     this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:MM:ss a');
 
     if (this.session_type_id == "1") {
       this.session_type_name = "One Time";
+
       let calenderModel1 = new CalenderModel();
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       calenderModel1.start_date = this.utilsObj.formatDate(this.selectedDate, 'dd-MM-yyyy');
       calenderModel1.end_date = this.utilsObj.formatDate(this.selectedDate, 'dd-MM-yyyy');
+
       let calArr = [];
       calArr.push(calenderModel1);
       this.oportunityInstanceModel.days = calArr;

@@ -5,6 +5,8 @@ export class Utils {
 
     }
 
+    
+
     public formatDate(value, format): any {
         return this.datePipe.transform(value, format);
     }
