@@ -1,9 +1,11 @@
 <div class="row justify-content-md-center">
-  <div class="col-7">
-    <div class="form-group">
-      <label>No. of days</label>
+  <div class="form-group row">
+    <label for="staticEmail" class="col-sm-5 col-form-label">No. of days</label>
+    <div class="col-sm-7">
       <input type="text" class="form-control" [(ngModel)]="noOfDays" (focus)="numberofDays($event)">
     </div>
   </div>
 </div>
-<owl-date-time-inline [(ngModel)]="dateTimeRange" [selectMode]="'range'" [pickerType]="'calendar'" #dt3 (click)="handleChange($event)"></owl-date-time-inline>
+<div class="remove-arrow"></div>
+<owl-date-time-inline class="date-center" [(ngModel)]="dateTimeRange" [selectMode]="'range'" [pickerType]="'calendar'"
+  #dt3 (click)="handleChange($event)"></owl-date-time-inline>

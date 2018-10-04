@@ -32,26 +32,25 @@
 
     <app-annually *ngIf="session_type_name === 'Annually'" (annuallyCalendarChanged)="annuallyCalendarChangeHandler($event)"></app-annually>
 
-    <div style="margin-top:30px;"></div>
+    <h5>Start Time & End Time</h5>
     <div class="form-row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-5 col-sm-12">
             <div class="form-group">
-                <label for="start_time">Start Time</label>
                 <timepicker [(ngModel)]="start_time" name="start_time" id="start_time"></timepicker>
                 <!-- <input type="text" class="form-control" id="start_time" name="start_time"> -->
             </div>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-5 col-sm-12">
             <div class="form-group">
-                <label for="end_time">End Time</label>
                 <timepicker [(ngModel)]="end_time" name="end_time" id="end_time"></timepicker>
                 <!--<input type="text" class="form-control" id="end_time" name="end_time"> -->
             </div>
         </div>
-    </div>
-    <div class="col-sm-12">
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary btn-style" value="ADD 1 MORE">
+        <div class="col-md-2 col-sm-12">
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-style" value="ADD 1 MORE">
+            </div>
         </div>
     </div>
+    <div class="mar-bot-40"></div>
 </form>

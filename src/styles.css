@@ -9,6 +9,11 @@
 .mar-bot-10{
     margin-bottom: 10px;
 }
+
+.mar-bot-40{
+    margin-bottom: 60px;
+}
+
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected{
     background-color: #ffd902 !important;
 }

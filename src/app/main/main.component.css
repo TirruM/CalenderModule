@@ -39,6 +39,7 @@
     border-color: #ffd902;
     font-size: 12px;
     border-radius: 25px;
+    margin-top: 30px;
 }
 
 .btn-style:hover, .btn-style:active, .btn-style:focus{
@@ -48,3 +49,4 @@
     font-size: 12px;
     box-shadow: 0 0 0 0.2rem rgba(255, 217, 2, 0.5) !important;
 }
+
