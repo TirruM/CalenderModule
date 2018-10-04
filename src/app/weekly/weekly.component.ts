@@ -52,6 +52,7 @@ export class WeeklyComponent implements OnInit {
   public toMonth: number;
   public weeklyCalendarObj: Array<CalenderModel> = [];
   utilsObj: Utils = new Utils(this.datePipe);
+  selectedWeekDays: any = [];
 
   @Output() public weeklyCalendarChanged = new EventEmitter();
 
@@ -112,7 +113,23 @@ export class WeeklyComponent implements OnInit {
     var year = moment(this.selectedMoment).format("YYYY");
     var month = moment(this.selectedMoment).format("MM");
     var date = moment(this.selectedMoment).format("DD");
+    //let now = new Date(new Date(year, month - 1, date));
     let now = new Date(new Date(year, month - 1, date));
+
+    if (this.selectedWeekDays.length > 0) {
+      console.log("second");
+      if (this.selectedWeekDays.includes(now.getDay())) {
+        // === now.getDay()) {
+        console.log("trrr");
+      } else {
+        console.log("weekDayyy---->" + now.getDay());
+        this.selectedWeekDays.push(now.getDay());
+      }
+    } else {
+      console.log("first");
+      this.selectedWeekDays.push(now.getDay());
+    }
+    console.log("selected WeekDays--->", JSON.stringify(this.selectedWeekDays));
     if (this.strDate !== null && this.endsDate !== null) {
       this.prepareWeekObj(now.getDay(), month);
     }
@@ -128,7 +145,11 @@ export class WeeklyComponent implements OnInit {
     var eYear = eCalDate.getFullYear();
     var eMonth = eCalDate.getMonth();
     var eDate = eCalDate.getDate();
-    var dates = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), false, now);
+    /* var dates1 = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate),
+      false, now); */
+    var dates = this.utilsObj.getMultipleWeekDates(new Date(year, month, date), new Date(eYear, eMonth, eDate),
+      false, this.selectedWeekDays);
+
     var pipe = new DatePipe('en-US');
     let calArr = [];
     let byWeeklyArr = [];
@@ -140,6 +161,7 @@ export class WeeklyComponent implements OnInit {
       calArr.push(calenderModel);
     });
     this.weeklyCalendarObj = calArr;
+    console.log("weekly---->" + JSON.stringify(this.weeklyCalendarObj));
     this.weeklyCalendarChanged.emit(this.weeklyCalendarObj);
   }
 }

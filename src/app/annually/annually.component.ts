@@ -98,6 +98,7 @@ export class AnnuallyComponent implements OnInit {
       currentDate = new Date(selectedDate);
       this.annuallyCalendarObj = [];
       for (let i = now; i <= now1; i++) {
+        
         var calDate = currentDate;
         var month = calDate.getMonth() + 1;
         var date = calDate.getDate();

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { CalenderModel } from '../models/calender';
+import { Utils } from './../custom/Utils';
 
 import {
   DateTimeAdapter,
@@ -50,7 +51,8 @@ export class ByweeklyComponent implements OnInit {
   public fromMonth: number;
   public toMonth: number;
   public biWeeklyCalendarObj: Array<CalenderModel> = [];
-
+  selectedWeekDays: any = [];
+  utilsObj: Utils = new Utils(this.datePipe);
 
   @Output() public biWeeklyCalendarChanged = new EventEmitter();
 
@@ -112,11 +114,26 @@ export class ByweeklyComponent implements OnInit {
     var date = moment(this.selectedMoment).format("DD");
 
     let now = new Date(new Date(year, month - 1, date));
-    console.log("selected weekDay", now);
+
+
+    if (this.selectedWeekDays.length > 0) {
+
+      if (this.selectedWeekDays.includes(now.getDay())) {
+
+      } else {
+
+        this.selectedWeekDays.push(now.getDay());
+      }
+    } else {
+
+      this.selectedWeekDays.push(now.getDay());
+    }
 
     if (this.strDate !== null && this.endsDate !== null) {
       this.prepareWeekObj(now.getDay(), month);
     }
+
+
   }
 
   prepareWeekObj(now, month1: any) {
@@ -130,7 +147,7 @@ export class ByweeklyComponent implements OnInit {
     var eYear = eCalDate.getFullYear();
     var eMonth = eCalDate.getMonth();
     var eDate = eCalDate.getDate();
-    var dates = this.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), now, month1);
+    var dates = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), false, now);
     var pipe = new DatePipe('en-US');
     let byWeeklyArr = [];
     var i = 0;
@@ -152,28 +169,6 @@ export class ByweeklyComponent implements OnInit {
 
     this.biWeeklyCalendarChanged.emit(this.biWeeklyCalendarObj);
 
-  }
-
-
-
-  public getDates(startDate, endDate, weekDays, month1): any {
-    var day = startDate;
-    let dates = [],
-      currentDate = startDate,
-      addDays = function (days) {
-        let date = new Date(this.valueOf());
-        date.setDate(date.getDate() + days);
-
-        return date;
-      };
-    while (currentDate <= endDate) {
-      var d = currentDate.getDay();
-      if (d == weekDays) {
-        dates.push(currentDate);
-      }
-      currentDate = addDays.call(currentDate, 1);
-    }
-    return dates;
   }
 }
 
