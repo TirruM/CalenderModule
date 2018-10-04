@@ -4,30 +4,30 @@
             <div class="row">
                 <div class="col-md-3" *ngFor="let s of dsession">
                     <label class="radio-inline">
-                        <input type="radio" [(ngModel)]="session_type_id" [name]="session_type_id" [id]="s.id" [value]="s.name"
+                        <input type="radio" [(ngModel)]="session_type_id" [name]="session_type_id" [id]="s.id" [value]="s.id"
                             (change)="handleChange($event)"> {{s.name}}
                     </label>
                 </div>
             </div>
         </div>
     </div>
-    <app-onetimecalender *ngIf="session_type_id === 'One Time'" (dateChanged)="dateChangedHandler($event)"></app-onetimecalender>
+    <app-onetimecalender *ngIf="session_type_name === 'One Time'" (dateChanged)="dateChangedHandler($event)"></app-onetimecalender>
 
-    <app-everyday *ngIf="session_type_id === 'Everyday'" (dateChanged)="everyDateChangedHandler($event)"></app-everyday>
+    <app-everyday *ngIf="session_type_name === 'Everyday'" (dateChanged)="everyDateChangedHandler($event)"></app-everyday>
 
-    <app-weekly *ngIf="session_type_id === 'Weekly'" (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-weekly>
+    <app-weekly *ngIf="session_type_name === 'Weekly'" (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-weekly>
 
-    <app-byweekly *ngIf="session_type_id === 'Bi-weekly'" (biWeeklyCalendarChanged)="biWeeklyCalendarChangedHandler($event)"></app-byweekly>
+    <app-byweekly *ngIf="session_type_name === 'Bi-weekly'" (biWeeklyCalendarChanged)="biWeeklyCalendarChangedHandler($event)"></app-byweekly>
 
     <app-monthly *ngIf="
-        session_type_id==='Monthly'" (monthlyCalendarChanged)=" monthlyCalendarChangeHandler($event)">
+    session_type_name==='Monthly'" (monthlyCalendarChanged)=" monthlyCalendarChangeHandler($event)">
     </app-monthly>
 
-    <app-quarterly *ngIf="session_type_id === 'Quarterly'" (dateChanged)="quarterlyDateChangedHandler($event)"></app-quarterly>
+    <app-quarterly *ngIf="session_type_name === 'Quarterly'" (dateChanged)="quarterlyDateChangedHandler($event)"></app-quarterly>
 
-    <app-halfyearly *ngIf="session_type_id === 'Half Yearly'" (dateChanged)="halfYearlyDateChangedHandler($event)"></app-halfyearly>
+    <app-halfyearly *ngIf="session_type_name === 'Half Yearly'" (dateChanged)="halfYearlyDateChangedHandler($event)"></app-halfyearly>
 
-    <app-annually *ngIf="session_type_id === 'Annually'" (annuallyCalendarChanged)="annuallyCalendarChangeHandler($event)"></app-annually>
+    <app-annually *ngIf="session_type_name === 'Annually'" (annuallyCalendarChanged)="annuallyCalendarChangeHandler($event)"></app-annually>
 
 
     <div style="margin-top:30px;"></div>
@@ -54,4 +54,4 @@
     </div>
 </form>
 
-{{payload.value | json}}
+<!-- {{payload.value | json}} -->

@@ -1,3 +1,4 @@
+import { Utils } from './../custom/Utils';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -50,11 +51,13 @@ export class WeeklyComponent implements OnInit {
   public fromMonth: number;
   public toMonth: number;
   public weeklyCalendarObj: Array<CalenderModel> = [];
-
+  utilsObj: Utils = new Utils(this.datePipe);
 
   @Output() public weeklyCalendarChanged = new EventEmitter();
 
   constructor(public datePipe: DatePipe) { }
+
+
 
   ngOnInit() {
   }
@@ -106,21 +109,16 @@ export class WeeklyComponent implements OnInit {
   }
 
   handleChange(event) {
-    console.log(moment(this.selectedMoment).format("DD/MM/YYYY"))
     var year = moment(this.selectedMoment).format("YYYY");
     var month = moment(this.selectedMoment).format("MM");
     var date = moment(this.selectedMoment).format("DD");
-
     let now = new Date(new Date(year, month - 1, date));
-    console.log("selected weekDay", now);
-
     if (this.strDate !== null && this.endsDate !== null) {
       this.prepareWeekObj(now.getDay(), month);
     }
   }
 
   prepareWeekObj(now, month1: any) {
-    console.log("selected month1", month1);
     var calDate = new Date(this.strDate);
     var year = calDate.getFullYear();
     var month = calDate.getMonth();
@@ -130,59 +128,18 @@ export class WeeklyComponent implements OnInit {
     var eYear = eCalDate.getFullYear();
     var eMonth = eCalDate.getMonth();
     var eDate = eCalDate.getDate();
-    var dates = this.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), now, month1);
+    var dates = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), false, now);
     var pipe = new DatePipe('en-US');
     let calArr = [];
     let byWeeklyArr = [];
     var i = 0;
     dates.forEach(function (date) {
-      if (i % 2 === 0) {
-        console.log("i/2==0 val---->" + i % 2);
-        let calenderModel = new CalenderModel();
-        calenderModel.start_date = pipe.transform(date, 'dd-MM-yyyy');
-        calenderModel.end_date = pipe.transform(date, 'dd-MM-yyyy');
-
-        byWeeklyArr.push(calenderModel);
-      } else {
-        console.log("i/2 !=0 val---->" + i % 2);
-      }
-      i++;
       let calenderModel = new CalenderModel();
       calenderModel.start_date = pipe.transform(date, 'dd-MM-yyyy');
       calenderModel.end_date = pipe.transform(date, 'dd-MM-yyyy');
-
       calArr.push(calenderModel);
     });
     this.weeklyCalendarObj = calArr;
-    console.log("calArr---->", JSON.stringify(this.weeklyCalendarObj));
-    console.log("byWeeklyArr---->", JSON.stringify(byWeeklyArr));
-     this.weeklyCalendarChanged.emit(this.weeklyCalendarObj);
-    console.log("dates length", dates.length);
-    console.log("dates length", byWeeklyArr.length);
-
-
-
-  }
-
-
-
-  public getDates(startDate, endDate, weekDays, month1): any {
-    var day = startDate;
-    let dates = [],
-      currentDate = startDate,
-      addDays = function (days) {
-        let date = new Date(this.valueOf());
-        date.setDate(date.getDate() + days);
-
-        return date;
-      };
-    while (currentDate <= endDate) {
-      var d = currentDate.getDay();
-      if (d == weekDays) {
-        dates.push(currentDate);
-      }
-      currentDate = addDays.call(currentDate, 1);
-    }
-    return dates;
+    this.weeklyCalendarChanged.emit(this.weeklyCalendarObj);
   }
 }

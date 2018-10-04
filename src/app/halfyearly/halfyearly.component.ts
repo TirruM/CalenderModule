@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { CalenderModel } from './../models/calender';
-import { QuaterlyModel } from './../models/quaterlymodel';
+import { QuarterlyModel } from '../models/quarterlyModel';
 
 @Component({
   selector: 'app-halfyearly',
@@ -32,7 +32,7 @@ export class HalfyearlyComponent implements OnInit {
 
   public selectYear: any;
 
-  quaterlyModelArray: QuaterlyModel = <QuaterlyModel>{};
+  quarterlyModelArray: QuarterlyModel = <QuarterlyModel>{};
   firstHalfyearly: Array<CalenderModel> = [];
   secondHalfyearly: Array<CalenderModel> = [];
 
@@ -48,7 +48,7 @@ export class HalfyearlyComponent implements OnInit {
   public max = new Date(2018, 3, 25, 20, 30);
 
   constructor(public datePipe: DatePipe) {
-    this.quaterlyModelArray.quaterlyModel = [];
+    this.quarterlyModelArray.quarterlyModel = [];
   }
 
   ngOnInit() {
@@ -102,16 +102,16 @@ export class HalfyearlyComponent implements OnInit {
 
   handleChange(event) {
     //console.log("Half handle change");
-    this.dateChanged.emit(this.quaterlyModelArray);
+    this.dateChanged.emit(this.quarterlyModelArray);
   }
 
   prepareQuaterlyObj() {
-    this.quaterlyModelArray.quaterlyModel = [];
+    this.quarterlyModelArray.quarterlyModel = [];
     if (this.firstHalfyearly.length > 0) {
-      this.quaterlyModelArray.quaterlyModel.push(this.firstHalfyearly[0]);
+      this.quarterlyModelArray.quarterlyModel.push(this.firstHalfyearly[0]);
     }
     if (this.secondHalfyearly.length > 0) {
-      this.quaterlyModelArray.quaterlyModel.push(this.secondHalfyearly[0]);
+      this.quarterlyModelArray.quarterlyModel.push(this.secondHalfyearly[0]);
     }
     //console.log("halfYearlyModelArray" + JSON.stringify(this.quaterlyModelArray));
     this.handleChange(event);

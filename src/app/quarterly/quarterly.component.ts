@@ -1,7 +1,9 @@
-import { QuaterlyModel } from './../models/quaterlymodel';
+import { Utils } from './../custom/Utils';
+import { QuarterlyModel } from '../models/quarterlyModel';
 import { CalenderModel } from './../models/calender';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
+
 
 
 @Component({
@@ -15,7 +17,7 @@ export class QuarterlyComponent implements OnInit {
   secondCheckBox: boolean = true;
   thirdCheckBox: boolean = true;
   fourCheckBox: boolean = true;
-  quaterlyModelArray: QuaterlyModel = <QuaterlyModel>{};
+  quarterlyModelArray: QuarterlyModel = <QuarterlyModel>{};
 
 
   @Output() public dateChanged = new EventEmitter();
@@ -46,6 +48,7 @@ export class QuarterlyComponent implements OnInit {
   thirdQuart: Array<CalenderModel> = [];
   fourthQuart: Array<CalenderModel> = [];
 
+  utilsObj: Utils = new Utils(this.datePipe);
 
 
   public startAt = new Date(2018, 3, 18, 10, 30);
@@ -56,7 +59,7 @@ export class QuarterlyComponent implements OnInit {
   // Max moment: April 25 2018, 20:30
   public max = new Date(2018, 3, 25, 20, 30);
   constructor(public datePipe: DatePipe) {
-    this.quaterlyModelArray.quaterlyModel = [];
+    this.quarterlyModelArray.quarterlyModel = [];
   }
 
 
@@ -114,15 +117,14 @@ export class QuarterlyComponent implements OnInit {
   }
 
   public getMonthFirstLastDay(year, month): any {
-    //console.log("month" + month);
     var monthStartDay = new Date(year, month, 1);
     var monthEndDay = new Date(year, month + 1, 0);
-    var min = this.datePipe.transform(monthStartDay, 'dd');
-    var max = this.datePipe.transform(monthEndDay, 'dd');
+    var min = this.utilsObj.formatDate(monthStartDay, 'dd');
+    var max = this.utilsObj.formatDate(monthEndDay, 'dd');
 
     this.min = new Date(this.selectYear, month, Number.parseInt(min));
     this.max = new Date(this.selectYear, month, Number.parseInt(max));
-    //console.log("min::" + min + "max:::" + max);
+
   }
 
   getDateTimeEvent(val) {
@@ -132,14 +134,14 @@ export class QuarterlyComponent implements OnInit {
 
   handleChange(event) {
     //console.log("handle change");
-    this.dateChanged.emit(this.quaterlyModelArray);
+    this.dateChanged.emit(this.quarterlyModelArray);
   }
 
   /*  checkUniqueCondition(id) {
-        for (var a in this.quaterlyModelArray) {
-       if (this.quaterlyModelArray[a].id == id.id) {
-         this.quaterlyModelArray[a].quantity = this.quaterlyModelArray[a].quantity + id.quantity;
-         return this.quaterlyModelArray[a];
+        for (var a in this.quarterlyModelArray) {
+       if (this.quarterlyModelArray[a].id == id.id) {
+         this.quarterlyModelArray[a].quantity = this.quarterlyModelArray[a].quantity + id.quantity;
+         return this.quarterlyModelArray[a];
        } else {
          return id
        }
@@ -147,22 +149,22 @@ export class QuarterlyComponent implements OnInit {
    } */
 
   prepareQuaterlyObj() {
-    this.quaterlyModelArray.quaterlyModel = [];
+    this.quarterlyModelArray.quarterlyModel = [];
     if (this.firstQuart.length > 0) {
-      this.quaterlyModelArray.quaterlyModel.push(this.firstQuart[0]);
+      this.quarterlyModelArray.quarterlyModel.push(this.firstQuart[0]);
 
     } if (this.secondQuart.length > 0) {
-      this.quaterlyModelArray.quaterlyModel.push(this.secondQuart[0]);
+      this.quarterlyModelArray.quarterlyModel.push(this.secondQuart[0]);
 
     }
     if (this.thirdQuart.length > 0) {
-      this.quaterlyModelArray.quaterlyModel.push(this.thirdQuart[0]);
+      this.quarterlyModelArray.quarterlyModel.push(this.thirdQuart[0]);
 
     }
     if (this.fourthQuart.length > 0) {
-      this.quaterlyModelArray.quaterlyModel.push(this.fourthQuart[0]);
+      this.quarterlyModelArray.quarterlyModel.push(this.fourthQuart[0]);
     }
-    //console.log("quaterlyModelArray" + JSON.stringify(this.quaterlyModelArray));
+    //console.log("quarterlyModelArray" + JSON.stringify(this.quarterlyModelArray));
     this.handleChange(event);
   }
 
