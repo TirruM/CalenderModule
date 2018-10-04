@@ -1,17 +1,20 @@
-<div class="col-sm-6">
-  <div class="form-group">
-    <!-- <label for="startdate">Select Start Date</label> -->
-    <input type="text" class="form-control" (focus)="handleChange($event)" [(ngModel)]="startDate" [owlDateTimeTrigger]="dt"
-      [owlDateTime]="dt" placeholder="DD-MM-YYYY">
-    <owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
+<div class="row justify-content-md-center">
+  <div class="col-sm-7">
+    <div class="form-group">
+      <input type="text" class="form-control" (focus)="handleChange($event)" [(ngModel)]="startDate"
+        [owlDateTimeTrigger]="dt" [owlDateTime]="dt" placeholder="DD-MM-YYYY">
+      <owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
+    </div>
   </div>
-</div>
-<div class="col-sm-6">
-  <div class="form-group">
-    <!-- <label for="enddate">Select End Date</label> -->
-    <input type="text" class="form-control" [(ngModel)]="endDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
-      (focus)="handleChange($event)" placeholder="DD-MM-YYYY">
-    <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+  <div class="col-sm-12">
+    <p class="p-text-center">TO</p>
+  </div>
+  <div class="col-sm-7">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="endDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
+        (focus)="handleChange($event)" placeholder="DD-MM-YYYY">
+      <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+    </div>
   </div>
 </div>
 

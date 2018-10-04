@@ -10,8 +10,16 @@
     margin-bottom: 10px;
 }
 
+.mar-bot-20{
+    margin-bottom: 20px;
+}
+
 .mar-bot-40{
     margin-bottom: 60px;
+}
+
+.p-text-center{
+    text-align: center;
 }
 
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected{
