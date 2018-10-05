@@ -104,3 +104,45 @@ input[type=checkbox], input[type=radio]{
     position: absolute;
     display: none;
 }
+
+.cylindrical{
+    padding: 13px;
+    border: 1px solid #ffd902;
+    /*  background: #ffd902; */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    width: 70px;
+    height: 98px;
+}
+.cylindrical .inp-month {
+    border: none;
+    font-size: 18px;
+    width: 100%;
+    padding: 0px !important;
+    text-align: center;
+    font-weight: bold;
+    /* background: #ffd902; */
+    margin-top: -5px;
+}
+.cylindrical .inp-month:active {
+    border: none;
+    font-size: 18px;
+    width: 100%;
+    padding: 0px !important;
+    text-align: center;
+    font-weight: bold;
+    /* background: #ffd902; */
+}
+.cylindrical .lbl-month {
+    border-top: 2px solid #333;
+    text-align: center;
+    display: inherit;
+    color: #333;
+    padding-top: 3px;
+    font-weight: 600;
+}
+.cylindrical .form-group{
+    margin-bottom: 0px !important;
+}
