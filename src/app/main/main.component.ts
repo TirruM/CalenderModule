@@ -68,6 +68,7 @@ export class MainComponent implements OnInit {
     }
     this.start_time = null;
     this.end_time = null;
+    this.message = null;
   }
 
   dateChangedHandler(selectedDate: string) {
