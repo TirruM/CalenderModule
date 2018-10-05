@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EverydayComponent implements OnInit {
 
+  public startDateValidation: boolean = true;
   public startDate: Date;
   public endDate: Date;
   public weeksDays = false;
@@ -27,13 +28,16 @@ export class EverydayComponent implements OnInit {
   ];
 
   @Output() public dateChanged = new EventEmitter();
+  handleEndDateChange(event) {
+    if (this.startDate == null) {
+      this.startDateValidation = false;
+    }
+  }
 
   handleChange(event) {
     this.everyDayCalendarObj = [];
-    /*  this.everDayModel.startDate = this.startDate;
-     this.everDayModel.endDate = this.endDate;
-     this.everDayModel.weeksDays = this.weeksDays;
-     this.everDayModel.govHolidays = this.govHolyDays; */
+    console.log(JSON.stringify(event));
+
     var startTime = this.startDate;
     var endTime = this.endDate;
 
@@ -87,16 +91,17 @@ export class EverydayComponent implements OnInit {
         }
 
       }
-      console.log("final Arra", JSON.stringify(calArr));
-      console.log("govtCount", govtCount);
       if (govtCount > 0) {
         this.govtHolidaysCount = "Except Government Holidays (" + govtCount + " days)";
       } else {
         this.govtHolidaysCount = "Except Government Holidays ";
       }
+    } else {
+      this.govtHolidaysCount = "Except Government Holidays ";
     }
 
     this.everyDayCalendarObj = calArr;
+    console.log(JSON.stringify(this.everyDayCalendarObj));
     this.dateChanged.emit(this.everyDayCalendarObj);
   }
 
