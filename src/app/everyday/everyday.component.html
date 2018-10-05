@@ -1,18 +1,18 @@
-<div class="row justify-content-md-center">
-  <div class="col-sm-7">
+<div class="row justify-content-md-center remove-bcolor">
+  <div class="col-sm-3">
     <div class="form-group">
       <input type="text" class="form-control" (focus)="handleChange($event)" [(ngModel)]="startDate"
-        [owlDateTimeTrigger]="dt" [owlDateTime]="dt" placeholder="DD-MM-YYYY">
+        [owlDateTimeTrigger]="dt" [owlDateTime]="dt" placeholder="Start Date">
       <owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
     </div>
   </div>
   <div class="col-sm-12">
-    <p class="p-text-center">TO</p>
+    <p class="p-text-center">to</p>
   </div>
-  <div class="col-sm-7">
+  <div class="col-sm-3">
     <div class="form-group">
       <input type="text" class="form-control" [(ngModel)]="endDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
-        (focus)="handleChange($event)" placeholder="DD-MM-YYYY">
+        (focus)="handleChange($event)" placeholder="End Date">
       <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
     </div>
   </div>

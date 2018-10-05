@@ -5,6 +5,23 @@
 .remove-arrow .owl-dt-control-arrow-button .owl-dt-control-button-content{
     display: none !important;
 }
+.col-form-label{
+    padding-right: 0px !important;
+}
+.pad-left{
+    padding-left: 0px !important;
+}
+.mothly-input{
+    border-radius: 25px !important;
+    box-shadow: 0 .125rem .50rem rgba(0,0,0,0.2)!important; 
+}
+
+.remove-bcolor .form-control{
+    border: 1px solid #ced4da0f !important;
+    text-align: center !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+}
 
 .mar-bot-10{
     margin-bottom: 10px;
@@ -20,6 +37,7 @@
 
 .p-text-center{
     text-align: center;
+    margin-top: 7px;
 }
 
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected{

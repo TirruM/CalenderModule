@@ -1,6 +1,7 @@
-<div class="col-sm-12">
+<div class="col-sm-12 remove-bcolor">
   <div class="form-row">
-    <div class="col-sm-5">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-3">
       <div class="form-group">
         <input placeholder="Start Year" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="strDate" class="form-control"
           (focus)="yearMonthHandler($event)">
@@ -11,7 +12,7 @@
     <div class="col-sm-2">
       <p class="p-text-center">to</p>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-3">
       <div class="form-group">
         <input placeholder="End Year" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" class="form-control" [(ngModel)]="endsDate"
           (focus)="yearMonthHandler($event)">
@@ -22,7 +23,11 @@
   </div>
 </div>
 <div class="col-sm-12">
-  <input type="text" class="form-control" (focus)="yearMonthHandler($event)" [(ngModel)]="selectDate"
-    [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="DD-MM-YYYY">
-  <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+  <div class="row justify-content-md-center remove-bcolor">
+    <div class="col-sm-3">
+      <input type="text" class="form-control" (focus)="yearMonthHandler($event)" [(ngModel)]="selectDate"
+        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="Date">
+      <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+    </div>
+  </div>
 </div>

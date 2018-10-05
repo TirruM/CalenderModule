@@ -63,8 +63,9 @@ export class MainComponent implements OnInit {
     if (index > -1) {
       this.session_type_id = this.dsession[index].id;
       this.session_type_name = this.dsession[index].name;
-
     }
+    this.start_time = null;
+    this.end_time = null;
   }
 
   dateChangedHandler(selectedDate: string) {

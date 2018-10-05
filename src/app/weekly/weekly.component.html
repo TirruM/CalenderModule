@@ -1,5 +1,6 @@
-<div class="form-row">
-  <div class="col-sm-5">
+<div class="form-row remove-bcolor">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-3">
     <div class="form-group">
       <!-- <label for="startdate">Select </label> -->
       <input placeholder="Start Date" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="strDate" class="form-control"
@@ -8,10 +9,10 @@
         (monthSelected)="chosenMonthHandler($event, dt)" #dt="owlDateTime"></owl-date-time>
     </div>
   </div>
-  <div class="col-sm-2">
+  <div class="col-sm-1">
     <p class="p-text-center">to</p>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-3">
     <div class="form-group">
       <!-- <label for="startdate">Select </label> -->
       <input placeholder="End Date" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" class="form-control" [(ngModel)]="endsDate"
@@ -21,5 +22,6 @@
     </div>
   </div>
 </div>
+<div class="mar-bot-20"></div>
 <owl-date-time-inline class="date-center" (click)="handleChange($event)" [(ngModel)]="selectedMoment" [pickerType]="'calendar'"
   #dt3></owl-date-time-inline>
