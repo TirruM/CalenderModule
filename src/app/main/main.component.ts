@@ -18,6 +18,8 @@ export class MainComponent implements OnInit {
   public start_time: Date;
   public end_time: Date;
 
+  public message: string = "";
+
   selectedDate: string;
   start_date: string = '';
 
@@ -116,7 +118,8 @@ export class MainComponent implements OnInit {
       let calArr = [];
       calArr.push(calenderModel1);
       this.oportunityInstanceModel.days = calArr;
-      console.log("One Time:::" + JSON.stringify(this.oportunityInstanceModel));
+      this.message = JSON.stringify(this.oportunityInstanceModel);
+      //console.log("One Time:::" + );
     }
     else if (this.session_type_id == "2") {
       this.session_type_name = "Everyday";
@@ -125,26 +128,26 @@ export class MainComponent implements OnInit {
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.everyDayCalendarObj;
-      console.log("Everyday:::" + JSON.stringify(this.oportunityInstanceModel));
+      this.message = JSON.stringify(this.oportunityInstanceModel);
     } else if (this.session_type_id == "3") {
       this.session_type_name = "Weekly";
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.weeklyCalendarObj;
-      console.log("Weekly:::" + JSON.stringify(this.oportunityInstanceModel));
+      this.message = JSON.stringify(this.oportunityInstanceModel);
     } else if (this.session_type_id == "4") {
       this.session_type_name = "Bi-weekly";
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
-      console.log("Bi Weekly:::" + JSON.stringify(this.oportunityInstanceModel));
+      this.message = JSON.stringify(this.oportunityInstanceModel);
     }
     else if (this.session_type_id == "5") {
       this.session_type_name = "Monthly";
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.monthlyCalendarObj;
-      console.log("Monthly:::" + JSON.stringify(this.oportunityInstanceModel));
+      this.message = JSON.stringify(this.oportunityInstanceModel);
     } else if (this.session_type_id == "6") {
       this.session_type_name = "Quarterly";
       let calArr = [];
@@ -155,7 +158,7 @@ export class MainComponent implements OnInit {
         calArr.push(calenderModel);
       }
       this.oportunityInstanceModel.days = calArr;
-      console.log("Quaterly Yearly:::" + JSON.stringify(this.oportunityInstanceModel));
+      this.message = JSON.stringify(this.oportunityInstanceModel);
     } else if (this.session_type_id == "7") {
       this.session_type_name = "Half Yearly";
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
@@ -167,7 +170,7 @@ export class MainComponent implements OnInit {
         calArr.push(calenderModel);
       }
       this.oportunityInstanceModel.days = calArr;
-      console.log("Half Yearly:::" + JSON.stringify(this.oportunityInstanceModel));
+      this.message = JSON.stringify(this.oportunityInstanceModel);
     }
 
     else if (this.session_type_id == "8") {
@@ -175,7 +178,7 @@ export class MainComponent implements OnInit {
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.annuallyCalendarObj;
-      console.log("Annually:::" + JSON.stringify(this.oportunityInstanceModel));
+      this.message = JSON.stringify(this.oportunityInstanceModel);
     }
   }
 
