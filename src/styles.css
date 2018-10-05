@@ -11,9 +11,14 @@
 .pad-left{
     padding-left: 0px !important;
 }
-.mothly-input{
+/* .mothly-input{
     border-radius: 25px !important;
     box-shadow: 0 .125rem .50rem rgba(0,0,0,0.2)!important; 
+} */
+
+.input-style{
+    border-radius: 25px !important;
+    box-shadow: 0 .125rem .50rem #ffd902!important; 
 }
 
 .remove-bcolor .form-control{
