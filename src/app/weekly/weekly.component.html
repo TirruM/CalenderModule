@@ -4,7 +4,7 @@
       <!-- <label for="startdate">Select </label> -->
       <input placeholder="Start Date" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="strDate" class="form-control input-style"
         (focus)="yearMonthHandler($event)">
-      <owl-date-time [pickerType]="'calendar'" [startView]="'multi-years'" (yearSelected)="chosenYearHandler($event)"
+      <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" (yearSelected)="chosenYearHandler($event)"
         (monthSelected)="chosenMonthHandler($event, dt)" #dt="owlDateTime"></owl-date-time>
     </div>
   </div>
@@ -16,7 +16,7 @@
       <!-- <label for="startdate">Select </label> -->
       <input placeholder="End Date" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" class="form-control input-style"
         [(ngModel)]="endsDate" (focus)="yearMonthHandler($event)">
-      <owl-date-time [pickerType]="'calendar'" [startView]="'multi-years'" (yearSelected)="chosenEndYearHandler($event)"
+      <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" (yearSelected)="chosenEndYearHandler($event)"
         (monthSelected)="chosenEndMonthHandler($event, dt1)" #dt1="owlDateTime"></owl-date-time>
     </div>
   </div>

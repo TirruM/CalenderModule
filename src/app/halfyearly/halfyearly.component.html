@@ -27,7 +27,7 @@
           <!--  <input type="text" class="form-control" name="jan"> -->
           <input class="form-control inp-month" [(ngModel)]="janDate" [min]="min" [max]="max" (focus)="clickMonthEvent(0)"
             [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
-          <owl-date-time [startAt]="startAt" #dt1 [pickerType]="'calendar'"></owl-date-time>
+          <owl-date-time [startAt]="startAt" #dt1 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <label class="lbl-month" for="jan">JAN</label>
         </div>
       </div>
@@ -37,7 +37,7 @@
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="febDate" [min]="min" [max]="max" (focus)="clickMonthEvent(1)"
             [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
-          <owl-date-time [startAt]="febDate" #dt2 [pickerType]="'calendar'"></owl-date-time>
+          <owl-date-time [startAt]="febDate" #dt2 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <!-- <input type="text" class="form-control" name="feb"> -->
           <label class="lbl-month" for="feb">FEB</label>
         </div>
@@ -49,7 +49,7 @@
           <!--   <input type="text" class="form-control" name="mar"> -->
           <input class="form-control inp-month" [(ngModel)]="marchDate" [min]="min" [max]="max" (focus)="clickMonthEvent(2)"
             [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
-          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'"></owl-date-time>
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <label class="lbl-month" for="mar">MAR</label>
         </div>
       </div>
@@ -60,6 +60,7 @@
           <!--  <input type="text" class="form-control" name="apl"> -->
           <input class="form-control inp-month" [(ngModel)]="aprDate" [min]="min" [max]="max" (focus)="clickMonthEvent(3)"
             [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="aprDate" [pickerType]="'calendar'" #dt4></owl-date-time>
           <label class="lbl-month" for="apl">APL</label>
         </div>
@@ -71,6 +72,7 @@
           <!-- <input type="text" class="form-control" name="may"> -->
           <input class="form-control inp-month" [(ngModel)]="mayDate" [min]="min" [max]="max" (focus)="clickMonthEvent(4)"
             [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="mayDate" #dt5 [pickerType]="'calendar'"></owl-date-time>
           <label class="lbl-month" for="may">MAY</label>
         </div>
@@ -82,6 +84,7 @@
           <!--  <input type="text" class="form-control" name="jun"> -->
           <input class="form-control inp-month" [(ngModel)]="juneDate" [min]="min" [max]="max" (focus)="clickMonthEvent(5)"
             [owlDateTimeTrigger]="dt6" [owlDateTime]="dt6">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="juneDate" #dt6 [pickerType]="'calendar'"></owl-date-time>
           <label class="lbl-month" for="jun">JUN</label>
         </div>
@@ -98,6 +101,7 @@
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="julDate" [min]="min" [max]="max" (focus)="clickMonthEvent(6)"
             [owlDateTimeTrigger]="dt7" [owlDateTime]="dt7">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="julDate" #dt7 [pickerType]="'calendar'"></owl-date-time>
           <label class="lbl-month" for="jly">JLY</label>
         </div>
@@ -108,6 +112,7 @@
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="augDate" [min]="min" [max]="max" (focus)="clickMonthEvent(7)"
             [owlDateTimeTrigger]="dt8" [owlDateTime]="dt8">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="augDate" #dt8 [pickerType]="'calendar'"></owl-date-time>
           <label class="lbl-month" for="aug">AUG</label>
         </div>
@@ -118,6 +123,7 @@
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="sepDate" [min]="min" [max]="max" (focus)="clickMonthEvent(8)"
             [owlDateTimeTrigger]="dt9" [owlDateTime]="dt9">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="sepDate" #dt9 [pickerType]="'calendar'"></owl-date-time>
           <label class="lbl-month" for="sec">SEC</label>
         </div>
@@ -128,6 +134,7 @@
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="octDate" [min]="min" [max]="max" (focus)="clickMonthEvent(9)"
             [owlDateTimeTrigger]="dt10" [owlDateTime]="dt10">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="octDate" #dt10 [pickerType]="'calendar'"></owl-date-time>
           <label class="lbl-month" for="oct">OCT</label>
         </div>
@@ -138,6 +145,7 @@
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="novDate" [min]="min" [max]="max" (focus)="clickMonthEvent(10)"
             [owlDateTimeTrigger]="dt11" [owlDateTime]="dt11">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="novDate" #dt11 [pickerType]="'calendar'"></owl-date-time>
           <label class="lbl-month" for="nov">NOV</label>
         </div>
@@ -148,6 +156,7 @@
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="decDate" [min]="min" [max]="max" (focus)="clickMonthEvent(11)"
             [owlDateTimeTrigger]="dt12" [owlDateTime]="dt12">
+          <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <owl-date-time [startAt]="decDate" #dt12 [pickerType]="'calendar'"></owl-date-time>
           <label class="lbl-month" for="dec">DEC</label>
         </div>
