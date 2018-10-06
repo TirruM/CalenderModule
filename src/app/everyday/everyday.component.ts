@@ -47,6 +47,7 @@ export class EverydayComponent implements OnInit {
       this.endDateFlag = false;
     }
 
+
     this.everyDayCalendarObj = [];
 
     var startTime = this.startDate;
@@ -61,6 +62,12 @@ export class EverydayComponent implements OnInit {
     var eYear = eCalDate.getFullYear();
     var eMonth = eCalDate.getMonth();
     var eDate = eCalDate.getDate();
+
+    if (this.startDate != undefined && this.endDate != undefined) {
+      if (date > eDate) {
+        this.endDate = null;
+      }
+    }
 
     var totalDates = this.utilsObj.getDates(new Date(year, month - 1, date),
       new Date(eYear, eMonth, eDate),
