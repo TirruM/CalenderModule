@@ -154,11 +154,11 @@ export class MainComponent implements OnInit {
       this.session_type_name = "Quarterly";
       let calArr = [];
 
-      if (this.quarterlyModel.firstQuartValidation) {
-        this.quartValidation = true;
-      } else {
-        this.quartValidation = false;
-      }
+      /*  if (this.quarterlyModel.firstQuartValidation) {
+         this.quartValidation = true;
+       } else {
+         this.quartValidation = false;
+       } */
 
       if (this.quarterlyModel.quarterlyModel.length > 0) {
         for (var i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
