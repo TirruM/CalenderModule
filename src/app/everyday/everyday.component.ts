@@ -3,8 +3,7 @@ import { Utils } from './../custom/Utils';
 import { EveryDayModel } from '../models/everyDayModel';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { emit } from 'cluster';
-import { empty } from 'rxjs/Observer';
+
 
 
 @Component({
