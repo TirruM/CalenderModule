@@ -3,6 +3,8 @@ import { Utils } from './../custom/Utils';
 import { EveryDayModel } from '../models/everyDayModel';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { emit } from 'cluster';
+import { empty } from 'rxjs/Observer';
 
 
 @Component({
@@ -22,6 +24,9 @@ export class EverydayComponent implements OnInit {
   public govtHolidaysCount: string = "Except Government Holidays ";
   public everDayModel: EveryDayModel = <EveryDayModel>{};
   public everyDayCalendarObj: Array<CalenderModel>;
+  public startDateFlag: boolean = false;
+  public endDateFlag: boolean = true;
+
   public govtHolidaysArrayObj: any = [
     { id: 1, holiday: "15-10-2018" },
     { id: 2, holiday: "22-10-2018" }
@@ -35,8 +40,13 @@ export class EverydayComponent implements OnInit {
   }
 
   handleChange(event) {
+    if (this.startDate == undefined || this.startDate.toString() == "") {
+      this.endDateFlag = true;
+    } else {
+      this.endDateFlag = false;
+    }
+
     this.everyDayCalendarObj = [];
-    console.log(JSON.stringify(event));
 
     var startTime = this.startDate;
     var endTime = this.endDate;

@@ -15,12 +15,12 @@
     <div class="form-group">
       <!-- <label for="startdate">Select </label> -->
       <input placeholder="End Date" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" class="form-control input-style"
-        [(ngModel)]="endsDate" (focus)="yearMonthHandler($event)">
+        [(ngModel)]="endsDate" (focus)="yearMonthHandler($event)" [disabled]="endDateValidation">
       <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" (yearSelected)="chosenEndYearHandler($event)"
         (monthSelected)="chosenEndMonthHandler($event, dt1)" #dt1="owlDateTime"></owl-date-time>
     </div>
   </div>
 </div>
 <div class="mar-bot-20"></div>
-<owl-date-time-inline class="date-center" (click)="handleChange($event)" [(ngModel)]="selectedMoment" [pickerType]="'calendar'"
+<owl-date-time-inline class="date-center" (click)="handleChange($event)" [disabled]="dateValidationFlag" [(ngModel)]="selectedMoment" [pickerType]="'calendar'"
   #dt3></owl-date-time-inline>

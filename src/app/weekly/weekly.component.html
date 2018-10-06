@@ -2,7 +2,8 @@
   <div class="col-sm-3">
     <div class="form-group">
       <!-- <label for="startdate">Select </label> -->
-      <input placeholder="Start Date" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="strDate" class="form-control input-style"
+      <input placeholder="Start Date" [owlDateTimeTrigger]="dt"
+       [owlDateTime]="dt" [(ngModel)]="strDate" class="form-control input-style"
         (focus)="yearMonthHandler($event)">
       <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" (yearSelected)="chosenYearHandler($event)"
         (monthSelected)="chosenMonthHandler($event, dt)" #dt="owlDateTime"></owl-date-time>
@@ -14,13 +15,15 @@
   <div class="col-sm-3">
     <div class="form-group">
       <!-- <label for="startdate">Select </label> -->
-      <input placeholder="End Date" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" class="form-control input-style"
-        [(ngModel)]="endsDate" (focus)="yearMonthHandler($event)">
+      <input placeholder="End Date" [owlDateTimeTrigger]="dt1" 
+      [owlDateTime]="dt1" class="form-control input-style"
+        [(ngModel)]="endsDate" (focus)="yearMonthHandler($event)" [disabled]="endDateValidation">
       <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" (yearSelected)="chosenEndYearHandler($event)"
         (monthSelected)="chosenEndMonthHandler($event, dt1)" #dt1="owlDateTime"></owl-date-time>
     </div>
   </div>
 </div>
 <div class="mar-bot-20"></div>
-<owl-date-time-inline class="date-center" (click)="handleChange($event)" [(ngModel)]="selectedMoment" [pickerType]="'calendar'"
-  #dt3></owl-date-time-inline>
+<owl-date-time-inline class="date-center" [disabled]="dateValidationFlag"
+ (click)="handleChange($event)" [(ngModel)]="selectedMoment"
+  [pickerType]="'calendar'" #dt3></owl-date-time-inline>

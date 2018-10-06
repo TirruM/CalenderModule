@@ -53,7 +53,8 @@ export class ByweeklyComponent implements OnInit {
   public biWeeklyCalendarObj: Array<CalenderModel> = [];
   selectedWeekDays: any = [];
   utilsObj: Utils = new Utils(this.datePipe);
-
+  public dateValidationFlag: boolean = true;
+  public endDateValidation: boolean = true;
   @Output() public biWeeklyCalendarChanged = new EventEmitter();
 
   constructor(public datePipe: DatePipe) { }
@@ -98,6 +99,19 @@ export class ByweeklyComponent implements OnInit {
   }
 
   yearMonthHandler(event) {
+
+    if (this.startDate == undefined || this.startDate.toString() == "") {
+      this.endDateValidation = true;
+    } else {
+      this.endDateValidation = false;
+    }
+
+    if (this.endsDate == undefined || this.endsDate.toString() == "") {
+      this.dateValidationFlag = true;
+    } else {
+      this.dateValidationFlag = false;
+    }
+
     let now = moment(this.strDate).format("MMM YYYY");
     this.fromYear = moment(this.strDate).format("YYYY");
     this.fromMonth = moment(this.strDate).format("MM");
@@ -150,7 +164,7 @@ export class ByweeklyComponent implements OnInit {
     var dates = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), false, now);
     var pipe = new DatePipe('en-US');
     let byWeeklyArr = [];
-    
+
     var i = 0;
     dates.forEach(function (date) {
       if (i % 2 === 0) {

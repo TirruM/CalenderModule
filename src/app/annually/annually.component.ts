@@ -43,6 +43,8 @@ export class AnnuallyComponent implements OnInit {
   public endsDate: Date;
   public selectDate: Date = null;
   public annuallyCalendarObj: Array<CalenderModel> = [];
+  public endYearValidationFlag = true;
+  public dateValidationFlag = true;
 
 
   @Output() public annuallyCalendarChanged = new EventEmitter();
@@ -89,28 +91,40 @@ export class AnnuallyComponent implements OnInit {
   }
 
   yearMonthHandler(event) {
-    let currentDate: Date;
-    let now = moment(this.strDate).format("YYYY");
-    let now1 = moment(this.endsDate).format("YYYY");
+    if (this.strDate == undefined) {
+      this.endYearValidationFlag = true;
+    } else {
+      this.endYearValidationFlag = false;
+    }
 
-    if (this.selectDate !== null) {
-      let selectedDate = moment(this.selectDate).format("YYYY-MM-DD");
-      currentDate = new Date(selectedDate);
-      this.annuallyCalendarObj = [];
-      for (let i = now; i <= now1; i++) {
-        
-        var calDate = currentDate;
-        var month = calDate.getMonth() + 1;
-        var date = calDate.getDate();
-        var selectedDateObj = new Date(i, month, date);
-        var dayObj = moment(selectedDateObj).format("YYYY-MM-DD ");
-        let calenderModel = new CalenderModel();
-        calenderModel.start_date = dayObj;
-        calenderModel.end_date = dayObj;
-        this.annuallyCalendarObj.push(calenderModel);
+    if (this.endsDate == undefined) {
+      this.dateValidationFlag = true;
+    } else {
+      this.dateValidationFlag = false;
 
-        if (i === now1 - 1) {
-          this.annuallyCalendarChanged.emit(this.annuallyCalendarObj)
+      let currentDate: Date;
+      let now = moment(this.strDate).format("YYYY");
+      let now1 = moment(this.endsDate).format("YYYY");
+
+      if (this.selectDate !== null) {
+        let selectedDate = moment(this.selectDate).format("YYYY-MM-DD");
+        currentDate = new Date(selectedDate);
+        this.annuallyCalendarObj = [];
+        for (let i = now; i <= now1; i++) {
+
+          var calDate = currentDate;
+          var month = calDate.getMonth() + 1;
+          var date = calDate.getDate();
+          var selectedDateObj = new Date(i, month, date);
+          var dayObj = moment(selectedDateObj).format("YYYY-MM-DD ");
+          let calenderModel = new CalenderModel();
+          calenderModel.start_date = dayObj;
+          calenderModel.end_date = dayObj;
+          this.annuallyCalendarObj.push(calenderModel);
+
+          if (i === now1 - 1) {
+            this.annuallyCalendarChanged.emit(this.annuallyCalendarObj)
+          }
         }
       }
     }

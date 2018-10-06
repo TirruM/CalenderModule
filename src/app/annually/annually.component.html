@@ -13,7 +13,7 @@
   <div class="col-md-3 col-sm-12">
     <div class="form-group">
       <input placeholder="End Year" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" class="form-control input-style"
-        [(ngModel)]="endsDate" (focus)="yearMonthHandler($event)">
+        [(ngModel)]="endsDate" (focus)="yearMonthHandler($event)" [disabled]=" endYearValidationFlag">
       <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" (yearSelected)="chosenEndYearHandler($event)"
         (monthSelected)="chosenEndMonthHandler($event, dt1)" #dt1="owlDateTime"></owl-date-time>
     </div>
@@ -23,8 +23,8 @@
 <div class="col-sm-12">
   <div class="row justify-content-md-center remove-bcolor">
     <div class="col-md-3 col-sm-12">
-      <input type="text" class="form-control input-style" (focus)="yearMonthHandler($event)" [(ngModel)]="selectDate"
-        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="Date">
+      <input type="text" class="form-control input-style" [disabled]=" dateValidationFlag" (focus)="yearMonthHandler($event)"
+        [(ngModel)]="selectDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="Date">
       <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" #dt2></owl-date-time>
     </div>
   </div>

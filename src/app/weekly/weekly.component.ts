@@ -53,6 +53,8 @@ export class WeeklyComponent implements OnInit {
   public weeklyCalendarObj: Array<CalenderModel> = [];
   utilsObj: Utils = new Utils(this.datePipe);
   selectedWeekDays: any = [];
+  public endDateValidation: boolean = true;
+  public dateValidationFlag: boolean = true;
 
   @Output() public weeklyCalendarChanged = new EventEmitter();
 
@@ -100,6 +102,19 @@ export class WeeklyComponent implements OnInit {
   }
 
   yearMonthHandler(event) {
+    if (this.startDate == undefined || this.startDate.toString() == "") {
+      this.endDateValidation = true;
+    } else {
+      this.endDateValidation = false;
+    }
+
+    if (this.endsDate == undefined || this.endsDate.toString() == "") {
+      this.dateValidationFlag = true;
+    } else {
+      this.dateValidationFlag = false;
+    }
+    console.log("dateValidationFlag", this.dateValidationFlag);
+
     let now = moment(this.strDate).format("MMM YYYY");
     this.fromYear = moment(this.strDate).format("YYYY");
     this.fromMonth = moment(this.strDate).format("MM");

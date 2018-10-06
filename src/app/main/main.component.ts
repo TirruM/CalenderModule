@@ -45,6 +45,7 @@ export class MainComponent implements OnInit {
   public weeklyCalendarObj: Array<CalenderModel>;
   public biWeeklyCalendarObj: Array<CalenderModel>;
   public everyDayCalendarObj: Array<CalenderModel>;
+  quartValidation: boolean = true;
 
   utilsObj: Utils = new Utils(this.datePipe);
 
@@ -105,8 +106,8 @@ export class MainComponent implements OnInit {
   saveCalender(payload: NgForm): void {
 
     this.oportunityInstanceModel.session_type_id = this.session_type_id;
-    this.oportunityInstanceModel.start_time = this.datePipe.transform(this.start_time, 'hh:MM:ss a');
-    this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:MM:ss a');
+    this.oportunityInstanceModel.start_time = this.datePipe.transform(this.start_time, 'hh:mm:ss a');
+    this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:mm:ss a');
 
     if (this.session_type_id == "1") {
       this.session_type_name = "One Time";
@@ -152,14 +153,23 @@ export class MainComponent implements OnInit {
     } else if (this.session_type_id == "6") {
       this.session_type_name = "Quarterly";
       let calArr = [];
-      for (var i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
-        let calenderModel = new CalenderModel();
-        calenderModel.start_date = this.quarterlyModel.quarterlyModel[i].start_date;
-        calenderModel.end_date = this.quarterlyModel.quarterlyModel[i].end_date;
-        calArr.push(calenderModel);
+
+      if (this.quarterlyModel.firstQuartValidation) {
+        this.quartValidation = true;
+      } else {
+        this.quartValidation = false;
       }
-      this.oportunityInstanceModel.days = calArr;
-      this.message = JSON.stringify(this.oportunityInstanceModel);
+
+      if (this.quarterlyModel.quarterlyModel.length > 0) {
+        for (var i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
+          let calenderModel = new CalenderModel();
+          calenderModel.start_date = this.quarterlyModel.quarterlyModel[i].start_date;
+          calenderModel.end_date = this.quarterlyModel.quarterlyModel[i].end_date;
+          calArr.push(calenderModel);
+        }
+        this.oportunityInstanceModel.days = calArr;
+        this.message = JSON.stringify(this.oportunityInstanceModel);
+      }
     } else if (this.session_type_id == "7") {
       this.session_type_name = "Half Yearly";
       this.oportunityInstanceModel.session_type_name = this.session_type_name;

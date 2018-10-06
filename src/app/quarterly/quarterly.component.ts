@@ -1,3 +1,4 @@
+import { ValidationModel } from './validationModel';
 import { Utils } from './../custom/Utils';
 import { QuarterlyModel } from '../models/quarterlyModel';
 import { CalenderModel } from './../models/calender';
@@ -47,6 +48,8 @@ export class QuarterlyComponent implements OnInit {
   secondQuart: Array<CalenderModel> = [];
   thirdQuart: Array<CalenderModel> = [];
   fourthQuart: Array<CalenderModel> = [];
+
+  validationModel: ValidationModel = new ValidationModel();
 
   utilsObj: Utils = new Utils(this.datePipe);
 

@@ -40,8 +40,9 @@ export const MY_MOMENT_DATE_TIME_FORMATS: OwlDateTimeFormats = {
 export class MonthlyComponent implements OnInit {
 
   public dateTimeRange: Date[];
-  public noOfDays: number = 5;
+  public noOfDays: number = 0;
   public monthlyCalendarObj: Array<CalenderModel>;
+  public validationFlag: boolean = true;
 
   @Output() public monthlyCalendarChanged = new EventEmitter();
   constructor() { }
@@ -50,7 +51,12 @@ export class MonthlyComponent implements OnInit {
   }
 
   handleChange(event) {
-    
+    let fromDate = moment(new Date("Tue Oct 10 2018 00:00:00 GMT+0530"));
+    let toDate = moment(new Date("Tue Oct 20 2018 00:00:00 GMT+0530"));
+    this.dateTimeRange = [];
+    this.dateTimeRange.push(fromDate);
+    this.dateTimeRange.push(toDate);
+
     let now = moment(this.dateTimeRange[0]).format("YYYY-MM-DD ");
     this.monthlyCalendarObj = [];
     let dateArray = [];
@@ -79,7 +85,7 @@ export class MonthlyComponent implements OnInit {
           console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[j]));
           for (var j = 0; j < this.dateTimeRange.length; j++) {
             console.log(JSON.stringify(this.dateTimeRange.length));
-            if (this.dateTimeRange[j] === null) {             
+            if (this.dateTimeRange[j] === null) {
               this.dateTimeRange.splice(j, 1);
               console.log("sdfsdf after removal null" + JSON.stringify(this.dateTimeRange[j]));
             }
@@ -98,6 +104,13 @@ export class MonthlyComponent implements OnInit {
   }
   numberofDays(event) {
     console.log(this.noOfDays);
+
+    if (this.noOfDays == undefined || this.noOfDays == 0) {
+      this.validationFlag = true;
+    } else {
+      this.validationFlag = false;
+    }
+
   }
 
 }
