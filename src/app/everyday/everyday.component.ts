@@ -40,6 +40,7 @@ export class EverydayComponent implements OnInit {
   }
 
   handleChange(event) {
+
     if (this.startDate == undefined || this.startDate.toString() == "") {
       this.endDateFlag = true;
     } else {
@@ -69,6 +70,15 @@ export class EverydayComponent implements OnInit {
       new Date(eYear, eMonth, eDate),
       this.weeksDays, 0);
 
+    console.log("dates array", JSON.stringify(dates));
+
+    for (var j = 0; j < dates.length; j++) {
+      if (dates[j] === null) {
+        dates.splice(j, 1);
+        //console.log("sdfsdf after removal null" + JSON.stringify(dates));
+      }
+    }
+
     if (this.weeksDays) {
       var weekDaysCount = totalDates.length - dates.length;
       this.weeksDaysCount = "Except Weekends ( " + (weekDaysCount) + " days)";
@@ -85,6 +95,8 @@ export class EverydayComponent implements OnInit {
       calenderModel.end_date = pipe.transform(date, 'dd-MM-yyyy');
       calArr.push(calenderModel);
     });
+
+
 
     var govtCount = 0;
     if (this.govHolyDays) {

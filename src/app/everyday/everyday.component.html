@@ -13,7 +13,7 @@
   <div class="col-sm-3">
     <div class="form-group">
       <input type="text" class="form-control input-style" [(ngModel)]="endDate" [disabled]="endDateFlag"
-        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" (click)="handleChange($event)" placeholder="End Date">
+        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" (focus)="handleChange($event)" placeholder="End Date">
       <owl-date-time [pickerType]="'calendar'" #dt2 [pickerMode]="'dialog'"></owl-date-time>
     </div>
   </div>
