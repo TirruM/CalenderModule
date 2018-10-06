@@ -51,19 +51,15 @@ export class MonthlyComponent implements OnInit {
   }
 
   handleChange(event) {
-    let fromDate = moment(new Date("Tue Oct 10 2018 00:00:00 GMT+0530"));
-    let toDate = moment(new Date("Tue Oct 20 2018 00:00:00 GMT+0530"));
-    this.dateTimeRange = [];
-    this.dateTimeRange.push(fromDate);
-    this.dateTimeRange.push(toDate);
-
     let now = moment(this.dateTimeRange[0]).format("YYYY-MM-DD ");
     this.monthlyCalendarObj = [];
     let dateArray = [];
     let currentDate: Date;
+
     if (this.dateTimeRange[0] !== null) {
       currentDate = new Date(this.dateTimeRange[0]);
       for (var i = 0; i < this.noOfDays; i++) {
+
         var calDate = currentDate;
         var year = calDate.getFullYear();
         var month = calDate.getMonth();
@@ -81,18 +77,30 @@ export class MonthlyComponent implements OnInit {
         calenderModel.end_date = dayObj;
         this.monthlyCalendarObj.push(calenderModel);
         if (i == this.noOfDays - 1) {
+
           this.dateTimeRange.push(nextDay);
-          console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[j]));
+          console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[0]));
+          console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[i - 1]));
           for (var j = 0; j < this.dateTimeRange.length; j++) {
             console.log(JSON.stringify(this.dateTimeRange.length));
             if (this.dateTimeRange[j] === null) {
               this.dateTimeRange.splice(j, 1);
-              console.log("sdfsdf after removal null" + JSON.stringify(this.dateTimeRange[j]));
+              console.log("sdfsdf after removal null" + JSON.stringify(dateArray));
+            }
+
+            if (j == this.dateTimeRange.length - 1) {
+              console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[0]));
+              console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[j]));
             }
 
           }
 
-          console.log("trrrr" + this.dateTimeRange);
+          let fromDate = moment(dateArray[0]);
+          let toDate = moment(dateArray[this.noOfDays - 1]);
+          this.dateTimeRange = [];
+          this.dateTimeRange.push(fromDate);
+          this.dateTimeRange.push(toDate);
+
         }
       }
 
@@ -102,9 +110,7 @@ export class MonthlyComponent implements OnInit {
 
     this.monthlyCalendarChanged.emit(this.monthlyCalendarObj)
   }
-  numberofDays(event) {
-    console.log(this.noOfDays);
-
+  private numberOfDays(event) {
     if (this.noOfDays == undefined || this.noOfDays == 0) {
       this.validationFlag = true;
     } else {
