@@ -109,14 +109,26 @@ export class MainComponent implements OnInit {
   }
 
   saveCalender(payload: NgForm): void {
-    if (this.start_time == undefined) {
+    console.log("start time--->", this.start_time);
+    console.log("start time--->", this.end_time);
+    console.log("start time--->", (new Date(this.start_time).getTime()));
+    console.log("start time--->", (new Date(this.end_time).getTime()));
+
+    let start = (new Date(this.start_time).getTime());
+    let end = (new Date(this.end_time).getTime());
+
+    console.log("start time--->", start);
+    console.log("start time--->", end);
+
+    if (this.start_time === undefined) {
       this.mainErrorMsg = " Please select start time";
       this.dateValidationFlag = true;
-    } else if (this.end_time == undefined) {
+    } else if (this.end_time === undefined) {
       this.mainErrorMsg = " Please select end time";
       this.dateValidationFlag = true;
     } else if ((new Date(this.start_time).getTime()) >
       (new Date(this.end_time).getTime())) {
+      console.log("start time is greater than end time");
       this.mainErrorMsg = " Start date is not greater that end date";
       this.dateValidationFlag = true;
     }
