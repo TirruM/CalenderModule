@@ -40,9 +40,9 @@ export const MY_MOMENT_DATE_TIME_FORMATS: OwlDateTimeFormats = {
 export class MonthlyComponent implements OnInit {
 
   public dateTimeRange: Date[];
-  public noOfDays: number = 0;
+  public noOfDays = 0;
   public monthlyCalendarObj: Array<CalenderModel>;
-  public validationFlag: boolean = true;
+  public validationFlag = true;
 
   @Output() public monthlyCalendarChanged = new EventEmitter();
   constructor() { }

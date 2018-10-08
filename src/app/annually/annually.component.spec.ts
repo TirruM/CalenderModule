@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnnuallyComponent } from './annually.component';
+import { SelectYearComponent } from '../select-year/select-year.component';
 
 describe('AnnuallyComponent', () => {
   let component: AnnuallyComponent;

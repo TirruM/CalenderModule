@@ -53,7 +53,7 @@ export class AnnuallyComponent implements OnInit {
 
 
   @Output() public annuallyCalendarChanged = new EventEmitter();
-
+    public year: string;
   constructor() {
 
   }
@@ -61,13 +61,28 @@ export class AnnuallyComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  handleSelectYear(year: string, id: number) {
+    this.year = year;
+    console.log('tttt' + this.year);
+    console.log('id' + id);
+    if (id === 0) {
+   this.startYear = year;
+  this.startYearHandler(event);
+    }else {
+this.endYear = year;
+this.endYearHandler(event);
+    }
+
+  }
+
   private startYearHandler(event) {
 
-    if (this.startDate == undefined) {
+    if (this.startYear == undefined) {
       this.endYearValidationFlag = true;
     } else {
 
-      this.startYear = moment(this.startDate).format("YYYY");
+    //  this.startYear = moment(this.startDate).format("YYYY");
       console.log("start Year", this.startYear);
       if (this.endYear != undefined) {
         if (this.endYear < this.startYear) {
@@ -80,27 +95,27 @@ export class AnnuallyComponent implements OnInit {
       }
     }
 
-    if (this.startDate != undefined && this.endDate != undefined && this.selectDate != undefined) {
+    if (this.startYear != undefined && this.endYear != undefined && this.selectDate != undefined) {
       this.selectDateHandler(event);
     }
 
   }
   private endYearHandler(event) {
-    if (this.endDate == undefined) {
+    if (this.endYear == undefined) {
       this.dateValidationFlag = true;
     } else {
-      this.endYear = moment(this.endDate).format("YYYY");
+    
       if (this.endYear < this.startYear) {
         this.dateValidationFlag = true;
         this.endYearConditionValidationFlag = false;
-        this.endDate = null;
+        this.endYear = null;
       } else {
         this.endYearConditionValidationFlag = true;
         this.dateValidationFlag = false;
       }
     }
 
-    if (this.startDate != undefined && this.endDate != undefined && this.selectDate != undefined) {
+    if (this.startYear != undefined && this.endYear != undefined && this.selectDate != undefined) {
       this.selectDateHandler(event);
     }
   }
@@ -113,12 +128,12 @@ export class AnnuallyComponent implements OnInit {
       this.annuallyCalendarObj = [];
       for (let i = this.startYear; i <= this.endYear; i++) {
         console.log("selectDateHandler" + this.startYear + "End Year" + this.endYear);
-        var calDate = currentDate;
-        var month = calDate.getMonth();
-        var date = calDate.getDate();
-        var selectedDateObj = new Date(i, month, date);
+        let calDate = currentDate;
+        let month = calDate.getMonth();
+        let date = calDate.getDate();
+        let selectedDateObj = new Date(i, month, date);
         console.log("selectedDateObj" + selectedDateObj);
-        var dayObj = moment(selectedDateObj).format("YYYY-MM-DD ");
+        let dayObj = moment(selectedDateObj).format("YYYY-MM-DD ");
         let calenderModel = new CalenderModel();
         calenderModel.start_date = dayObj;
         calenderModel.end_date = dayObj;

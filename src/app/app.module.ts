@@ -17,6 +17,7 @@ import { WeeklyComponent } from './weekly/weekly.component';
 import { ByweeklyComponent } from './byweekly/byweekly.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { ValidatorComponentComponent } from './validator-component/validator-component.component';
+import { SelectYearComponent } from './select-year/select-year.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ValidatorComponentComponent } from './validator-component/validator-com
     WeeklyComponent,
     ByweeklyComponent,
     MonthlyComponent,
-    ValidatorComponentComponent
+    ValidatorComponentComponent,
+    SelectYearComponent
   ],
   imports: [
     BrowserModule,
