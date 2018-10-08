@@ -5,6 +5,8 @@
         (focus)="startYearHandler($event)">
       <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" #dt="owlDateTime"></owl-date-time>
     </div>
+    <div><label [hidden]="startYearConditionValidationFlag" style="color: red">End Year is not greater that Start Year</label></div>
+
   </div>
   <div class="col-md-1 col-sm-12">
     <p class="p-text-center">to</p>
