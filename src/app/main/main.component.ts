@@ -194,7 +194,7 @@ export class MainComponent implements OnInit {
 
   public getDates(startDate, endDate, weekDays): any {
 
-    var day = startDate;
+    let day = startDate;
     let dates = [],
       currentDate = startDate,
       addDays = function (days) {
@@ -205,7 +205,7 @@ export class MainComponent implements OnInit {
       };
     while (currentDate <= endDate) {
 
-      var d = currentDate.getDay();
+     let d = currentDate.getDay();
       if (weekDays) {
         if (d === 0 || d === 6) {
 
