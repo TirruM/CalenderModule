@@ -154,6 +154,7 @@ export class MainComponent implements OnInit {
       this.session_type_name = "Quarterly";
       let calArr = [];
 
+      
       /*  if (this.quarterlyModel.firstQuartValidation) {
          this.quartValidation = true;
        } else {

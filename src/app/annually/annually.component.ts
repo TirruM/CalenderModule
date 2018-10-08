@@ -38,97 +38,84 @@ export const MY_MOMENT_DATE_TIME_FORMATS: OwlDateTimeFormats = {
   ],
 })
 export class AnnuallyComponent implements OnInit {
+
   public selectedMoment: string;
-  public strDate: Date;
-  public endsDate: Date;
+  public startDate: Date;
+  public endDate: Date;
   public selectDate: Date = null;
   public annuallyCalendarObj: Array<CalenderModel> = [];
   public endYearValidationFlag = true;
   public dateValidationFlag = true;
+  public startYear: number;
+  public endYear: number;
+  public endYearConditionValidationFlag = true;
 
 
   @Output() public annuallyCalendarChanged = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
 
-  public startDate = new FormControl(moment());
-  public endDate = new FormControl(moment());
-
-  chosenYearHandler(normalizedYear: Moment, date: OwlDateTimeComponent<Moment>) {
-    const ctrlValue = this.startDate.value;
-    ctrlValue.year(normalizedYear.year());
-    this.startDate.setValue(ctrlValue);
-    date.close();
-  }
-
-  chosenMonthHandler(normalizedMonth: Moment, date: OwlDateTimeComponent<Moment>) {
-
-    const ctrlValue = this.startDate.value;
-    //console.log("ctrValue", ctrlValue);
-    ctrlValue.month(normalizedMonth.month());
-    this.startDate.setValue(ctrlValue);
-    date.close();
-  }
-
-  chosenEndYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.endDate.value;
-    //console.log("ctrValue111", ctrlValue);
-
-    ctrlValue.year(normalizedYear.year());
-    this.endDate.setValue(ctrlValue);
-  }
-
-  chosenEndMonthHandler(normalizedMonth: Moment, date: OwlDateTimeComponent<Moment>) {
-    const ctrlValue = this.endDate.value;
-    ctrlValue.month(normalizedMonth.month());
-    // console.log("ctrValue222", ctrlValue);
-
-    this.endDate.setValue(ctrlValue);
-    date.close();
-  }
-
-  yearMonthHandler(event) {
-    if (this.strDate == undefined) {
+  private startYearHandler(event) {
+    if (this.startDate == undefined) {
       this.endYearValidationFlag = true;
     } else {
+      this.startYear = moment(this.startDate).format("YYYY");
       this.endYearValidationFlag = false;
+
     }
 
-    if (this.endsDate == undefined) {
+    if (this.startDate != undefined && this.endDate != undefined && this.selectDate != undefined) {
+      this.selectDateHandler(event);
+    }
+
+  }
+  private endYearHandler(event) {
+    if (this.endDate == undefined) {
       this.dateValidationFlag = true;
     } else {
-      this.dateValidationFlag = false;
 
-      let currentDate: Date;
-      let now = moment(this.strDate).format("YYYY");
-      let now1 = moment(this.endsDate).format("YYYY");
+      this.endYear = moment(this.endDate).format("YYYY");
+      console.log("end Year is", this.endYear + " " + ((this.endYear < this.startYear)));
 
-      if (this.selectDate !== null) {
-        let selectedDate = moment(this.selectDate).format("YYYY-MM-DD");
-        currentDate = new Date(selectedDate);
-        this.annuallyCalendarObj = [];
-        for (let i = now; i <= now1; i++) {
+      if (this.endYear < this.startYear) {
+        this.dateValidationFlag = true;
+        this.endYearConditionValidationFlag = false;
+      } else {
+        this.endYearConditionValidationFlag = true;
+        this.dateValidationFlag = false;
+      }
+    }
 
-          var calDate = currentDate;
-          var month = calDate.getMonth() + 1;
-          var date = calDate.getDate();
-          var selectedDateObj = new Date(i, month, date);
-          var dayObj = moment(selectedDateObj).format("YYYY-MM-DD ");
-          let calenderModel = new CalenderModel();
-          calenderModel.start_date = dayObj;
-          calenderModel.end_date = dayObj;
-          this.annuallyCalendarObj.push(calenderModel);
+    if (this.startDate != undefined && this.endDate != undefined && this.selectDate != undefined) {
+      this.selectDateHandler(event);
+    }
+  }
 
-          if (i === now1 - 1) {
-            this.annuallyCalendarChanged.emit(this.annuallyCalendarObj)
-          }
+  private selectDateHandler(event) {
+    if (this.startYear == undefined && this.endYear == undefined) {
+    } else if (this.selectDate !== null) {
+      let currentDate: Date = new Date(moment(this.selectDate).format('YYYY-MM-DD'));
+      this.annuallyCalendarObj = [];
+      for (let i = this.startYear; i <= this.endYear; i++) {
+        var calDate = currentDate;
+        var month = calDate.getMonth();
+        var date = calDate.getDate();
+        var selectedDateObj = new Date(i, month, date);
+        var dayObj = moment(selectedDateObj).format("YYYY-MM-DD ");
+        let calenderModel = new CalenderModel();
+        calenderModel.start_date = dayObj;
+        calenderModel.end_date = dayObj;
+        this.annuallyCalendarObj.push(calenderModel);
+        if (i === this.endYear - 1) {
+          this.annuallyCalendarChanged.emit(this.annuallyCalendarObj)
+          console.log("final annually object--->" + JSON.stringify(this.annuallyCalendarObj));
         }
       }
     }
   }
-
-
 }

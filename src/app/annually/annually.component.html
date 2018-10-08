@@ -1,10 +1,9 @@
 <div class="row justify-content-md-center remove-bcolor">
   <div class="col-md-3 col-sm-12">
     <div class="form-group">
-      <input placeholder="Start Year" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="strDate" class="form-control input-style"
-        (focus)="yearMonthHandler($event)">
-      <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" (yearSelected)="chosenYearHandler($event)"
-        (monthSelected)="chosenMonthHandler($event, dt)" #dt="owlDateTime"></owl-date-time>
+      <input placeholder="Start Year" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="startDate" class="form-control input-style"
+        (focus)="startYearHandler($event)">
+      <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" #dt="owlDateTime"></owl-date-time>
     </div>
   </div>
   <div class="col-md-1 col-sm-12">
@@ -13,17 +12,18 @@
   <div class="col-md-3 col-sm-12">
     <div class="form-group">
       <input placeholder="End Year" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" class="form-control input-style"
-        [(ngModel)]="endsDate" (focus)="yearMonthHandler($event)" [disabled]=" endYearValidationFlag">
-      <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" (yearSelected)="chosenEndYearHandler($event)"
-        (monthSelected)="chosenEndMonthHandler($event, dt1)" #dt1="owlDateTime"></owl-date-time>
+        [(ngModel)]="endDate" (focus)="endYearHandler($event)" [disabled]=" endYearValidationFlag">
+
+      <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" [startView]="'multi-years'" #dt1="owlDateTime"></owl-date-time>
     </div>
+    <div><label [hidden]="endYearConditionValidationFlag" style="color: red">End Year is not greater that Start Year</label></div>
   </div>
 </div>
 <div class="mar-bot-20"></div>
 <div class="col-sm-12">
   <div class="row justify-content-md-center remove-bcolor">
     <div class="col-md-3 col-sm-12">
-      <input type="text" class="form-control input-style" [disabled]=" dateValidationFlag" (focus)="yearMonthHandler($event)"
+      <input type="text" class="form-control input-style" [disabled]=" dateValidationFlag" (focus)="selectDateHandler($event)"
         [(ngModel)]="selectDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="Date">
       <owl-date-time [pickerType]="'calendar'" [pickerMode]="'dialog'" #dt2></owl-date-time>
     </div>
