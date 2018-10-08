@@ -114,6 +114,11 @@ export class MainComponent implements OnInit {
     console.log("start time--->", (new Date(this.start_time).getTime()));
     console.log("start time--->", (new Date(this.end_time).getTime()));
 
+    let start = (new Date(this.start_time).getTime());
+    let end = (new Date(this.end_time).getTime());
+
+    console.log("start time--->", start);
+    console.log("start time--->", end);
 
     if (this.start_time === undefined) {
       this.mainErrorMsg = " Please select start time";
