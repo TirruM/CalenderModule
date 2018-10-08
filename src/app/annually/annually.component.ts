@@ -67,24 +67,23 @@ export class AnnuallyComponent implements OnInit {
     console.log('tttt' + this.year);
     console.log('id' + id);
     if (id === 0) {
-   this.startYear = year;
+   this.startYear = parseInt(year, 10);
   this.startYearHandler(event);
-    }else {
-this.endYear = year;
-this.endYearHandler(event);
+    } else {
+   this.endYear = parseInt(year, 10);
+   this.endYearHandler(event);
     }
 
   }
 
   private startYearHandler(event) {
 
-    if (this.startYear == undefined) {
+    if (this.startYear === undefined) {
       this.endYearValidationFlag = true;
     } else {
 
-    //  this.startYear = moment(this.startDate).format("YYYY");
-      console.log("start Year", this.startYear);
-      if (this.endYear != undefined) {
+      console.log('start Year', this.startYear);
+      if (this.endYear !== undefined) {
         if (this.endYear < this.startYear) {
           this.startYearConditionValidationFlag = false;
         } else {
@@ -95,7 +94,7 @@ this.endYearHandler(event);
       }
     }
 
-    if (this.startYear != undefined && this.endYear != undefined && this.selectDate != undefined) {
+    if (this.startYear !== undefined && this.endYear !== undefined && this.selectDate !== undefined) {
       this.selectDateHandler(event);
     }
 
