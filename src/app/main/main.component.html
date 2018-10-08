@@ -54,6 +54,9 @@
             </div>
         </div>
     </div>
+    <div *ngIf="dateValidationFlag" style="color:red">{{mainErrorMsg}}</div>
+
+
     <h4>Responsive Object: </h4>
     {{message}}
     <div class="mar-bot-40"></div>

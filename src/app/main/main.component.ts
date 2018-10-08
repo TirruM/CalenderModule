@@ -45,7 +45,9 @@ export class MainComponent implements OnInit {
   public weeklyCalendarObj: Array<CalenderModel>;
   public biWeeklyCalendarObj: Array<CalenderModel>;
   public everyDayCalendarObj: Array<CalenderModel>;
-  quartValidation = true;
+  public quartValidation = true;
+  public dateValidationFlag = false;
+  public mainErrorMsg: String = "";
 
   utilsObj: Utils = new Utils(this.datePipe);
 
@@ -70,6 +72,9 @@ export class MainComponent implements OnInit {
     this.start_time = null;
     this.end_time = null;
     this.message = null;
+
+    this.mainErrorMsg = " ";
+    this.dateValidationFlag = false;
   }
 
   dateChangedHandler(selectedDate: string) {
@@ -104,61 +109,91 @@ export class MainComponent implements OnInit {
   }
 
   saveCalender(payload: NgForm): void {
+    if (this.start_time == undefined) {
+      this.mainErrorMsg = " Please select start time";
+      this.dateValidationFlag = true;
+    } else if (this.end_time == undefined) {
+      this.mainErrorMsg = " Please select end time";
+      this.dateValidationFlag = true;
+    } else if ((new Date(this.start_time).getTime()) >
+      (new Date(this.end_time).getTime())) {
+      this.mainErrorMsg = " Start date is not greater that end date";
+      this.dateValidationFlag = true;
+    }
+    else {
+      this.dateValidationFlag = false;
+      this.mainErrorMsg = " ";
+      this.oportunityInstanceModel.session_type_id = this.session_type_id;
+      this.oportunityInstanceModel.start_time = this.datePipe.transform(this.start_time, 'hh:mm:ss a');
+      this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:mm:ss a');
+      if (this.session_type_id === '1') {
+        this.session_type_name = 'One Time';
+        if (this.selectedDate != undefined) {
+          this.dateValidationFlag = false;
+          const calenderModel1 = new CalenderModel();
+          this.oportunityInstanceModel.session_type_name = this.session_type_name;
+          calenderModel1.start_date = this.utilsObj.formatDate(this.selectedDate, 'dd-MM-yyyy');
+          calenderModel1.end_date = this.utilsObj.formatDate(this.selectedDate, 'dd-MM-yyyy');
+          const calArr = [];
+          calArr.push(calenderModel1);
+          this.oportunityInstanceModel.days = calArr;
+          this.message = JSON.stringify(this.oportunityInstanceModel);
+        } else {
+          this.mainErrorMsg = " Please select date";
+          this.dateValidationFlag = true;
 
-    this.oportunityInstanceModel.session_type_id = this.session_type_id;
-    this.oportunityInstanceModel.start_time = this.datePipe.transform(this.start_time, 'hh:mm:ss a');
-    this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:mm:ss a');
+        }
+        // console.log('One Time:::' + );
+      } else if (this.session_type_id === '2') {
+        this.session_type_name = 'Everyday';
+        const startTime = this.everyDayModel.startDate;
+        const endTime = this.everyDayModel.endDate;
+        this.oportunityInstanceModel.session_type_name = this.session_type_name;
+        this.oportunityInstanceModel.days = [];
+        this.oportunityInstanceModel.days = this.everyDayCalendarObj;
+        this.message = JSON.stringify(this.oportunityInstanceModel);
+      } else if (this.session_type_id === '3') {
+        this.session_type_name = 'Weekly';
+        this.oportunityInstanceModel.session_type_name = this.session_type_name;
+        this.oportunityInstanceModel.days = [];
+        this.oportunityInstanceModel.days = this.weeklyCalendarObj;
+        this.message = JSON.stringify(this.oportunityInstanceModel);
+      } else if (this.session_type_id === '4') {
+        this.session_type_name = 'Bi-weekly';
+        this.oportunityInstanceModel.session_type_name = this.session_type_name;
+        this.oportunityInstanceModel.days = [];
+        this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
+        this.message = JSON.stringify(this.oportunityInstanceModel);
+      } else if (this.session_type_id === '5') {
+        this.session_type_name = 'Monthly';
+        this.oportunityInstanceModel.session_type_name = this.session_type_name;
+        this.oportunityInstanceModel.days = [];
+        this.oportunityInstanceModel.days = this.monthlyCalendarObj;
+        this.message = JSON.stringify(this.oportunityInstanceModel);
+      } else if (this.session_type_id === '6') {
+        this.session_type_name = 'Quarterly';
+        const calArr = [];
 
-    if (this.session_type_id === '1') {
-      this.session_type_name = 'One Time';
+        /*  if (this.quarterlyModel.firstQuartValidation) {
+           this.quartValidation = true;
+         } else {
+           this.quartValidation = false;
+         } */
 
-      const calenderModel1 = new CalenderModel();
-      this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      calenderModel1.start_date = this.utilsObj.formatDate(this.selectedDate, 'dd-MM-yyyy');
-      calenderModel1.end_date = this.utilsObj.formatDate(this.selectedDate, 'dd-MM-yyyy');
-
-      const calArr = [];
-      calArr.push(calenderModel1);
-      this.oportunityInstanceModel.days = calArr;
-      this.message = JSON.stringify(this.oportunityInstanceModel);
-      // console.log('One Time:::' + );
-    } else if (this.session_type_id === '2') {
-      this.session_type_name = 'Everyday';
-      const startTime = this.everyDayModel.startDate;
-      const endTime = this.everyDayModel.endDate;
-      this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      this.oportunityInstanceModel.days = [];
-      this.oportunityInstanceModel.days = this.everyDayCalendarObj;
-      this.message = JSON.stringify(this.oportunityInstanceModel);
-    } else if (this.session_type_id === '3') {
-      this.session_type_name = 'Weekly';
-      this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      this.oportunityInstanceModel.days = [];
-      this.oportunityInstanceModel.days = this.weeklyCalendarObj;
-      this.message = JSON.stringify(this.oportunityInstanceModel);
-    } else if (this.session_type_id === '4') {
-      this.session_type_name = 'Bi-weekly';
-      this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      this.oportunityInstanceModel.days = [];
-      this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
-      this.message = JSON.stringify(this.oportunityInstanceModel);
-    } else if (this.session_type_id === '5') {
-      this.session_type_name = 'Monthly';
-      this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      this.oportunityInstanceModel.days = [];
-      this.oportunityInstanceModel.days = this.monthlyCalendarObj;
-      this.message = JSON.stringify(this.oportunityInstanceModel);
-    } else if (this.session_type_id === '6') {
-      this.session_type_name = 'Quarterly';
-      const calArr = [];
-
-      /*  if (this.quarterlyModel.firstQuartValidation) {
-         this.quartValidation = true;
-       } else {
-         this.quartValidation = false;
-       } */
-
-      if (this.quarterlyModel.quarterlyModel.length > 0) {
+        if (this.quarterlyModel.quarterlyModel.length > 0) {
+          for (let i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
+            const calenderModel = new CalenderModel();
+            calenderModel.start_date = this.quarterlyModel.quarterlyModel[i].start_date;
+            calenderModel.end_date = this.quarterlyModel.quarterlyModel[i].end_date;
+            calArr.push(calenderModel);
+          }
+          this.oportunityInstanceModel.days = calArr;
+          this.message = JSON.stringify(this.oportunityInstanceModel);
+        }
+      } else if (this.session_type_id === '7') {
+        this.session_type_name = 'Half Yearly';
+        this.oportunityInstanceModel.session_type_name = this.session_type_name;
+        const calArr = [];
         for (let i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
           const calenderModel = new CalenderModel();
           calenderModel.start_date = this.quarterlyModel.quarterlyModel[i].start_date;
@@ -167,31 +202,19 @@ export class MainComponent implements OnInit {
         }
         this.oportunityInstanceModel.days = calArr;
         this.message = JSON.stringify(this.oportunityInstanceModel);
+      } else if (this.session_type_id === '8') {
+        this.session_type_name = 'Annually';
+        this.oportunityInstanceModel.session_type_name = this.session_type_name;
+        this.oportunityInstanceModel.days = [];
+        this.oportunityInstanceModel.days = this.annuallyCalendarObj;
+        this.message = JSON.stringify(this.oportunityInstanceModel);
       }
-    } else if (this.session_type_id === '7') {
-      this.session_type_name = 'Half Yearly';
-      this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      const calArr = [];
-      for (let i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
-        const calenderModel = new CalenderModel();
-        calenderModel.start_date = this.quarterlyModel.quarterlyModel[i].start_date;
-        calenderModel.end_date = this.quarterlyModel.quarterlyModel[i].end_date;
-        calArr.push(calenderModel);
-      }
-      this.oportunityInstanceModel.days = calArr;
-      this.message = JSON.stringify(this.oportunityInstanceModel);
-    } else if (this.session_type_id === '8') {
-      this.session_type_name = 'Annually';
-      this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      this.oportunityInstanceModel.days = [];
-      this.oportunityInstanceModel.days = this.annuallyCalendarObj;
-      this.message = JSON.stringify(this.oportunityInstanceModel);
     }
   }
 
 
 
-  public getDates(startDate, endDate, weekDays): any {
+  private getDates(startDate, endDate, weekDays): any {
 
     const day = startDate;
     // tslint:disable-next-line:prefer-const
@@ -206,7 +229,7 @@ export class MainComponent implements OnInit {
       };
     while (currentDate <= endDate) {
 
-     const d = currentDate.getDay();
+      const d = currentDate.getDay();
       if (weekDays) {
         if (d === 0 || d === 6) {
 
