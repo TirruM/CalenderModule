@@ -59,7 +59,7 @@ export class MainComponent implements OnInit {
 
   // for radio button handler
   handleChange(event) {
-    var index = this.dsession.findIndex((ds: any) => {
+    const index = this.dsession.findIndex((ds: any) => {
       return ds.id + '' === event.target.id;
     });
 
@@ -77,7 +77,7 @@ export class MainComponent implements OnInit {
   }
 
   everyDateChangedHandler(everyDayCalendarObj: Array<CalenderModel>) {
-    this.everyDayCalendarObj = everyDayCalendarObj
+    this.everyDayCalendarObj = everyDayCalendarObj;
   }
 
   quarterlyDateChangedHandler(quarterlyModel: QuarterlyModel) {
@@ -112,20 +112,20 @@ export class MainComponent implements OnInit {
     if (this.session_type_id === '1') {
       this.session_type_name = 'One Time';
 
-      let calenderModel1 = new CalenderModel();
+      const calenderModel1 = new CalenderModel();
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       calenderModel1.start_date = this.utilsObj.formatDate(this.selectedDate, 'dd-MM-yyyy');
       calenderModel1.end_date = this.utilsObj.formatDate(this.selectedDate, 'dd-MM-yyyy');
 
-      let calArr = [];
+      const calArr = [];
       calArr.push(calenderModel1);
       this.oportunityInstanceModel.days = calArr;
       this.message = JSON.stringify(this.oportunityInstanceModel);
-      //console.log('One Time:::' + );
+      // console.log('One Time:::' + );
     } else if (this.session_type_id === '2') {
       this.session_type_name = 'Everyday';
-      let startTime = this.everyDayModel.startDate;
-      let endTime = this.everyDayModel.endDate;
+      const startTime = this.everyDayModel.startDate;
+      const endTime = this.everyDayModel.endDate;
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.everyDayCalendarObj;
@@ -150,9 +150,8 @@ export class MainComponent implements OnInit {
       this.message = JSON.stringify(this.oportunityInstanceModel);
     } else if (this.session_type_id === '6') {
       this.session_type_name = 'Quarterly';
-      let calArr = [];
+      const calArr = [];
 
-      
       /*  if (this.quarterlyModel.firstQuartValidation) {
          this.quartValidation = true;
        } else {
@@ -160,8 +159,8 @@ export class MainComponent implements OnInit {
        } */
 
       if (this.quarterlyModel.quarterlyModel.length > 0) {
-        for (var i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
-          let calenderModel = new CalenderModel();
+        for (let i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
+          const calenderModel = new CalenderModel();
           calenderModel.start_date = this.quarterlyModel.quarterlyModel[i].start_date;
           calenderModel.end_date = this.quarterlyModel.quarterlyModel[i].end_date;
           calArr.push(calenderModel);
@@ -174,7 +173,7 @@ export class MainComponent implements OnInit {
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       const calArr = [];
       for (let i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
-        let calenderModel = new CalenderModel();
+        const calenderModel = new CalenderModel();
         calenderModel.start_date = this.quarterlyModel.quarterlyModel[i].start_date;
         calenderModel.end_date = this.quarterlyModel.quarterlyModel[i].end_date;
         calArr.push(calenderModel);
@@ -194,18 +193,20 @@ export class MainComponent implements OnInit {
 
   public getDates(startDate, endDate, weekDays): any {
 
-    let day = startDate;
+    const day = startDate;
+    // tslint:disable-next-line:prefer-const
     let dates = [],
       currentDate = startDate,
+      // tslint:disable-next-line:prefer-const
       addDays = function (days) {
-        let date = new Date(this.valueOf());
+        const date = new Date(this.valueOf());
         date.setDate(date.getDate() + days);
 
         return date;
       };
     while (currentDate <= endDate) {
 
-     let d = currentDate.getDay();
+     const d = currentDate.getDay();
       if (weekDays) {
         if (d === 0 || d === 6) {
 
@@ -223,7 +224,7 @@ export class MainComponent implements OnInit {
 
   }
 
-  /* 
+  /*
   $scope.start=new Date(2015,6,1); $scope.end= new Date(2015,8,1);
    $scope.weekends = [];
     var day = angular.copy($scope.start);
