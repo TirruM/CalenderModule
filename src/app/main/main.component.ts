@@ -18,22 +18,22 @@ export class MainComponent implements OnInit {
   public start_time: Date;
   public end_time: Date;
 
-  public message: string = "";
+  public message = '';
 
   selectedDate: string;
-  start_date: string = '';
+  start_date = '';
 
-  session_type_name = "One Time";
-  session_type_id = "1";
+  session_type_name = 'One Time';
+  session_type_id = '1';
   dsession: any[] = [
-    { id: "1", name: 'One Time' },
-    { id: "2", name: 'Everyday' },
-    { id: "3", name: 'Weekly' },
-    { id: "4", name: 'Bi-weekly' },
-    { id: "5", name: 'Monthly' },
-    { id: "6", name: 'Quarterly' },
-    { id: "7", name: 'Half Yearly' },
-    { id: "8", name: 'Annually' }
+    { id: '1', name: 'One Time' },
+    { id: '2', name: 'Everyday' },
+    { id: '3', name: 'Weekly' },
+    { id: '4', name: 'Bi-weekly' },
+    { id: '5', name: 'Monthly' },
+    { id: '6', name: 'Quarterly' },
+    { id: '7', name: 'Half Yearly' },
+    { id: '8', name: 'Annually' }
   ];
 
   calendarModel: CalenderModel = <CalenderModel>{};
@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
   public weeklyCalendarObj: Array<CalenderModel>;
   public biWeeklyCalendarObj: Array<CalenderModel>;
   public everyDayCalendarObj: Array<CalenderModel>;
-  quartValidation: boolean = true;
+  quartValidation = true;
 
   utilsObj: Utils = new Utils(this.datePipe);
 
@@ -60,7 +60,7 @@ export class MainComponent implements OnInit {
   // for radio button handler
   handleChange(event) {
     var index = this.dsession.findIndex((ds: any) => {
-      return ds.id + "" === event.target.id;
+      return ds.id + '' === event.target.id;
     });
 
     if (index > -1) {
@@ -109,8 +109,8 @@ export class MainComponent implements OnInit {
     this.oportunityInstanceModel.start_time = this.datePipe.transform(this.start_time, 'hh:mm:ss a');
     this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:mm:ss a');
 
-    if (this.session_type_id == "1") {
-      this.session_type_name = "One Time";
+    if (this.session_type_id === '1') {
+      this.session_type_name = 'One Time';
 
       let calenderModel1 = new CalenderModel();
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
@@ -121,37 +121,35 @@ export class MainComponent implements OnInit {
       calArr.push(calenderModel1);
       this.oportunityInstanceModel.days = calArr;
       this.message = JSON.stringify(this.oportunityInstanceModel);
-      //console.log("One Time:::" + );
-    }
-    else if (this.session_type_id == "2") {
-      this.session_type_name = "Everyday";
-      var startTime = this.everyDayModel.startDate;
-      var endTime = this.everyDayModel.endDate;
+      //console.log('One Time:::' + );
+    } else if (this.session_type_id === '2') {
+      this.session_type_name = 'Everyday';
+      let startTime = this.everyDayModel.startDate;
+      let endTime = this.everyDayModel.endDate;
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.everyDayCalendarObj;
       this.message = JSON.stringify(this.oportunityInstanceModel);
-    } else if (this.session_type_id == "3") {
-      this.session_type_name = "Weekly";
+    } else if (this.session_type_id === '3') {
+      this.session_type_name = 'Weekly';
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.weeklyCalendarObj;
       this.message = JSON.stringify(this.oportunityInstanceModel);
-    } else if (this.session_type_id == "4") {
-      this.session_type_name = "Bi-weekly";
+    } else if (this.session_type_id === '4') {
+      this.session_type_name = 'Bi-weekly';
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
       this.message = JSON.stringify(this.oportunityInstanceModel);
-    }
-    else if (this.session_type_id == "5") {
-      this.session_type_name = "Monthly";
+    } else if (this.session_type_id === '5') {
+      this.session_type_name = 'Monthly';
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.monthlyCalendarObj;
       this.message = JSON.stringify(this.oportunityInstanceModel);
-    } else if (this.session_type_id == "6") {
-      this.session_type_name = "Quarterly";
+    } else if (this.session_type_id === '6') {
+      this.session_type_name = 'Quarterly';
       let calArr = [];
 
       
@@ -171,11 +169,11 @@ export class MainComponent implements OnInit {
         this.oportunityInstanceModel.days = calArr;
         this.message = JSON.stringify(this.oportunityInstanceModel);
       }
-    } else if (this.session_type_id == "7") {
-      this.session_type_name = "Half Yearly";
+    } else if (this.session_type_id === '7') {
+      this.session_type_name = 'Half Yearly';
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
-      let calArr = [];
-      for (var i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
+      const calArr = [];
+      for (let i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
         let calenderModel = new CalenderModel();
         calenderModel.start_date = this.quarterlyModel.quarterlyModel[i].start_date;
         calenderModel.end_date = this.quarterlyModel.quarterlyModel[i].end_date;
@@ -183,10 +181,8 @@ export class MainComponent implements OnInit {
       }
       this.oportunityInstanceModel.days = calArr;
       this.message = JSON.stringify(this.oportunityInstanceModel);
-    }
-
-    else if (this.session_type_id == "8") {
-      this.session_type_name = "Annually";
+    } else if (this.session_type_id === '8') {
+      this.session_type_name = 'Annually';
       this.oportunityInstanceModel.session_type_name = this.session_type_name;
       this.oportunityInstanceModel.days = [];
       this.oportunityInstanceModel.days = this.annuallyCalendarObj;
@@ -211,7 +207,7 @@ export class MainComponent implements OnInit {
 
       var d = currentDate.getDay();
       if (weekDays) {
-        if (d == 0 || d == 6) {
+        if (d === 0 || d === 6) {
 
         } else {
           dates.push(currentDate);
