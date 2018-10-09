@@ -53,11 +53,13 @@ export class ByweeklyComponent implements OnInit {
   public biWeeklyCalendarObj: Array<CalenderModel> = [];
   selectedWeekDays: any = [];
   utilsObj: Utils = new Utils(this.datePipe);
-  public dateValidationFlag: boolean = true;
-  public endDateValidation: boolean = true;
+  public dateValidationFlag = true;
+  public endDateValidation = true;
 
   public weeklyValidationFlag = false;
-  public mainErrorMsg: string = '';
+  public mainErrorMsg = '';
+  public startDate = new FormControl(moment());
+  public endDate = new FormControl(moment());
 
   @Output() public biWeeklyCalendarChanged = new EventEmitter();
 
@@ -66,20 +68,17 @@ export class ByweeklyComponent implements OnInit {
   ngOnInit() {
   }
 
-  public startDate = new FormControl(moment());
-  public endDate = new FormControl(moment());
-
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.startDate.value;
     ctrlValue.year(normalizedYear.year());
     this.startDate.setValue(ctrlValue);
-    console.log("startDate-->", this.startDate);
+    console.log('startDate-->', this.startDate);
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datePicker: OwlDateTimeComponent<Moment>) {
 
     const ctrlValue = this.startDate.value;
-    console.log("ctrValue", ctrlValue);
+    console.log('ctrValue', ctrlValue);
     ctrlValue.month(normalizedMonth.month());
     this.startDate.setValue(ctrlValue);
     datePicker.close();
@@ -87,7 +86,7 @@ export class ByweeklyComponent implements OnInit {
 
   chosenEndYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.endDate.value;
-    console.log("ctrValue111", ctrlValue);
+    console.log('ctrValue111', ctrlValue);
 
     ctrlValue.year(normalizedYear.year());
     this.endDate.setValue(ctrlValue);
@@ -96,7 +95,7 @@ export class ByweeklyComponent implements OnInit {
   chosenEndMonthHandler(normalizedMonth: Moment, datePicker: OwlDateTimeComponent<Moment>) {
     const ctrlValue = this.endDate.value;
     ctrlValue.month(normalizedMonth.month());
-    console.log("ctrValue222", ctrlValue);
+    console.log('ctrValue222', ctrlValue);
 
     this.endDate.setValue(ctrlValue);
     datePicker.close();
@@ -104,40 +103,39 @@ export class ByweeklyComponent implements OnInit {
 
   yearMonthHandler(event) {
 
-    if (this.strDate == undefined || this.strDate.toString() == "") {
+    if (this.strDate === undefined || this.strDate.toString() === '') {
       this.endDateValidation = true;
     } else {
       this.endDateValidation = false;
     }
 
-    if (this.endsDate == undefined || this.endsDate.toString() == "") {
+    if (this.endsDate === undefined || this.endsDate.toString() === '') {
       this.dateValidationFlag = true;
     } else {
       this.dateValidationFlag = false;
     }
 
     if (this.strDate > this.endsDate) {
-      this.mainErrorMsg = 'Start Date is greater that endDate !';
+      this.mainErrorMsg = 'Start date is greater that end date !';
       this.weeklyValidationFlag = true;
     } else {
       this.weeklyValidationFlag = false;
     }
 
-    let now = moment(this.strDate).format("MMM YYYY");
-    this.fromYear = moment(this.strDate).format("YYYY");
-    this.fromMonth = moment(this.strDate).format("MM");
+    let now = moment(this.strDate).format('MMM YYYY');
+    this.fromYear = moment(this.strDate).format('YYYY');
+    this.fromMonth = moment(this.strDate).format('MM');
 
-    let now1 = moment(this.endsDate).format("MMM YYYY");
-    this.toYear = moment(this.endsDate).format("YYYY");
-    this.toMonth = moment(this.endsDate).format("MM");
+    let now1 = moment(this.endsDate).format('MMM YYYY');
+    this.toYear = moment(this.endsDate).format('YYYY');
+    this.toMonth = moment(this.endsDate).format('MM');
   }
 
   handleChange(event) {
-    console.log(moment(this.selectedMoment).format("DD/MM/YYYY"))
-    var year = moment(this.selectedMoment).format("YYYY");
-    var month = moment(this.selectedMoment).format("MM");
-    var date = moment(this.selectedMoment).format("DD");
-
+    console.log(moment(this.selectedMoment).format('DD/MM/YYYY'))
+    let year = moment(this.selectedMoment).format('YYYY');
+    let month = moment(this.selectedMoment).format('MM');
+    let date = moment(this.selectedMoment).format('DD');
     let now = new Date(new Date(year, month - 1, date));
 
 
@@ -163,35 +161,34 @@ export class ByweeklyComponent implements OnInit {
 
   prepareWeekObj(now, month1: any) {
     console.log("selected month1", month1);
-    var calDate = new Date(this.strDate);
-    var year = calDate.getFullYear();
-    var month = calDate.getMonth();
-    var date = calDate.getDate();
-
-    var eCalDate = new Date(this.endsDate);
-    var eYear = eCalDate.getFullYear();
-    var eMonth = eCalDate.getMonth();
-    var eDate = eCalDate.getDate();
-    var dates = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), false, now);
-    var pipe = new DatePipe('en-US');
+    let calDate = new Date(this.strDate);
+    let year = calDate.getFullYear();
+    let month = calDate.getMonth();
+    let date = calDate.getDate();
+    let eCalDate = new Date(this.endsDate);
+    let eYear = eCalDate.getFullYear();
+    let eMonth = eCalDate.getMonth();
+    let eDate = eCalDate.getDate();
+    let dates = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate), false, now);
+    let pipe = new DatePipe('en-US');
     let byWeeklyArr = [];
 
-    var i = 0;
+    let i = 0;
     dates.forEach(function (date) {
       if (i % 2 === 0) {
-        console.log("i/2==0 val---->" + i % 2);
+        console.log('i/2==0 val---->' + i % 2);
         let calenderModel = new CalenderModel();
         calenderModel.start_date = pipe.transform(date, 'dd-MM-yyyy');
         calenderModel.end_date = pipe.transform(date, 'dd-MM-yyyy');
         byWeeklyArr.push(calenderModel);
       } else {
-        console.log("i/2 !=0 val---->" + i % 2);
+        console.log('i/2 !=0 val---->' + i % 2);
       }
       i++;
 
     });
     this.biWeeklyCalendarObj = byWeeklyArr;
-    console.log("calArr---->", JSON.stringify(this.biWeeklyCalendarObj));
+    console.log('calArr---->', JSON.stringify(this.biWeeklyCalendarObj));
 
     this.biWeeklyCalendarChanged.emit(this.biWeeklyCalendarObj);
 

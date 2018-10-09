@@ -53,11 +53,13 @@ export class WeeklyComponent implements OnInit {
   public weeklyCalendarObj: Array<CalenderModel> = [];
   utilsObj: Utils = new Utils(this.datePipe);
   selectedWeekDays: any = [];
-  public endDateValidation: boolean = true;
-  public dateValidationFlag: boolean = true;
+  public endDateValidation = true;
+  public dateValidationFlag = true;
 
   public weeklyValidationFlag = false;
-  public mainErrorMsg: string = '';
+  public mainErrorMsg = '';
+  public startDate = new FormControl(moment());
+  public endDate = new FormControl(moment());
 
   @Output() public weeklyCalendarChanged = new EventEmitter();
 
@@ -68,20 +70,18 @@ export class WeeklyComponent implements OnInit {
   ngOnInit() {
   }
 
-  public startDate = new FormControl(moment());
-  public endDate = new FormControl(moment());
 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.startDate.value;
     ctrlValue.year(normalizedYear.year());
     this.startDate.setValue(ctrlValue);
-    console.log("startDate-->", this.startDate);
+    console.log('startDate-->', this.startDate);
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datePicker: OwlDateTimeComponent<Moment>) {
 
     const ctrlValue = this.startDate.value;
-    console.log("ctrValue", ctrlValue);
+    console.log('ctrValue', ctrlValue);
     ctrlValue.month(normalizedMonth.month());
     this.startDate.setValue(ctrlValue);
     datePicker.close();
@@ -89,7 +89,7 @@ export class WeeklyComponent implements OnInit {
 
   chosenEndYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.endDate.value;
-    console.log("ctrValue111", ctrlValue);
+    console.log('ctrValue111', ctrlValue);
 
     ctrlValue.year(normalizedYear.year());
     this.endDate.setValue(ctrlValue);
@@ -98,20 +98,20 @@ export class WeeklyComponent implements OnInit {
   chosenEndMonthHandler(normalizedMonth: Moment, datePicker: OwlDateTimeComponent<Moment>) {
     const ctrlValue = this.endDate.value;
     ctrlValue.month(normalizedMonth.month());
-    console.log("ctrValue222", ctrlValue);
+    console.log('ctrValue222', ctrlValue);
 
     this.endDate.setValue(ctrlValue);
     datePicker.close();
   }
 
   yearMonthHandler(event) {
-    if (this.strDate == undefined || this.strDate.toString() == "") {
+    if (this.strDate === undefined || this.strDate.toString() === '') {
       this.endDateValidation = true;
     } else {
       this.endDateValidation = false;
     }
 
-    if (this.endsDate == undefined || this.endsDate.toString() == "") {
+    if (this.endsDate === undefined || this.endsDate.toString() === '') {
       this.dateValidationFlag = true;
     } else {
       this.dateValidationFlag = false;
@@ -123,62 +123,57 @@ export class WeeklyComponent implements OnInit {
     } else {
       this.weeklyValidationFlag = false;
     }
-    //console.log("dateValidationFlag", this.dateValidationFlag);
+   
 
-    let now = moment(this.strDate).format("MMM YYYY");
-    this.fromYear = moment(this.strDate).format("YYYY");
-    this.fromMonth = moment(this.strDate).format("MM");
+    let now = moment(this.strDate).format('MMM YYYY');
+    this.fromYear = moment(this.strDate).format('YYYY');
+    this.fromMonth = moment(this.strDate).format('MM');
 
-    let now1 = moment(this.endsDate).format("MMM YYYY");
-    this.toYear = moment(this.endsDate).format("YYYY");
-    this.toMonth = moment(this.endsDate).format("MM");
+    let now1 = moment(this.endsDate).format('MMM YYYY');
+    this.toYear = moment(this.endsDate).format('YYYY');
+    this.toMonth = moment(this.endsDate).format('MM');
   }
 
   handleChange(event) {
-    var year = moment(this.selectedMoment).format("YYYY");
-    var month = moment(this.selectedMoment).format("MM");
-    var date = moment(this.selectedMoment).format("DD");
-    //let now = new Date(new Date(year, month - 1, date));
+    let year = moment(this.selectedMoment).format('YYYY');
+    let month = moment(this.selectedMoment).format('MM');
+    let date = moment(this.selectedMoment).format('DD');
+
     let now = new Date(new Date(year, month - 1, date));
 
     if (this.selectedWeekDays.length > 0) {
-      console.log("second");
+      console.log('second');
       if (this.selectedWeekDays.includes(now.getDay())) {
-        // === now.getDay()) {
-        console.log("trrr");
+        console.log('trrr');
       } else {
-        console.log("weekDayyy---->" + now.getDay());
+        console.log('weekDayyy---->' + now.getDay());
         this.selectedWeekDays.push(now.getDay());
       }
     } else {
-      console.log("first");
+      console.log('first');
       this.selectedWeekDays.push(now.getDay());
     }
-    console.log("selected WeekDays--->", JSON.stringify(this.selectedWeekDays));
+    console.log('selected WeekDays--->', JSON.stringify(this.selectedWeekDays));
     if (this.strDate !== null && this.endsDate !== null) {
       this.prepareWeekObj(now.getDay(), month);
     }
   }
 
   prepareWeekObj(now, month1: any) {
-    var calDate = new Date(this.strDate);
-    var year = calDate.getFullYear();
-    var month = calDate.getMonth();
-    var date = calDate.getDate();
-
-    var eCalDate = new Date(this.endsDate);
-    var eYear = eCalDate.getFullYear();
-    var eMonth = eCalDate.getMonth();
-    var eDate = eCalDate.getDate();
-    /* var dates1 = this.utilsObj.getDates(new Date(year, month, date), new Date(eYear, eMonth, eDate),
-      false, now); */
-    var dates = this.utilsObj.getMultipleWeekDates(new Date(year, month, date), new Date(eYear, eMonth, eDate),
+    let calDate = new Date(this.strDate);
+    let year = calDate.getFullYear();
+    let month = calDate.getMonth();
+    let date = calDate.getDate();
+    let eCalDate = new Date(this.endsDate);
+    let eYear = eCalDate.getFullYear();
+    let eMonth = eCalDate.getMonth();
+    let eDate = eCalDate.getDate();
+    let dates = this.utilsObj.getMultipleWeekDates(new Date(year, month, date), new Date(eYear, eMonth, eDate),
       false, this.selectedWeekDays);
-
-    var pipe = new DatePipe('en-US');
+    let pipe = new DatePipe('en-US');
     let calArr = [];
     let byWeeklyArr = [];
-    var i = 0;
+    let i = 0;
     dates.forEach(function (date) {
       let calenderModel = new CalenderModel();
       calenderModel.start_date = pipe.transform(date, 'dd-MM-yyyy');
@@ -186,7 +181,7 @@ export class WeeklyComponent implements OnInit {
       calArr.push(calenderModel);
     });
     this.weeklyCalendarObj = calArr;
-    console.log("weekly---->" + JSON.stringify(this.weeklyCalendarObj));
+    console.log('weekly---->' + JSON.stringify(this.weeklyCalendarObj));
     this.weeklyCalendarChanged.emit(this.weeklyCalendarObj);
   }
 }

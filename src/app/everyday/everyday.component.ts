@@ -14,31 +14,27 @@ const moment = (_moment as any).default ? (_moment as any).default : _moment;
   styleUrls: ['./everyday.component.css']
 })
 export class EverydayComponent implements OnInit {
-  constructor(public datePipe: DatePipe) { }
 
-  ngOnInit() {
-
-  }
-  public startDateValidation: boolean = true;
+  public startDateValidation = true;
   public startDate: Date;
   public endDate: Date;
   public weeksDays = false;
   public govHolyDays = false;
   public utilsObj: Utils = new Utils(this.datePipe);
-  public weeksDaysCount: string = "Except Weekends";
-  public govtHolidaysCount: string = "Except Government Holidays ";
+  public weeksDaysCount = 'Except Weekends';
+  public govtHolidaysCount = 'Except Government Holidays ';
   public everDayModel: EveryDayModel = <EveryDayModel>{};
   public everyDayCalendarObj: Array<CalenderModel>;
-  public startDateFlag: boolean = false;
-  public endDateFlag: boolean = true;
+  public startDateFlag = false;
+  public endDateFlag = true;
 
   public everyValidationFlag = false;
   public mainErrorMsg: String = '';
 
-
+//   Static Goverment Holiday
   public govtHolidaysArrayObj: any = [
-    { id: 1, holiday: "15-10-2018" },
-    { id: 2, holiday: "22-10-2018" }
+    { id: 1, holiday: '15-10-2018' },
+    { id: 2, holiday: '22-10-2018' }
   ];
 
   @Output() public dateChanged = new EventEmitter();
@@ -47,17 +43,23 @@ export class EverydayComponent implements OnInit {
       this.startDateValidation = false;
     }
   }
+  constructor(public datePipe: DatePipe) { }
+
+  ngOnInit() {
+
+  }
+
 
   private startDateEventHandler(event) {
-    if (this.startDate == undefined || this.startDate.toString() == "") {
+    if (this.startDate === undefined || this.startDate.toString() === '') {
       this.endDateFlag = true;
     } else {
-      if (this.endDate != undefined) {
+      if (this.endDate !== undefined) {
         let startD = new Date(moment(this.startDate).format('YYYY-MM-DD')).getTime();
         let endD = new Date(moment(this.endDate).format('YYYY-MM-DD')).getTime();
 
         if (startD > endD) {
-          this.mainErrorMsg = 'Start Date is greater that endDate !';
+          this.mainErrorMsg = 'Start date is greater that end date !';
           this.everyValidationFlag = true;
         } else {
           this.everyValidationFlag = false;
@@ -74,7 +76,7 @@ export class EverydayComponent implements OnInit {
   }
 
   private endDateEventHandler(event) {
-    if (this.startDate == undefined || this.startDate.toString() == "") {
+    if (this.startDate === undefined || this.startDate.toString() === '') {
       this.endDateFlag = true;
     } else {
       //this.endDateFlag = false;
@@ -94,39 +96,38 @@ export class EverydayComponent implements OnInit {
   }
 
   private handleChange(event) {
-    if (this.startDate != undefined && this.endDate != undefined) {
+    if (this.startDate !== undefined && this.endDate !== undefined) {
       this.everyDayCalendarObj = [];
 
-      var startTime = this.startDate;
-      var endTime = this.endDate;
+      let startTime = this.startDate;
+      let endTime = this.endDate;
 
-      var calDate = new Date(startTime);
-      var year = calDate.getFullYear();
-      var month = calDate.getMonth() + 1;
-      var date = calDate.getDate();
+      let calDate = new Date(startTime);
+      let year = calDate.getFullYear();
+      let month = calDate.getMonth() + 1;
+      let date = calDate.getDate();
+      let eCalDate = new Date(endTime);
+      let eYear = eCalDate.getFullYear();
+      let eMonth = eCalDate.getMonth();
+      let eDate = eCalDate.getDate();
 
-      var eCalDate = new Date(endTime);
-      var eYear = eCalDate.getFullYear();
-      var eMonth = eCalDate.getMonth();
-      var eDate = eCalDate.getDate();
-
-      if (this.startDate != undefined && this.endDate != undefined) {
+      if (this.startDate !== undefined && this.endDate !== undefined) {
         if (date > eDate) {
           this.endDate = null;
         }
       }
 
-      var totalDates = this.utilsObj.getDates(new Date(year, month - 1, date),
+      let totalDates = this.utilsObj.getDates(new Date(year, month - 1, date),
         new Date(eYear, eMonth, eDate),
         false, -1);
 
-      var dates = this.utilsObj.getDates(new Date(year, month - 1, date),
+      let dates = this.utilsObj.getDates(new Date(year, month - 1, date),
         new Date(eYear, eMonth, eDate),
         this.weeksDays, 0);
 
-      //console.log("dates array", JSON.stringify(dates));
+    
 
-      for (var j = 0; j < dates.length; j++) {
+      for (let j = 0; j < dates.length; j++) {
         if (dates[j] === null) {
           dates.splice(j, 1);
           //console.log("sdfsdf after removal null" + JSON.stringify(dates));
@@ -134,14 +135,14 @@ export class EverydayComponent implements OnInit {
       }
 
       if (this.weeksDays) {
-        var weekDaysCount = totalDates.length - dates.length;
-        this.weeksDaysCount = "Except Weekends ( " + (weekDaysCount) + " days)";
+        let weekDaysCount = totalDates.length - dates.length;
+        this.weeksDaysCount = 'Except Weekends ( ' + (weekDaysCount) + ' days)';
       } else {
-        this.weeksDaysCount = "Except Weekends ";
+        this.weeksDaysCount = 'Except Weekends ';
       }
 
       let calArr = [];
-      var pipe = new DatePipe('en-US');
+      let pipe = new DatePipe('en-US');
       dates.forEach(function (date) {
 
         let calenderModel = new CalenderModel();
@@ -152,14 +153,14 @@ export class EverydayComponent implements OnInit {
 
 
 
-      var govtCount = 0;
+      let govtCount = 0;
       if (this.govHolyDays) {
-        for (var j = 0; j < calArr.length; j++) {
+        for (let j = 0; j < calArr.length; j++) {
           let calenderModel = new CalenderModel();
           calenderModel = calArr[j];
-          for (var i = 0; i < this.govtHolidaysArrayObj.length; i++) {
+          for (let i = 0; i < this.govtHolidaysArrayObj.length; i++) {
             if (calenderModel.start_date == this.govtHolidaysArrayObj[i].holiday) {
-              console.log("car have" + JSON.stringify(calenderModel.start_date));
+              console.log('Object have' + JSON.stringify(calenderModel.start_date));
               //calArr.splice(j, 1);
               delete calArr[j];
               govtCount++;
@@ -168,16 +169,16 @@ export class EverydayComponent implements OnInit {
 
         }
         if (govtCount > 0) {
-          this.govtHolidaysCount = "Except Government Holidays (" + govtCount + " days)";
+          this.govtHolidaysCount = 'Except Government Holidays (' + govtCount + ' days)';
         } else {
-          this.govtHolidaysCount = "Except Government Holidays ";
+          this.govtHolidaysCount = 'Except Government Holidays ';
         }
       } else {
-        this.govtHolidaysCount = "Except Government Holidays ";
+        this.govtHolidaysCount = 'Except Government Holidays ';
       }
 
       this.everyDayCalendarObj = calArr;
-      //console.log(JSON.stringify(this.everyDayCalendarObj));
+      // console.log(JSON.stringify(this.everyDayCalendarObj));
       this.dateChanged.emit(this.everyDayCalendarObj);
     }
   }
