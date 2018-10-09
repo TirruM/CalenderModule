@@ -30,7 +30,11 @@ export class HalfyearlyComponent implements OnInit {
   public novDate: Date;
   public decDate: Date;
 
-  public selectYear: any;
+  public selectYearHalf: any;
+  public startYearHalf: string;
+  public yearHalf: string;
+  public mainErrorMsg = '';
+  public dateValidationFlagHalf = false;
 
   quarterlyModelArray: QuarterlyModel = <QuarterlyModel>{};
   firstHalfyearly: Array<CalenderModel> = [];
@@ -116,6 +120,15 @@ export class HalfyearlyComponent implements OnInit {
     //console.log("halfYearlyModelArray" + JSON.stringify(this.quaterlyModelArray));
     this.handleChange(event);
   }
+
+
+  handleSelectYearHalf(year: string) {
+    this.yearHalf = year;
+    this.startYearHalf = year;
+    this.dateValidationFlagHalf = false;
+  }
+
+
 
   clickMonthEvent(val) {
     if (val == 0) {
