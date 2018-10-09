@@ -54,9 +54,9 @@ export class AnnuallyComponent implements OnInit {
 
 
   @Output() public annuallyCalendarChanged = new EventEmitter();
-    public year: string;
-    currentYear: any;
-    currentDate: any;
+  public year: string;
+  currentYear: any;
+  currentDate: any;
   constructor() {
 
   }
@@ -70,11 +70,11 @@ export class AnnuallyComponent implements OnInit {
     console.log('tttt' + this.year);
     console.log('id' + id);
     if (id === 0) {
-   this.startYear = parseInt(year, 10);
-  this.startYearHandler(event);
+      this.startYear = parseInt(year, 10);
+      this.startYearHandler(event);
     } else {
-   this.endYear = parseInt(year, 10);
-   this.endYearHandler(event);
+      this.endYear = parseInt(year, 10);
+      this.endYearHandler(event);
     }
 
   }
@@ -106,13 +106,14 @@ export class AnnuallyComponent implements OnInit {
     if (this.endYear === undefined) {
       this.dateValidationFlag = true;
     } else {
-         if (this.endYear <= this.startYear) {
+      if (this.endYear <= this.startYear) {
         this.dateValidationFlag = true;
         this.endYearConditionValidationFlag = false;
         this.startYearConditionValidationFlag = false;
         this.endYear = null;
       } else {
         this.endYearConditionValidationFlag = true;
+        this.startYearConditionValidationFlag = true;
         this.dateValidationFlag = false;
       }
     }
@@ -128,28 +129,28 @@ export class AnnuallyComponent implements OnInit {
     } else if (this.selectDate !== null) {
 
       console.log('selectDate ---', this.selectDate);
-      let currentDate : Date = new Date(moment(this.selectDate).format('YYYY-MM-DD'));
+      let currentDate: Date = new Date(moment(this.selectDate).format('YYYY-MM-DD'));
 
       let currentYear = currentDate.getFullYear();
       this.annuallyCalendarObj = [];
       if ((this.startYear <= currentYear) && (this.endYear >= currentYear)) {
         this.startEndYearBetweenValidationFlag = true;
         for (let i = this.startYear; i <= this.endYear; i++) {
-       // console.log('selectDateHandler' + this.startYear + "End Year" + this.endYear);
-        let calDate = currentDate;
-        let month = calDate.getMonth();
-        let date = calDate.getDate();
-        let selectedDateObj = new Date(i, month, date);
-        console.log("selectedDateObj" + selectedDateObj);
-        let dayObj = moment(selectedDateObj).format('YYYY-MM-DD');
-        let calenderModel = new CalenderModel();
-        calenderModel.start_date = dayObj;
-        calenderModel.end_date = dayObj;
-        this.annuallyCalendarObj.push(calenderModel);
-        //if (i === this.endYear) {
-        this.annuallyCalendarChanged.emit(this.annuallyCalendarObj)
-        console.log("final annually object--->" + JSON.stringify(this.annuallyCalendarObj));
-        //}
+          // console.log('selectDateHandler' + this.startYear + "End Year" + this.endYear);
+          let calDate = currentDate;
+          let month = calDate.getMonth();
+          let date = calDate.getDate();
+          let selectedDateObj = new Date(i, month, date);
+          console.log("selectedDateObj" + selectedDateObj);
+          let dayObj = moment(selectedDateObj).format('YYYY-MM-DD');
+          let calenderModel = new CalenderModel();
+          calenderModel.start_date = dayObj;
+          calenderModel.end_date = dayObj;
+          this.annuallyCalendarObj.push(calenderModel);
+          //if (i === this.endYear) {
+          this.annuallyCalendarChanged.emit(this.annuallyCalendarObj)
+          console.log("final annually object--->" + JSON.stringify(this.annuallyCalendarObj));
+          //}
         }
       } else {
         this.startEndYearBetweenValidationFlag = false;

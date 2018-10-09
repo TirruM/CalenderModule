@@ -81,10 +81,10 @@ export class QuarterlyComponent implements OnInit {
     if (this.startYear === undefined) {
       this.mainErrorMsg = 'Please select Year';
       this.dateValidationFlag = true;
-      this.firstCheckBox = false;
+      /* this.firstCheckBox = false;
       this.secondCheckBox = false;
       this.thirdCheckBox = false;
-      this.fourCheckBox = false;
+      this.fourCheckBox = false; */
     } else {
      // console.log('value-->' + val);
       this.dateValidationFlag = false;
