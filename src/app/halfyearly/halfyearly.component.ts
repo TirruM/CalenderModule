@@ -35,11 +35,9 @@ export class HalfyearlyComponent implements OnInit {
   public yearHalf: string;
   public mainErrorMsg = '';
   public dateValidationFlagHalf = false;
-
   quarterlyModelArray: QuarterlyModel = <QuarterlyModel>{};
   firstHalfyearly: Array<CalenderModel> = [];
   secondHalfyearly: Array<CalenderModel> = [];
-
   @Output() public dateChanged = new EventEmitter();
 
   public startAt = null;

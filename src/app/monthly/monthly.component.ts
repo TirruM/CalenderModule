@@ -51,46 +51,46 @@ export class MonthlyComponent implements OnInit {
   }
 
   handleChange(event) {
-    let now = moment(this.dateTimeRange[0]).format("YYYY-MM-DD ");
+    let now = moment(this.dateTimeRange[0]).format('YYYY-MM-DD');
     this.monthlyCalendarObj = [];
     let dateArray = [];
     let currentDate: Date;
 
     if (this.dateTimeRange[0] !== null) {
       currentDate = new Date(this.dateTimeRange[0]);
-      for (var i = 0; i < this.noOfDays; i++) {
+      for (let i = 0; i < this.noOfDays; i++) {
 
-        var calDate = currentDate;
-        var year = calDate.getFullYear();
-        var month = calDate.getMonth();
-        var date = calDate.getDate();
+        let calDate = currentDate;
+        let year = calDate.getFullYear();
+        let month = calDate.getMonth();
+        let date = calDate.getDate();
         if (i !== 0) {
           date = date + 1;
         }
-        var nextDay = new Date(year, month, date);
+        let nextDay = new Date(year, month, date);
         currentDate = nextDay;
-        var dayObj = moment(currentDate).format("YYYY-MM-DD ");
+        let dayObj = moment(currentDate).format('YYYY-MM-DD');
         dateArray.push(dayObj);
 
         let calenderModel = new CalenderModel();
         calenderModel.start_date = dayObj;
         calenderModel.end_date = dayObj;
         this.monthlyCalendarObj.push(calenderModel);
-        if (i == this.noOfDays - 1) {
+        if (i === this.noOfDays - 1) {
 
           this.dateTimeRange.push(nextDay);
-          console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[0]));
-          console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[i - 1]));
-          for (var j = 0; j < this.dateTimeRange.length; j++) {
+          console.log('Test 1' + JSON.stringify(this.dateTimeRange[0]));
+          console.log('Test 2' + JSON.stringify(this.dateTimeRange[i - 1]));
+          for (let j = 0; j < this.dateTimeRange.length; j++) {
             console.log(JSON.stringify(this.dateTimeRange.length));
             if (this.dateTimeRange[j] === null) {
               this.dateTimeRange.splice(j, 1);
-              console.log("sdfsdf after removal null" + JSON.stringify(dateArray));
+              console.log(' after removal null' + JSON.stringify(dateArray));
             }
 
-            if (j == this.dateTimeRange.length - 1) {
-              console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[0]));
-              console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[j]));
+            if (j === this.dateTimeRange.length - 1) {
+              console.log('sample 1 ' + JSON.stringify(this.dateTimeRange[0]));
+              console.log('sample 2 ' + JSON.stringify(this.dateTimeRange[j]));
             }
 
           }
@@ -105,13 +105,13 @@ export class MonthlyComponent implements OnInit {
       }
 
     }
-    //this.dateTimeRange = [];
-    //this.dateTimeRange = dateArray;
+    // this.dateTimeRange = [];
+    // this.dateTimeRange = dateArray;
 
     this.monthlyCalendarChanged.emit(this.monthlyCalendarObj)
   }
   private numberOfDays(event) {
-    if (this.noOfDays == undefined || this.noOfDays == 0) {
+    if (this.noOfDays === undefined || this.noOfDays === 0) {
       this.validationFlag = true;
     } else {
       this.validationFlag = false;
