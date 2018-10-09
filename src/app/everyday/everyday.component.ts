@@ -32,6 +32,9 @@ export class EverydayComponent implements OnInit {
   public startDateFlag: boolean = false;
   public endDateFlag: boolean = true;
 
+  public everyValidationFlag = false;
+  public mainErrorMsg: String = '';
+
 
   public govtHolidaysArrayObj: any = [
     { id: 1, holiday: "15-10-2018" },
@@ -49,16 +52,15 @@ export class EverydayComponent implements OnInit {
     if (this.startDate == undefined || this.startDate.toString() == "") {
       this.endDateFlag = true;
     } else {
-
       if (this.endDate != undefined) {
-
         let startD = new Date(moment(this.startDate).format('YYYY-MM-DD')).getTime();
         let endD = new Date(moment(this.endDate).format('YYYY-MM-DD')).getTime();
 
         if (startD > endD) {
-          console.log("start Date is greater that endDate");
-
+          this.mainErrorMsg = 'Start Date is greater that endDate !';
+          this.everyValidationFlag = true;
         } else {
+          this.everyValidationFlag = false;
           this.handleChange(event);
           // this.endDate = null;
         }
@@ -75,8 +77,18 @@ export class EverydayComponent implements OnInit {
     if (this.startDate == undefined || this.startDate.toString() == "") {
       this.endDateFlag = true;
     } else {
-      this.endDateFlag = false;
-      //this.handleChange(event);
+      //this.endDateFlag = false;
+      let startD = new Date(moment(this.startDate).format('YYYY-MM-DD')).getTime();
+      let endD = new Date(moment(this.endDate).format('YYYY-MM-DD')).getTime();
+
+      if (startD > endD) {
+        this.mainErrorMsg = 'Start Date is greater that endDate !';
+        this.everyValidationFlag = true;
+      } else {
+        this.everyValidationFlag = false;
+        this.handleChange(event);
+        // this.endDate = null;
+      }
     }
 
   }

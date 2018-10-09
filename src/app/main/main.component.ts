@@ -140,7 +140,7 @@ export class MainComponent implements OnInit {
       this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:mm:ss a');
       if (this.session_type_id === '1') {
         this.session_type_name = 'One Time';
-        console.log("Select Date--->", this.selectedDate);
+        //console.log("Select Date--->", this.selectedDate);
         if (this.selectedDate !== undefined) {
           this.dateValidationFlag = false;
           const calenderModel1 = new CalenderModel();
@@ -169,22 +169,41 @@ export class MainComponent implements OnInit {
         }
       } else if (this.session_type_id === '3') {
         this.session_type_name = 'Weekly';
-        this.oportunityInstanceModel.session_type_name = this.session_type_name;
-        this.oportunityInstanceModel.days = [];
-        this.oportunityInstanceModel.days = this.weeklyCalendarObj;
-        this.message = JSON.stringify(this.oportunityInstanceModel);
+        if (this.weeklyCalendarObj === undefined || this.weeklyCalendarObj === null) {
+          this.mainErrorMsg = 'Please Enter Proper Details !';
+          this.dateValidationFlag = true;
+        } else {
+          this.dateValidationFlag = false;
+          this.oportunityInstanceModel.session_type_name = this.session_type_name;
+          this.oportunityInstanceModel.days = [];
+          this.oportunityInstanceModel.days = this.weeklyCalendarObj;
+          this.message = JSON.stringify(this.oportunityInstanceModel);
+        }
       } else if (this.session_type_id === '4') {
         this.session_type_name = 'Bi-weekly';
-        this.oportunityInstanceModel.session_type_name = this.session_type_name;
-        this.oportunityInstanceModel.days = [];
-        this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
-        this.message = JSON.stringify(this.oportunityInstanceModel);
+        if (this.biWeeklyCalendarObj === undefined || this.biWeeklyCalendarObj === null) {
+          this.mainErrorMsg = 'Please Enter Proper Details !';
+          this.dateValidationFlag = true;
+        } else {
+          this.dateValidationFlag = false;
+          this.oportunityInstanceModel.session_type_name = this.session_type_name;
+          this.oportunityInstanceModel.days = [];
+          this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
+          this.message = JSON.stringify(this.oportunityInstanceModel);
+        }
       } else if (this.session_type_id === '5') {
         this.session_type_name = 'Monthly';
-        this.oportunityInstanceModel.session_type_name = this.session_type_name;
-        this.oportunityInstanceModel.days = [];
-        this.oportunityInstanceModel.days = this.monthlyCalendarObj;
-        this.message = JSON.stringify(this.oportunityInstanceModel);
+        if (this.monthlyCalendarObj === undefined || this.monthlyCalendarObj === null) {
+          this.mainErrorMsg = 'Please Enter Proper Details !';
+          this.dateValidationFlag = true;
+        } else {
+          this.dateValidationFlag = false;
+          this.oportunityInstanceModel.session_type_name = this.session_type_name;
+          this.oportunityInstanceModel.days = [];
+          this.oportunityInstanceModel.days = this.monthlyCalendarObj;
+          this.message = JSON.stringify(this.oportunityInstanceModel);
+        }
+
       } else if (this.session_type_id === '6') {
         this.session_type_name = 'Quarterly';
         const calArr = [];
@@ -219,10 +238,17 @@ export class MainComponent implements OnInit {
         this.message = JSON.stringify(this.oportunityInstanceModel);
       } else if (this.session_type_id === '8') {
         this.session_type_name = 'Annually';
-        this.oportunityInstanceModel.session_type_name = this.session_type_name;
-        this.oportunityInstanceModel.days = [];
-        this.oportunityInstanceModel.days = this.annuallyCalendarObj;
-        this.message = JSON.stringify(this.oportunityInstanceModel);
+        if (this.annuallyCalendarObj === undefined || this.annuallyCalendarObj === null) {
+          this.mainErrorMsg = 'Please Enter Proper Details !';
+          this.dateValidationFlag = true;
+        } else {
+          this.dateValidationFlag = false;
+          this.oportunityInstanceModel.session_type_name = this.session_type_name;
+          this.oportunityInstanceModel.days = [];
+          this.oportunityInstanceModel.days = this.annuallyCalendarObj;
+          this.message = JSON.stringify(this.oportunityInstanceModel);
+        }
+
       }
     }
   }
