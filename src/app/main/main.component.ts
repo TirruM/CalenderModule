@@ -47,7 +47,7 @@ export class MainComponent implements OnInit {
   public everyDayCalendarObj: Array<CalenderModel>;
   public quartValidation = true;
   public dateValidationFlag = false;
-  public mainErrorMsg: String = "";
+  public mainErrorMsg: String = '';
 
   utilsObj: Utils = new Utils(this.datePipe);
 
@@ -73,7 +73,7 @@ export class MainComponent implements OnInit {
     this.end_time = null;
     this.message = null;
 
-    this.mainErrorMsg = " ";
+    this.mainErrorMsg = '';
     this.dateValidationFlag = false;
   }
 
@@ -120,27 +120,26 @@ export class MainComponent implements OnInit {
     console.log("start time--->", start);
     console.log("start time--->", end);
 
-    if (this.start_time === undefined) {
-      this.mainErrorMsg = " Please select start time";
+    if ((this.start_time === undefined) ) {
+      this.mainErrorMsg = 'Please select start time !';
       this.dateValidationFlag = true;
     } else if (this.end_time === undefined) {
-      this.mainErrorMsg = " Please select end time";
+      this.mainErrorMsg = 'Please select end time';
       this.dateValidationFlag = true;
     } else if ((new Date(this.start_time).getTime()) >
       (new Date(this.end_time).getTime())) {
-      console.log("start time is greater than end time");
-      this.mainErrorMsg = " Start date is not greater that end date";
+      console.log('start time is greater than end time');
+      this.mainErrorMsg = 'Start time is not greater that end time !';
       this.dateValidationFlag = true;
-    }
-    else {
+    } else {
       this.dateValidationFlag = false;
-      this.mainErrorMsg = " ";
+      this.mainErrorMsg = '';
       this.oportunityInstanceModel.session_type_id = this.session_type_id;
       this.oportunityInstanceModel.start_time = this.datePipe.transform(this.start_time, 'hh:mm:ss a');
       this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:mm:ss a');
       if (this.session_type_id === '1') {
         this.session_type_name = 'One Time';
-        if (this.selectedDate != undefined) {
+        if (this.selectedDate !== undefined) {
           this.dateValidationFlag = false;
           const calenderModel1 = new CalenderModel();
           this.oportunityInstanceModel.session_type_name = this.session_type_name;
@@ -151,11 +150,9 @@ export class MainComponent implements OnInit {
           this.oportunityInstanceModel.days = calArr;
           this.message = JSON.stringify(this.oportunityInstanceModel);
         } else {
-          this.mainErrorMsg = " Please select date";
+          this.mainErrorMsg = 'Please select date !';
           this.dateValidationFlag = true;
-
         }
-        // console.log('One Time:::' + );
       } else if (this.session_type_id === '2') {
         this.session_type_name = 'Everyday';
         const startTime = this.everyDayModel.startDate;
