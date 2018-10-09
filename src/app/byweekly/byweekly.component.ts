@@ -55,6 +55,10 @@ export class ByweeklyComponent implements OnInit {
   utilsObj: Utils = new Utils(this.datePipe);
   public dateValidationFlag: boolean = true;
   public endDateValidation: boolean = true;
+
+  public weeklyValidationFlag = false;
+  public mainErrorMsg: string = '';
+
   @Output() public biWeeklyCalendarChanged = new EventEmitter();
 
   constructor(public datePipe: DatePipe) { }
@@ -100,7 +104,7 @@ export class ByweeklyComponent implements OnInit {
 
   yearMonthHandler(event) {
 
-    if (this.startDate == undefined || this.startDate.toString() == "") {
+    if (this.strDate == undefined || this.strDate.toString() == "") {
       this.endDateValidation = true;
     } else {
       this.endDateValidation = false;
@@ -110,6 +114,13 @@ export class ByweeklyComponent implements OnInit {
       this.dateValidationFlag = true;
     } else {
       this.dateValidationFlag = false;
+    }
+
+    if (this.strDate > this.endsDate) {
+      this.mainErrorMsg = 'Start Date is greater that endDate !';
+      this.weeklyValidationFlag = true;
+    } else {
+      this.weeklyValidationFlag = false;
     }
 
     let now = moment(this.strDate).format("MMM YYYY");

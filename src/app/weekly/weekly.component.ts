@@ -56,6 +56,9 @@ export class WeeklyComponent implements OnInit {
   public endDateValidation: boolean = true;
   public dateValidationFlag: boolean = true;
 
+  public weeklyValidationFlag = false;
+  public mainErrorMsg: string = '';
+
   @Output() public weeklyCalendarChanged = new EventEmitter();
 
   constructor(public datePipe: DatePipe) { }
@@ -102,7 +105,7 @@ export class WeeklyComponent implements OnInit {
   }
 
   yearMonthHandler(event) {
-    if (this.startDate == undefined || this.startDate.toString() == "") {
+    if (this.strDate == undefined || this.strDate.toString() == "") {
       this.endDateValidation = true;
     } else {
       this.endDateValidation = false;
@@ -113,7 +116,14 @@ export class WeeklyComponent implements OnInit {
     } else {
       this.dateValidationFlag = false;
     }
-    console.log("dateValidationFlag", this.dateValidationFlag);
+
+    if (this.strDate > this.endsDate) {
+      this.mainErrorMsg = 'Start Date is greater that endDate !';
+      this.weeklyValidationFlag = true;
+    } else {
+      this.weeklyValidationFlag = false;
+    }
+    //console.log("dateValidationFlag", this.dateValidationFlag);
 
     let now = moment(this.strDate).format("MMM YYYY");
     this.fromYear = moment(this.strDate).format("YYYY");
