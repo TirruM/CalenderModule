@@ -47,7 +47,7 @@ export class QuarterlyComponent implements OnInit {
 
   public startYear: string;
   public year: string;
-  public mainErrorMsg = "";
+  public mainErrorMsg ='';
   public dateValidationFlag = false;
 
   firstQuart: Array<CalenderModel> = [];
