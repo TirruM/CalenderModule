@@ -44,6 +44,12 @@ export class QuarterlyComponent implements OnInit {
   public decDate: Date;
 
   public selectYear: any;
+
+  public startYear: string;
+  public year: string;
+  public mainErrorMsg = "";
+  public dateValidationFlag = false;
+
   firstQuart: Array<CalenderModel> = [];
   secondQuart: Array<CalenderModel> = [];
   thirdQuart: Array<CalenderModel> = [];
@@ -71,14 +77,40 @@ export class QuarterlyComponent implements OnInit {
     this.startAt = new Date();
   }
 
+  handleSelectYear(year: string) {
+    this.year = year;
+    this.startYear = year;
+    this.dateValidationFlag = false;
+    /*  this.firstCheckBox = false;
+     this.secondCheckBox = false;
+     this.thirdCheckBox = false;
+     this.fourCheckBox = false; */
+    //console.log("Kiran--->" + this.startYear);
+  }
+
   checkBoxChangeEvent(event) {
+    //console.log("2--->" + this.startYear);
+    if (this.startYear == undefined) {
+      this.mainErrorMsg = " Please select Year";
+      this.dateValidationFlag = true;
+      this.firstCheckBox = false;
+      this.secondCheckBox = false;
+      this.thirdCheckBox = false;
+      this.fourCheckBox = false;
+    } else {
+
+
+      console.log("value-->" + val);
+      this.dateValidationFlag = false;
+    }
+
     var val = event.target.value;
     var index = this.selectOption.findIndex((ds: any) => {
       return ds.id + "" === event.target.id;
     });
     this.selectedCheckBox = index;
     //console.log(val);
-    //console.log(event.target.checked);
+    // console.log(event.target.checked);
     if (val === '1' && event.target.checked) {
       this.firstCheckBox = false;
     } else if (val === '1' && !event.target.checked) {
