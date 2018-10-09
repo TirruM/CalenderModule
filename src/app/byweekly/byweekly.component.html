@@ -1,3 +1,4 @@
+<div class="alert alert-danger" role="alert" *ngIf="weeklyValidationFlag">{{mainErrorMsg}}</div>
 <div class="row justify-content-md-center remove-bcolor">
   <div class="col-sm-3">
     <div class="form-group">
@@ -22,5 +23,5 @@
   </div>
 </div>
 <div class="mar-bot-20"></div>
-<owl-date-time-inline class="date-center" (click)="handleChange($event)" [disabled]="dateValidationFlag" [(ngModel)]="selectedMoment" [pickerType]="'calendar'"
-  #dt3></owl-date-time-inline>
+<owl-date-time-inline class="date-center" (click)="handleChange($event)" [disabled]="dateValidationFlag" [(ngModel)]="selectedMoment"
+  [pickerType]="'calendar'" #dt3></owl-date-time-inline>
