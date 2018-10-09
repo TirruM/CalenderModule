@@ -109,21 +109,22 @@ export class MainComponent implements OnInit {
   }
 
   saveCalender(payload: NgForm): void {
-    console.log("start time--->", this.start_time);
+    /* console.log("start time--->", this.start_time);
     console.log("start time--->", this.end_time);
     console.log("start time--->", (new Date(this.start_time).getTime()));
-    console.log("start time--->", (new Date(this.end_time).getTime()));
+    console.log("start time--->", (new Date(this.end_time).getTime())); */
 
     let start = (new Date(this.start_time).getTime());
     let end = (new Date(this.end_time).getTime());
 
-    console.log("start time--->", start);
-    console.log("start time--->", end);
+    /* 
+    console.log("start time--->", end); */
 
-    if ((this.start_time === undefined) ) {
+
+    if (this.start_time === undefined || (this.start_time === null)) {
       this.mainErrorMsg = 'Please select start time !';
       this.dateValidationFlag = true;
-    } else if (this.end_time === undefined) {
+    } else if (this.end_time === undefined || this.start_time === null) {
       this.mainErrorMsg = 'Please select end time';
       this.dateValidationFlag = true;
     } else if ((new Date(this.start_time).getTime()) >
@@ -139,6 +140,7 @@ export class MainComponent implements OnInit {
       this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:mm:ss a');
       if (this.session_type_id === '1') {
         this.session_type_name = 'One Time';
+        console.log("Select Date--->", this.selectedDate);
         if (this.selectedDate !== undefined) {
           this.dateValidationFlag = false;
           const calenderModel1 = new CalenderModel();
@@ -155,12 +157,16 @@ export class MainComponent implements OnInit {
         }
       } else if (this.session_type_id === '2') {
         this.session_type_name = 'Everyday';
-        const startTime = this.everyDayModel.startDate;
-        const endTime = this.everyDayModel.endDate;
-        this.oportunityInstanceModel.session_type_name = this.session_type_name;
-        this.oportunityInstanceModel.days = [];
-        this.oportunityInstanceModel.days = this.everyDayCalendarObj;
-        this.message = JSON.stringify(this.oportunityInstanceModel);
+        if (this.everyDayCalendarObj === undefined || this.everyDayCalendarObj === null) {
+          this.mainErrorMsg = 'Please select start Date and End Date Properly !';
+          this.dateValidationFlag = true;
+        } else {
+          this.dateValidationFlag = false;
+          this.oportunityInstanceModel.session_type_name = this.session_type_name;
+          this.oportunityInstanceModel.days = [];
+          this.oportunityInstanceModel.days = this.everyDayCalendarObj;
+          this.message = JSON.stringify(this.oportunityInstanceModel);
+        }
       } else if (this.session_type_id === '3') {
         this.session_type_name = 'Weekly';
         this.oportunityInstanceModel.session_type_name = this.session_type_name;

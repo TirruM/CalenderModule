@@ -112,7 +112,7 @@ export class EverydayComponent implements OnInit {
         new Date(eYear, eMonth, eDate),
         this.weeksDays, 0);
 
-      console.log("dates array", JSON.stringify(dates));
+      //console.log("dates array", JSON.stringify(dates));
 
       for (var j = 0; j < dates.length; j++) {
         if (dates[j] === null) {
@@ -165,7 +165,7 @@ export class EverydayComponent implements OnInit {
       }
 
       this.everyDayCalendarObj = calArr;
-      console.log(JSON.stringify(this.everyDayCalendarObj));
+      //console.log(JSON.stringify(this.everyDayCalendarObj));
       this.dateChanged.emit(this.everyDayCalendarObj);
     }
   }
