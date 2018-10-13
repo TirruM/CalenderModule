@@ -4,8 +4,6 @@ import { QuarterlyModel } from '../models/quarterlyModel';
 import { CalenderModel } from './../models/calender';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { eventNames } from 'cluster';
-
 
 
 @Component({
@@ -76,6 +74,15 @@ export class QuarterlyComponent implements OnInit {
     this.startYear = year;
     this.selectYear = year;
     this.dateValidationFlag = false;
+    if (this.year === "0") {
+      for (var i = 0; i < this.selectOption.length; i++) {
+        this.selectOption[i].checked = false;
+      }
+      this.firstCheckBox = true;
+      this.secondCheckBox = true;
+      this.thirdCheckBox = true;
+      this.fourCheckBox = true;
+    }
   }
 
   checkBoxChangeEvent(event) {
@@ -104,41 +111,50 @@ export class QuarterlyComponent implements OnInit {
       this.febDate = null;
       this.marchDate = null;
       this.firstQuart = [];
-      this.prepareQuaterlyObj();
     }
 
     if (val === '2' && event.target.checked) {
       this.secondCheckBox = false;
+      if (this.dateValidationFlag) {
+        event.target.checked = false;
+        this.secondCheckBox = true;
+      }
     } else if (val === '2' && !event.target.checked) {
       this.secondCheckBox = true;
       this.aprDate = null;
       this.mayDate = null;
       this.juneDate = null;
       this.secondQuart = [];
-      this.prepareQuaterlyObj();
     }
 
     if (val === '3' && event.target.checked) {
       this.thirdCheckBox = false;
+      if (this.dateValidationFlag) {
+        event.target.checked = false;
+        this.thirdCheckBox = true;
+      }
     } else if (val === '3' && !event.target.checked) {
       this.thirdCheckBox = true;
       this.julDate = null;
       this.augDate = null;
       this.sepDate = null;
       this.thirdQuart = [];
-      this.prepareQuaterlyObj();
     }
 
     if (val === '4' && event.target.checked) {
       this.fourCheckBox = false;
+      if (this.dateValidationFlag) {
+        event.target.checked = false;
+        this.firstCheckBox = true;
+      }
     } else if (val === '4' && !event.target.checked) {
       this.fourCheckBox = true;
       this.octDate = null;
       this.novDate = null;
       this.decDate = null;
       this.firstQuart = [];
-      this.prepareQuaterlyObj();
     }
+    this.prepareQuaterlyObj();
   }
   selectedOptions() {
     return this.selectOption
