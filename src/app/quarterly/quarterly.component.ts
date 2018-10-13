@@ -145,14 +145,14 @@ export class QuarterlyComponent implements OnInit {
       this.fourCheckBox = false;
       if (this.dateValidationFlag) {
         event.target.checked = false;
-        this.firstCheckBox = true;
+        this.fourCheckBox = true;
       }
     } else if (val === '4' && !event.target.checked) {
       this.fourCheckBox = true;
       this.octDate = null;
       this.novDate = null;
       this.decDate = null;
-      this.firstQuart = [];
+      this.fourthQuart = [];
     }
     this.prepareQuaterlyObj();
   }
