@@ -58,7 +58,7 @@ export class HalfyearlyComponent implements OnInit {
       this.mainErrorMsg = 'Please select Year';
       this.dateValidationFlagHalf = true;
     } else {
-
+      //
       this.dateValidationFlagHalf = false;
     }
 
@@ -69,7 +69,11 @@ export class HalfyearlyComponent implements OnInit {
     this.selectedCheckBox = index;
     if (val === '1' && event.target.checked) {
       this.firstCheckBox = false;
-      this.prepareQuaterlyObj();
+      if (this.dateValidationFlagHalf) {
+        event.target.checked = false;
+        this.firstCheckBox = true;
+      }
+
     } else if (val === '1' && !event.target.checked) {
       this.firstCheckBox = true;
       this.firstHalfyearly = [];
@@ -79,13 +83,15 @@ export class HalfyearlyComponent implements OnInit {
       this.aprDate = null;
       this.mayDate = null;
       this.juneDate = null;
-      console.log("firstHalfyearly", JSON.stringify(this.firstHalfyearly));
-      this.prepareQuaterlyObj();
     }
 
     if (val === '2' && event.target.checked) {
       this.secondCheckBox = false;
-      this.prepareQuaterlyObj();
+      if (this.dateValidationFlagHalf) {
+        event.target.checked = false;
+        this.firstCheckBox = true;
+      }
+
     } else if (val === '2' && !event.target.checked) {
       this.secondCheckBox = true;
       this.secondHalfyearly = [];
@@ -95,9 +101,9 @@ export class HalfyearlyComponent implements OnInit {
       this.novDate = null;
       this.octDate = null;
       this.decDate = null;
-      console.log("firstHalfyearly", JSON.stringify(this.secondHalfyearly));
-      this.prepareQuaterlyObj();
+
     }
+    this.prepareQuaterlyObj();
   }
 
   selectedOptions() {
@@ -141,6 +147,13 @@ export class HalfyearlyComponent implements OnInit {
     this.selectYear = year;
     this.startYearHalf = year;
     this.dateValidationFlagHalf = false;
+    if (this.yearHalf === "0") {
+      for (var i = 0; i < this.selectOption.length; i++) {
+        this.selectOption[i].checked = false;
+      }
+      this.firstCheckBox = true;
+      this.secondCheckBox = true;
+    }
   }
 
 
@@ -161,7 +174,6 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
       this.prepareQuaterlyObj();
-
 
     } else if (val === 1) {
       this.getDateTimeEvent(val);
