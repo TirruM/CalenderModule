@@ -14,10 +14,9 @@ export class OnetimecalenderComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleChange(event){     
-      this.dateChanged.emit(this.selectedMoment)     
+  handleChange(event) {
+      this.dateChanged.emit(this.selectedMoment);
   }
 
-  
 
 }

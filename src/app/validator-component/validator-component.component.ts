@@ -8,19 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./validator-component.component.css']
 })
 export class ValidatorComponentComponent implements OnInit {
+  powers = ['Really Smart', 'Super Flexible',
+  'Super Hot', 'Weather Changer'];
+
+ model = new Person(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
+
+ submitted = false;
+
 
   constructor() { }
 
   ngOnInit() {
   }
 
-
-  powers = ['Really Smart', 'Super Flexible',
-    'Super Hot', 'Weather Changer'];
-
-  model = new Person(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
-
-  submitted = false;
 
   onSubmit() { this.submitted = true; }
 

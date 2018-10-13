@@ -277,7 +277,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.end_date = apr;
       this.fourthQuart.push(calenderModel1);
       this.prepareQuaterlyObj();
-    } else if (val == 10) {
+    } else if (val === 10) {
       this.getDateTimeEvent(val);
       this.octDate = null;
       this.decDate = null;
@@ -288,7 +288,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.end_date = apr;
       this.fourthQuart.push(calenderModel1);
       this.prepareQuaterlyObj();
-    } else if (val == 11) {
+    } else if (val === 11) {
       this.getDateTimeEvent(val);
       this.novDate = null;
       this.octDate = null;
