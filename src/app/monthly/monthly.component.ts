@@ -79,29 +79,15 @@ export class MonthlyComponent implements OnInit {
         if (i === this.noOfDays - 1) {
 
           this.dateTimeRange.push(nextDay);
-<<<<<<< HEAD
-          for (var j = 0; j < this.dateTimeRange.length; j++) {
-            if (this.dateTimeRange[j] === null) {
-              this.dateTimeRange.splice(j, 1);
-            }
-            if (j == this.dateTimeRange.length - 1) {
-=======
-          console.log('Test 1' + JSON.stringify(this.dateTimeRange[0]));
-          console.log('Test 2' + JSON.stringify(this.dateTimeRange[i - 1]));
           for (let j = 0; j < this.dateTimeRange.length; j++) {
-            console.log(JSON.stringify(this.dateTimeRange.length));
             if (this.dateTimeRange[j] === null) {
               this.dateTimeRange.splice(j, 1);
-              console.log(' after removal null' + JSON.stringify(dateArray));
             }
 
             if (j === this.dateTimeRange.length - 1) {
-              console.log('sample 1 ' + JSON.stringify(this.dateTimeRange[0]));
-              console.log('sample 2 ' + JSON.stringify(this.dateTimeRange[j]));
->>>>>>> 2b7b6c99787980b7e6aaca79c2ba21dfe84a2653
             }
-          }
 
+          }
           let fromDate = moment(dateArray[0]);
           let toDate = moment(dateArray[this.noOfDays - 1]);
           this.dateTimeRange = [];
@@ -110,13 +96,7 @@ export class MonthlyComponent implements OnInit {
 
         }
       }
-
     }
-<<<<<<< HEAD
-=======
-    // this.dateTimeRange = [];
-    // this.dateTimeRange = dateArray;
->>>>>>> 2b7b6c99787980b7e6aaca79c2ba21dfe84a2653
 
     this.monthlyCalendarChanged.emit(this.monthlyCalendarObj)
   }
