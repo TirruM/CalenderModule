@@ -1,39 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import {
-  DateTimeAdapter,
-  OWL_DATE_TIME_FORMATS,
-  OWL_DATE_TIME_LOCALE,
-  OwlDateTimeFormats
-} from 'ng-pick-datetime';
-import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
 import * as _moment from 'moment';
 import { CalenderModel } from '../models/calender';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
-export const MY_MOMENT_DATE_TIME_FORMATS: OwlDateTimeFormats = {
-  parseInput: 'MM/YYYY',
-  fullPickerInput: 'l LT',
-  datePickerInput: 'MM/YYYY',
-  timePickerInput: 'LT',
-  monthYearLabel: 'MMM YYYY',
-  dateA11yLabel: 'LL',
-  monthYearA11yLabel: 'MMMM YYYY',
-};
-
 @Component({
   selector: 'app-monthly',
   templateUrl: './monthly.component.html',
   styleUrls: ['./monthly.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    // `MomentDateTimeAdapter` and `OWL_MOMENT_DATE_TIME_FORMATS` can be automatically provided by importing
-    // `OwlMomentDateTimeModule` in your applications root module. We provide it at the component level
-    // here, due to limitations of our example generation script.
-    { provide: DateTimeAdapter, useClass: MomentDateTimeAdapter, deps: [OWL_DATE_TIME_LOCALE] },
-
-    { provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_DATE_TIME_FORMATS },
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MonthlyComponent implements OnInit {
 
@@ -87,9 +62,11 @@ export class MonthlyComponent implements OnInit {
           }
           let fromDate = moment(dateArray[0]);
           let toDate = moment(dateArray[this.noOfDays - 1]);
+
+
           this.dateTimeRange = [];
-          this.dateTimeRange.push(fromDate);
-          this.dateTimeRange.push(toDate);
+          this.dateTimeRange.push(fromDate._d);
+          this.dateTimeRange.push(toDate._d);
 
         }
       }
