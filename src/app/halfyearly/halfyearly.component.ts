@@ -69,14 +69,34 @@ export class HalfyearlyComponent implements OnInit {
     this.selectedCheckBox = index;
     if (val === '1' && event.target.checked) {
       this.firstCheckBox = false;
+      this.prepareQuaterlyObj();
     } else if (val === '1' && !event.target.checked) {
       this.firstCheckBox = true;
+      this.firstHalfyearly = [];
+      this.janDate = null;
+      this.febDate = null;
+      this.marchDate = null;
+      this.aprDate = null;
+      this.mayDate = null;
+      this.juneDate = null;
+      console.log("firstHalfyearly", JSON.stringify(this.firstHalfyearly));
+      this.prepareQuaterlyObj();
     }
 
     if (val === '2' && event.target.checked) {
       this.secondCheckBox = false;
+      this.prepareQuaterlyObj();
     } else if (val === '2' && !event.target.checked) {
       this.secondCheckBox = true;
+      this.secondHalfyearly = [];
+      this.julDate = null;
+      this.augDate = null;
+      this.sepDate = null;
+      this.novDate = null;
+      this.octDate = null;
+      this.decDate = null;
+      console.log("firstHalfyearly", JSON.stringify(this.secondHalfyearly));
+      this.prepareQuaterlyObj();
     }
   }
 
