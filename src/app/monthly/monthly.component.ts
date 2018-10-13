@@ -79,20 +79,12 @@ export class MonthlyComponent implements OnInit {
         if (i == this.noOfDays - 1) {
 
           this.dateTimeRange.push(nextDay);
-          console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[0]));
-          console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[i - 1]));
           for (var j = 0; j < this.dateTimeRange.length; j++) {
-            console.log(JSON.stringify(this.dateTimeRange.length));
             if (this.dateTimeRange[j] === null) {
               this.dateTimeRange.splice(j, 1);
-              console.log("sdfsdf after removal null" + JSON.stringify(dateArray));
             }
-
             if (j == this.dateTimeRange.length - 1) {
-              console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[0]));
-              console.log("sdfsdf" + JSON.stringify(this.dateTimeRange[j]));
             }
-
           }
 
           let fromDate = moment(dateArray[0]);
@@ -105,8 +97,6 @@ export class MonthlyComponent implements OnInit {
       }
 
     }
-    //this.dateTimeRange = [];
-    //this.dateTimeRange = dateArray;
 
     this.monthlyCalendarChanged.emit(this.monthlyCalendarObj)
   }

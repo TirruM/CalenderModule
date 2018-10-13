@@ -14,21 +14,20 @@ export class SelectYearComponent implements OnInit {
 
 
   private getYears() {
-       this.selectYears = [];
-      for ( let i = this.startYear; i < this.endYear; i++) {
-        this.selectYears.push(i);
-      }
+    this.selectYears = [];
+    for (let i = this.startYear; i < this.endYear; i++) {
+      this.selectYears.push(i);
+    }
   }
 
-  constructor() {}
+  constructor() { }
   ngOnInit() {
     this.getYears();
   }
 
-  // tslint:disable-next-line:member-ordering
   @Output() public yearsChanged = new EventEmitter();
 
   handleSelectYear(event) {
-        this.yearsChanged.emit(event.target.value);
+    this.yearsChanged.emit(event.target.value);
   }
 }

@@ -109,18 +109,6 @@ export class MainComponent implements OnInit {
   }
 
   saveCalender(payload: NgForm): void {
-    /* console.log("start time--->", this.start_time);
-    console.log("start time--->", this.end_time);
-    console.log("start time--->", (new Date(this.start_time).getTime()));
-    console.log("start time--->", (new Date(this.end_time).getTime())); */
-
-    let start = (new Date(this.start_time).getTime());
-    let end = (new Date(this.end_time).getTime());
-
-    /* 
-    console.log("start time--->", end); */
-
-
     if (this.start_time === undefined || (this.start_time === null)) {
       this.mainErrorMsg = 'Please select start time !';
       this.dateValidationFlag = true;
@@ -129,7 +117,6 @@ export class MainComponent implements OnInit {
       this.dateValidationFlag = true;
     } else if ((new Date(this.start_time).getTime()) >
       (new Date(this.end_time).getTime())) {
-      console.log('start time is greater than end time');
       this.mainErrorMsg = 'Start time is not greater that end time !';
       this.dateValidationFlag = true;
     } else {
@@ -140,7 +127,6 @@ export class MainComponent implements OnInit {
       this.oportunityInstanceModel.end_time = this.datePipe.transform(this.end_time, 'hh:mm:ss a');
       if (this.session_type_id === '1') {
         this.session_type_name = 'One Time';
-        //console.log("Select Date--->", this.selectedDate);
         if (this.selectedDate !== undefined) {
           this.dateValidationFlag = false;
           const calenderModel1 = new CalenderModel();
@@ -207,13 +193,6 @@ export class MainComponent implements OnInit {
       } else if (this.session_type_id === '6') {
         this.session_type_name = 'Quarterly';
         const calArr = [];
-
-        /*  if (this.quarterlyModel.firstQuartValidation) {
-           this.quartValidation = true;
-         } else {
-           this.quartValidation = false;
-         } */
-
         if (this.quarterlyModel.quarterlyModel.length > 0) {
           for (let i = 0; i < this.quarterlyModel.quarterlyModel.length; i++) {
             const calenderModel = new CalenderModel();
@@ -253,15 +232,10 @@ export class MainComponent implements OnInit {
     }
   }
 
-
-
   private getDates(startDate, endDate, weekDays): any {
-
     const day = startDate;
-    // tslint:disable-next-line:prefer-const
     let dates = [],
       currentDate = startDate,
-      // tslint:disable-next-line:prefer-const
       addDays = function (days) {
         const date = new Date(this.valueOf());
         date.setDate(date.getDate() + days);
@@ -283,15 +257,6 @@ export class MainComponent implements OnInit {
 
       currentDate = addDays.call(currentDate, 1);
     }
-
     return dates;
-
   }
-
-  /*
-  $scope.start=new Date(2015,6,1); $scope.end= new Date(2015,8,1);
-   $scope.weekends = [];
-    var day = angular.copy($scope.start);
-     while(day < $scope.end){ var d = day.getDay(); if(d === 0 || d === 6)
-    { $scope.weekends.push(new Date(day)); } day.setDate(day.getDate()+1); } */
 }

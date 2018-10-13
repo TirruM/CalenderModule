@@ -31,7 +31,7 @@ export class EverydayComponent implements OnInit {
   public everyValidationFlag = false;
   public mainErrorMsg: String = '';
 
-//   Static Goverment Holiday
+  //   Static Goverment Holiday
   public govtHolidaysArrayObj: any = [
     { id: 1, holiday: '15-10-2018' },
     { id: 2, holiday: '22-10-2018' }
@@ -49,7 +49,6 @@ export class EverydayComponent implements OnInit {
 
   }
 
-
   private startDateEventHandler(event) {
     if (this.startDate === undefined || this.startDate.toString() === '') {
       this.endDateFlag = true;
@@ -64,9 +63,7 @@ export class EverydayComponent implements OnInit {
         } else {
           this.everyValidationFlag = false;
           this.handleChange(event);
-          // this.endDate = null;
         }
-
       } else {
         this.endDateFlag = false;
       }
@@ -79,7 +76,6 @@ export class EverydayComponent implements OnInit {
     if (this.startDate === undefined || this.startDate.toString() === '') {
       this.endDateFlag = true;
     } else {
-      //this.endDateFlag = false;
       let startD = new Date(moment(this.startDate).format('YYYY-MM-DD')).getTime();
       let endD = new Date(moment(this.endDate).format('YYYY-MM-DD')).getTime();
 
@@ -89,7 +85,6 @@ export class EverydayComponent implements OnInit {
       } else {
         this.everyValidationFlag = false;
         this.handleChange(event);
-        // this.endDate = null;
       }
     }
 
@@ -125,12 +120,10 @@ export class EverydayComponent implements OnInit {
         new Date(eYear, eMonth, eDate),
         this.weeksDays, 0);
 
-    
 
       for (let j = 0; j < dates.length; j++) {
         if (dates[j] === null) {
           dates.splice(j, 1);
-          //console.log("sdfsdf after removal null" + JSON.stringify(dates));
         }
       }
 
@@ -152,7 +145,6 @@ export class EverydayComponent implements OnInit {
       });
 
 
-
       let govtCount = 0;
       if (this.govHolyDays) {
         for (let j = 0; j < calArr.length; j++) {
@@ -160,8 +152,6 @@ export class EverydayComponent implements OnInit {
           calenderModel = calArr[j];
           for (let i = 0; i < this.govtHolidaysArrayObj.length; i++) {
             if (calenderModel.start_date == this.govtHolidaysArrayObj[i].holiday) {
-              console.log('Object have' + JSON.stringify(calenderModel.start_date));
-              //calArr.splice(j, 1);
               delete calArr[j];
               govtCount++;
             }
@@ -176,13 +166,10 @@ export class EverydayComponent implements OnInit {
       } else {
         this.govtHolidaysCount = 'Except Government Holidays ';
       }
-
       this.everyDayCalendarObj = calArr;
-      // console.log(JSON.stringify(this.everyDayCalendarObj));
       this.dateChanged.emit(this.everyDayCalendarObj);
     }
   }
-
 
   private onWeekdaysChange() {
     this.weeksDays = !this.weeksDays;
@@ -192,7 +179,5 @@ export class EverydayComponent implements OnInit {
     this.govHolyDays = !this.govHolyDays;
     this.handleChange(event);
   }
-
-
 
 }

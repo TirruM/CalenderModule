@@ -81,12 +81,7 @@ export class QuarterlyComponent implements OnInit {
     if (this.startYear === undefined) {
       this.mainErrorMsg = 'Please select Year';
       this.dateValidationFlag = true;
-      /* this.firstCheckBox = false;
-      this.secondCheckBox = false;
-      this.thirdCheckBox = false;
-      this.fourCheckBox = false; */
     } else {
-     // console.log('value-->' + val);
       this.dateValidationFlag = false;
     }
 
@@ -99,7 +94,6 @@ export class QuarterlyComponent implements OnInit {
       this.firstCheckBox = false;
     } else if (val === '1' && !event.target.checked) {
       this.firstCheckBox = true;
-      // this.firstQuart = [];
       this.janDate = null;
       this.febDate = null;
       this.marchDate = null;
@@ -126,7 +120,7 @@ export class QuarterlyComponent implements OnInit {
       this.fourCheckBox = true;
     }
   }
-  selectedOptions() { // right now: ['1','3']
+  selectedOptions() {
     return this.selectOption
       .filter(opt => opt.checked)
       .map(opt => opt.value)
@@ -143,24 +137,12 @@ export class QuarterlyComponent implements OnInit {
   }
 
   getDateTimeEvent(val) {
-    // this.selectYear = this.startAt.getFullYear();
     this.getMonthFirstLastDay(this.selectYear, val);
   }
 
   handleChange(event) {
     this.dateChanged.emit(this.quarterlyModelArray);
   }
-
-  /*  checkUniqueCondition(id) {
-        for (var a in this.quarterlyModelArray) {
-       if (this.quarterlyModelArray[a].id == id.id) {
-         this.quarterlyModelArray[a].quantity = this.quarterlyModelArray[a].quantity + id.quantity;
-         return this.quarterlyModelArray[a];
-       } else {
-         return id
-       }
-     }
-   } */
 
   prepareQuaterlyObj() {
     this.quarterlyModelArray.quarterlyModel = [];
@@ -178,7 +160,6 @@ export class QuarterlyComponent implements OnInit {
     if (this.fourthQuart.length > 0) {
       this.quarterlyModelArray.quarterlyModel.push(this.fourthQuart[0]);
     }
-    // console.log("quarterlyModelArray" + JSON.stringify(this.quarterlyModelArray));
     this.handleChange(event);
   }
 

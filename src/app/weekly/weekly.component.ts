@@ -3,7 +3,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { CalenderModel } from '../models/calender';
-
 import {
   DateTimeAdapter,
   OWL_DATE_TIME_FORMATS,
@@ -65,23 +64,17 @@ export class WeeklyComponent implements OnInit {
 
   constructor(public datePipe: DatePipe) { }
 
-
-
   ngOnInit() {
   }
-
 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.startDate.value;
     ctrlValue.year(normalizedYear.year());
     this.startDate.setValue(ctrlValue);
-    console.log('startDate-->', this.startDate);
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datePicker: OwlDateTimeComponent<Moment>) {
-
     const ctrlValue = this.startDate.value;
-    console.log('ctrValue', ctrlValue);
     ctrlValue.month(normalizedMonth.month());
     this.startDate.setValue(ctrlValue);
     datePicker.close();
@@ -89,8 +82,6 @@ export class WeeklyComponent implements OnInit {
 
   chosenEndYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.endDate.value;
-    console.log('ctrValue111', ctrlValue);
-
     ctrlValue.year(normalizedYear.year());
     this.endDate.setValue(ctrlValue);
   }
@@ -98,8 +89,6 @@ export class WeeklyComponent implements OnInit {
   chosenEndMonthHandler(normalizedMonth: Moment, datePicker: OwlDateTimeComponent<Moment>) {
     const ctrlValue = this.endDate.value;
     ctrlValue.month(normalizedMonth.month());
-    console.log('ctrValue222', ctrlValue);
-
     this.endDate.setValue(ctrlValue);
     datePicker.close();
   }
@@ -123,7 +112,7 @@ export class WeeklyComponent implements OnInit {
     } else {
       this.weeklyValidationFlag = false;
     }
-   
+
 
     let now = moment(this.strDate).format('MMM YYYY');
     this.fromYear = moment(this.strDate).format('YYYY');
@@ -142,18 +131,13 @@ export class WeeklyComponent implements OnInit {
     let now = new Date(new Date(year, month - 1, date));
 
     if (this.selectedWeekDays.length > 0) {
-      console.log('second');
       if (this.selectedWeekDays.includes(now.getDay())) {
-        console.log('trrr');
       } else {
-        console.log('weekDayyy---->' + now.getDay());
         this.selectedWeekDays.push(now.getDay());
       }
     } else {
-      console.log('first');
       this.selectedWeekDays.push(now.getDay());
     }
-    console.log('selected WeekDays--->', JSON.stringify(this.selectedWeekDays));
     if (this.strDate !== null && this.endsDate !== null) {
       this.prepareWeekObj(now.getDay(), month);
     }
@@ -181,7 +165,6 @@ export class WeeklyComponent implements OnInit {
       calArr.push(calenderModel);
     });
     this.weeklyCalendarObj = calArr;
-    console.log('weekly---->' + JSON.stringify(this.weeklyCalendarObj));
     this.weeklyCalendarChanged.emit(this.weeklyCalendarObj);
   }
 }

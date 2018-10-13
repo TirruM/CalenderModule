@@ -59,8 +59,6 @@ export class HalfyearlyComponent implements OnInit {
     if (this.startYearHalf === undefined) {
       this.mainErrorMsg = 'Please select Year';
       this.dateValidationFlagHalf = true;
-      /* this.firstCheckBox = false;
-      this.secondCheckBox = false; */
     } else {
 
       this.dateValidationFlagHalf = false;
@@ -84,7 +82,7 @@ export class HalfyearlyComponent implements OnInit {
     }
   }
 
-  selectedOptions() { // right now: ['1','3']
+  selectedOptions() {
     return this.selectOption
       .filter(opt => opt.checked)
       .map(opt => opt.value)
@@ -101,7 +99,6 @@ export class HalfyearlyComponent implements OnInit {
   }
 
   getDateTimeEvent(val) {
-    // this.selectYear = this.startAt.getFullYear();
     this.getMonthFirstLastDay(this.selectYear, val);
   }
 

@@ -11,7 +11,6 @@
           </div>
         </div>
         <div *ngIf="dateValidationFlagHalf" class="alert alert-danger" role="alert">{{mainErrorMsg}}</div>
-        <!-- <label for="options">Options:</label> -->
         <div class="form-row">
           <div class="col-md-3 col-sm-6" *ngFor="let option of selectOption">
             <label class="checkcontainer">
@@ -32,7 +31,6 @@
     <div class="col-sm-2">
       <div class="cylindrical">
         <div class="form-group">
-          <!--  <input type="text" class="form-control" name="jan"> -->
           <input class="form-control inp-month" [(ngModel)]="janDate" [min]="min" [max]="max" (focus)="clickMonthEvent(0)"
             [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
           <owl-date-time [startAt]="startAt" #dt1 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
@@ -46,7 +44,6 @@
           <input class="form-control inp-month" [(ngModel)]="febDate" [min]="min" [max]="max" (focus)="clickMonthEvent(1)"
             [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
           <owl-date-time [startAt]="febDate" #dt2 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
-          <!-- <input type="text" class="form-control" name="feb"> -->
           <label class="lbl-month" for="feb">FEB</label>
         </div>
       </div>
@@ -54,7 +51,6 @@
     <div class="col-sm-2">
       <div class="cylindrical">
         <div class="form-group">
-          <!--   <input type="text" class="form-control" name="mar"> -->
           <input class="form-control inp-month" [(ngModel)]="marchDate" [min]="min" [max]="max" (focus)="clickMonthEvent(2)"
             [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
           <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
@@ -65,7 +61,6 @@
     <div class="col-sm-2">
       <div class="cylindrical">
         <div class="form-group">
-          <!--  <input type="text" class="form-control" name="apl"> -->
           <input class="form-control inp-month" [(ngModel)]="aprDate" [min]="min" [max]="max" (focus)="clickMonthEvent(3)"
             [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
           <owl-date-time [startAt]="aprDate" [pickerType]="'calendar'" #dt4 [pickerMode]="'dialog'"></owl-date-time>
@@ -76,7 +71,6 @@
     <div class="col-sm-2">
       <div class="cylindrical">
         <div class="form-group">
-          <!-- <input type="text" class="form-control" name="may"> -->
           <input class="form-control inp-month" [(ngModel)]="mayDate" [min]="min" [max]="max" (focus)="clickMonthEvent(4)"
             [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5">
           <owl-date-time [startAt]="mayDate" #dt5 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
@@ -87,7 +81,6 @@
     <div class="col-sm-2">
       <div class="cylindrical">
         <div class="form-group">
-          <!--  <input type="text" class="form-control" name="jun"> -->
           <input class="form-control inp-month" [(ngModel)]="juneDate" [min]="min" [max]="max" (focus)="clickMonthEvent(5)"
             [owlDateTimeTrigger]="dt6" [owlDateTime]="dt6">
           <owl-date-time [startAt]="juneDate" #dt6 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
