@@ -89,7 +89,7 @@ export class HalfyearlyComponent implements OnInit {
       this.secondCheckBox = false;
       if (this.dateValidationFlagHalf) {
         event.target.checked = false;
-        this.firstCheckBox = true;
+        this.secondCheckBox = true;
       }
 
     } else if (val === '2' && !event.target.checked) {
