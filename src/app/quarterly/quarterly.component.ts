@@ -86,6 +86,7 @@ export class QuarterlyComponent implements OnInit {
     }
 
     let val = event.target.value;
+
     let index = this.selectOption.findIndex((ds: any) => {
       return ds.id + '' === event.target.id;
     });
@@ -97,27 +98,41 @@ export class QuarterlyComponent implements OnInit {
       this.janDate = null;
       this.febDate = null;
       this.marchDate = null;
+      this.firstQuart = [];
+      this.prepareQuaterlyObj();
     }
 
     if (val === '2' && event.target.checked) {
       this.secondCheckBox = false;
-
     } else if (val === '2' && !event.target.checked) {
       this.secondCheckBox = true;
+      this.aprDate = null;
+      this.mayDate = null;
+      this.juneDate = null;
+      this.secondQuart = [];
+      this.prepareQuaterlyObj();
     }
 
     if (val === '3' && event.target.checked) {
       this.thirdCheckBox = false;
-
     } else if (val === '3' && !event.target.checked) {
       this.thirdCheckBox = true;
+      this.julDate = null;
+      this.augDate = null;
+      this.sepDate = null;
+      this.thirdQuart = [];
+      this.prepareQuaterlyObj();
     }
 
     if (val === '4' && event.target.checked) {
       this.fourCheckBox = false;
-
     } else if (val === '4' && !event.target.checked) {
       this.fourCheckBox = true;
+      this.octDate = null;
+      this.novDate = null;
+      this.decDate = null;
+      this.firstQuart = [];
+      this.prepareQuaterlyObj();
     }
   }
   selectedOptions() {
