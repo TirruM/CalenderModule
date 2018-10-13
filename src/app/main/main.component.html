@@ -29,7 +29,7 @@
     <app-quarterly *ngIf="session_type_name === 'Quarterly'" (dateChanged)="quarterlyDateChangedHandler($event)"></app-quarterly>
     <div [hidden]="quartValidation" style="color: red">please select month value</div>
     <app-halfyearly *ngIf="session_type_name === 'Half Yearly'" (dateChanged)="halfYearlyDateChangedHandler($event)"></app-halfyearly>
-
+    <div [hidden]="halfValidation" style="color: red">please select month value</div>
     <app-annually *ngIf="session_type_name === 'Annually'" (annuallyCalendarChanged)="annuallyCalendarChangeHandler($event)"></app-annually>
 
     <div class="mar-bot-20"></div>

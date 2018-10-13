@@ -46,6 +46,8 @@ export class MainComponent implements OnInit {
   public biWeeklyCalendarObj: Array<CalenderModel>;
   public everyDayCalendarObj: Array<CalenderModel>;
   public quartValidation = true;
+  public halfValidation = true;
+
   public dateValidationFlag = false;
   public mainErrorMsg: String = '';
 
@@ -72,6 +74,12 @@ export class MainComponent implements OnInit {
     this.start_time = null;
     this.end_time = null;
     this.message = null;
+    if (this.session_type_id !== '7') {
+      this.halfValidation = true;
+    }
+    if (this.session_type_id !== '6') {
+      this.quartValidation = true;
+    }
 
     this.mainErrorMsg = '';
     this.dateValidationFlag = false;
@@ -214,7 +222,14 @@ export class MainComponent implements OnInit {
           calArr.push(calenderModel);
         }
         this.oportunityInstanceModel.days = calArr;
-        this.message = JSON.stringify(this.oportunityInstanceModel);
+        if (calArr.length > 0) {
+          this.halfValidation = true;
+          this.message = JSON.stringify(this.oportunityInstanceModel);
+        } else {
+          this.halfValidation = false;
+          this.message = "";//JSON.stringify(this.oportunityInstanceModel);
+        }
+
       } else if (this.session_type_id === '8') {
         this.session_type_name = 'Annually';
         if (this.annuallyCalendarObj === undefined || this.annuallyCalendarObj === null) {

@@ -4,6 +4,7 @@ import { QuarterlyModel } from '../models/quarterlyModel';
 import { CalenderModel } from './../models/calender';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { eventNames } from 'cluster';
 
 
 
@@ -93,6 +94,10 @@ export class QuarterlyComponent implements OnInit {
     this.selectedCheckBox = index;
     if (val === '1' && event.target.checked) {
       this.firstCheckBox = false;
+      if (this.dateValidationFlag) {
+        event.target.checked = false;
+        this.firstCheckBox = true;
+      }
     } else if (val === '1' && !event.target.checked) {
       this.firstCheckBox = true;
       this.janDate = null;
