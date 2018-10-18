@@ -14,18 +14,15 @@ import { EveryDayModel } from '../models/everyDayModel';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  private start_time = null;
+  private end_time = null;
+  private message = '';
+  private selectedDate: string;
+  private start_date = '';
+  private session_type_name = 'One Time';
+  private session_type_id = '1';
 
-  public start_time: Date;
-  public end_time: Date;
-
-  public message = '';
-
-  selectedDate: string;
-  start_date = '';
-
-  session_type_name = 'One Time';
-  session_type_id = '1';
-  dsession: any[] = [
+  private sessionObj: any[] = [
     { id: '1', name: 'One Time' },
     { id: '2', name: 'Everyday' },
     { id: '3', name: 'Weekly' },
@@ -62,14 +59,14 @@ export class MainComponent implements OnInit {
   }
 
   // for radio button handler
-  handleChange(event) {
-    const index = this.dsession.findIndex((ds: any) => {
+  private handleChange(event) {
+    const index = this.sessionObj.findIndex((ds: any) => {
       return ds.id + '' === event.target.id;
     });
 
     if (index > -1) {
-      this.session_type_id = this.dsession[index].id;
-      this.session_type_name = this.dsession[index].name;
+      this.session_type_id = this.sessionObj[index].id;
+      this.session_type_name = this.sessionObj[index].name;
     }
     this.start_time = null;
     this.end_time = null;
@@ -85,38 +82,38 @@ export class MainComponent implements OnInit {
     this.dateValidationFlag = false;
   }
 
-  dateChangedHandler(selectedDate: string) {
+  private dateChangedHandler(selectedDate: string) {
     this.selectedDate = selectedDate;
   }
 
-  everyDateChangedHandler(everyDayCalendarObj: Array<CalenderModel>) {
+  private everyDateChangedHandler(everyDayCalendarObj: Array<CalenderModel>) {
     this.everyDayCalendarObj = everyDayCalendarObj;
   }
 
-  quarterlyDateChangedHandler(quarterlyModel: QuarterlyModel) {
+  private quarterlyDateChangedHandler(quarterlyModel: QuarterlyModel) {
     this.quarterlyModel = quarterlyModel;
   }
 
-  halfYearlyDateChangedHandler(quarterlyModel: QuarterlyModel) {
+  private halfYearlyDateChangedHandler(quarterlyModel: QuarterlyModel) {
     this.quarterlyModel = quarterlyModel;
   }
 
-  monthlyCalendarChangeHandler(monthlyCalendarObj: Array<CalenderModel>) {
+  private monthlyCalendarChangeHandler(monthlyCalendarObj: Array<CalenderModel>) {
     this.monthlyCalendarObj = monthlyCalendarObj;
   }
-  annuallyCalendarChangeHandler(annuallyCalendarObj: Array<CalenderModel>) {
+  private annuallyCalendarChangeHandler(annuallyCalendarObj: Array<CalenderModel>) {
     this.annuallyCalendarObj = annuallyCalendarObj;
   }
 
-  weeklyCalendarChangedHandler(weeklyCalendarObj: Array<CalenderModel>) {
+  private weeklyCalendarChangedHandler(weeklyCalendarObj: Array<CalenderModel>) {
     this.weeklyCalendarObj = weeklyCalendarObj;
   }
 
-  biWeeklyCalendarChangedHandler(biWeeklyCalendarObj: Array<CalenderModel>) {
+  private biWeeklyCalendarChangedHandler(biWeeklyCalendarObj: Array<CalenderModel>) {
     this.biWeeklyCalendarObj = biWeeklyCalendarObj;
   }
 
-  saveCalender(payload: NgForm): void {
+  private saveCalender(payload: NgForm): void {
     if (this.start_time === undefined || (this.start_time === null)) {
       this.mainErrorMsg = 'Please select start time !';
       this.dateValidationFlag = true;
@@ -198,6 +195,8 @@ export class MainComponent implements OnInit {
           this.message = JSON.stringify(this.oportunityInstanceModel);
         }
 
+
+
       } else if (this.session_type_id === '6') {
         this.session_type_name = 'Quarterly';
         const calArr = [];
@@ -247,31 +246,5 @@ export class MainComponent implements OnInit {
     }
   }
 
-  private getDates(startDate, endDate, weekDays): any {
-    const day = startDate;
-    let dates = [],
-      currentDate = startDate,
-      addDays = function (days) {
-        const date = new Date(this.valueOf());
-        date.setDate(date.getDate() + days);
 
-        return date;
-      };
-    while (currentDate <= endDate) {
-
-      const d = currentDate.getDay();
-      if (weekDays) {
-        if (d === 0 || d === 6) {
-
-        } else {
-          dates.push(currentDate);
-        }
-      } else {
-        dates.push(currentDate);
-      }
-
-      currentDate = addDays.call(currentDate, 1);
-    }
-    return dates;
-  }
 }

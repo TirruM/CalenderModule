@@ -3,7 +3,7 @@
     <div class="form-group mar-bot-10">
         <div class="col-sm-12">
             <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-6 mar-bot-10" *ngFor="let s of dsession">
+                <div class="col-md-3 col-sm-6 col-xs-6 mar-bot-10" *ngFor="let s of sessionObj">
                     <label class="radio-inline checkcontainer">
                         <input type="radio" [(ngModel)]="session_type_id" [name]="session_type_id" [id]="s.id" [value]="s.id"
                             (change)="handleChange($event)"> {{s.name}}
