@@ -5,6 +5,11 @@
 .remove-arrow .owl-dt-control-arrow-button .owl-dt-control-button-content{
     display: none !important;
 }
+.owl-dt-control-button-content{
+    margin: 15px auto;
+    padding: 20px!important;
+
+}
 .col-form-label{
     padding-right: 0px !important;
 }
@@ -18,14 +23,14 @@
 
 .input-style{
     border-radius: 25px !important;
-    box-shadow: 0 .125rem .50rem #ffd902!important; 
+    /* box-shadow: 0 .125rem .50rem #ffd902!important;  */
 }
 
 .remove-bcolor .form-control{
-    border: 1px solid #ced4da0f !important;
+    border: 1px solid #ffd902 !important;
     text-align: center !important;
-    font-size: 20px !important;
-    font-weight: 600 !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
 }
 
 .mar-bot-10{
@@ -39,6 +44,10 @@
 .mar-bot-40{
     margin-bottom: 60px;
 }
+.mar-top-bot-20{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
 
 .p-text-center{
     text-align: center;
@@ -50,8 +59,10 @@
 }
 
 .owl-dt-inline-container{
-    width: 60%;
+    width: 100%;
+
 }
+
 .owl-dt-inline-container .owl-dt-calendar, .owl-dt-popup-container .owl-dt-calendar{
     height: auto !important;
 }
@@ -107,15 +118,16 @@ input[type=checkbox], input[type=radio]{
 }
 
 .cylindrical{
-    padding: 13px;
+    padding: 20px 10px;
     border: 1px solid #ffd902;
     /*  background: #ffd902; */
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    width: 70px;
-    height: 98px;
+    /* width: 70px; */
+    height: 140px;
+    margin-bottom: 10px
 }
 .cylindrical .inp-month {
     border: none;
@@ -138,12 +150,44 @@ input[type=checkbox], input[type=radio]{
 }
 .cylindrical .lbl-month {
     border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
     text-align: center;
     display: inherit;
     color: #333;
     padding-top: 3px;
     font-weight: 600;
+    line-height: 2;
 }
 .cylindrical .form-group{
     margin-bottom: 0px !important;
+}
+
+
+/* Custom styles by naveen 19-10-2018 */
+
+.main-heading{
+margin: 30px  0px;
+}
+
+.time-picker > table {
+    width: 100%!important;
+
+}
+
+.time-picker  table tbody tr td {
+    text-align: center;
+}
+.time-picker  table tbody tr td input{
+    text-align: center;
+}
+.bs-timepicker-field {
+    width:100%!important;
+}
+
+.btm-year{
+    font-size:18px;
+    font-weight: bold;
+}
+.owl-dt-dialog-container{
+    min-height: 75vh;
 }

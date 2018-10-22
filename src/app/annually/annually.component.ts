@@ -33,7 +33,7 @@ export class AnnuallyComponent implements OnInit {
   }
 
 
-  handleSelectYear(year: string, id: number) {
+  handleSelectYear(event,year: string, id: number) {
     this.year = year;
     if (id === 0) {
       this.startYear = parseInt(year, 10);

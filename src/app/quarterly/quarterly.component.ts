@@ -86,6 +86,7 @@ export class QuarterlyComponent implements OnInit {
   }
 
   checkBoxChangeEvent(event) {
+
     if (this.startYear === undefined) {
       this.mainErrorMsg = 'Please select Year';
       this.dateValidationFlag = true;
@@ -94,7 +95,6 @@ export class QuarterlyComponent implements OnInit {
     }
 
     let val = event.target.value;
-
     let index = this.selectOption.findIndex((ds: any) => {
       return ds.id + '' === event.target.id;
     });
@@ -154,7 +154,7 @@ export class QuarterlyComponent implements OnInit {
       this.decDate = null;
       this.fourthQuart = [];
     }
-    this.prepareQuaterlyObj();
+    this.prepareQuaterlyObj(event);
   }
   selectedOptions() {
     return this.selectOption
@@ -180,7 +180,7 @@ export class QuarterlyComponent implements OnInit {
     this.dateChanged.emit(this.quarterlyModelArray);
   }
 
-  prepareQuaterlyObj() {
+  prepareQuaterlyObj(event) {
     this.quarterlyModelArray.quarterlyModel = [];
     if (this.firstQuart.length > 0) {
       this.quarterlyModelArray.quarterlyModel.push(this.firstQuart[0]);
@@ -199,7 +199,7 @@ export class QuarterlyComponent implements OnInit {
     this.handleChange(event);
   }
 
-  clickMonthEvent(val) {
+  clickMonthEvent(event, val) {
     if (val === 0) {
       this.getDateTimeEvent(val);
       this.febDate = null;
@@ -211,7 +211,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 1) {
       this.getDateTimeEvent(val);
       this.janDate = null;
@@ -223,7 +223,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 2) {
       this.getDateTimeEvent(val);
       this.febDate = null;
@@ -235,7 +235,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 3) {
       this.getDateTimeEvent(val);
       this.mayDate = null;
@@ -246,7 +246,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.secondQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 4) {
       this.getDateTimeEvent(val);
       this.aprDate = null;
@@ -257,7 +257,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.secondQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 5) {
       this.getDateTimeEvent(val);
       this.mayDate = null;
@@ -268,7 +268,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.secondQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 6) {
       this.getDateTimeEvent(val);
       this.augDate = null;
@@ -279,7 +279,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.thirdQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 7) {
       this.getDateTimeEvent(val);
       this.julDate = null;
@@ -290,7 +290,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.thirdQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 8) {
       this.getDateTimeEvent(val);
       this.augDate = null;
@@ -301,7 +301,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.thirdQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 9) {
       this.getDateTimeEvent(val);
       this.decDate = null;
@@ -312,7 +312,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.fourthQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 10) {
       this.getDateTimeEvent(val);
       this.octDate = null;
@@ -323,7 +323,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.fourthQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     } else if (val === 11) {
       this.getDateTimeEvent(val);
       this.novDate = null;
@@ -334,7 +334,7 @@ export class QuarterlyComponent implements OnInit {
       calenderModel1.start_date = apr;
       calenderModel1.end_date = apr;
       this.fourthQuart.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
     }
   }
 

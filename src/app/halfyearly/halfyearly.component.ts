@@ -130,7 +130,7 @@ export class HalfyearlyComponent implements OnInit {
     this.dateChanged.emit(this.quarterlyModelArray);
   }
 
-  prepareQuaterlyObj() {
+  prepareQuaterlyObj(event) {
     this.quarterlyModelArray.quarterlyModel = [];
     if (this.firstHalfyearly.length > 0) {
       this.quarterlyModelArray.quarterlyModel.push(this.firstHalfyearly[0]);
@@ -158,7 +158,7 @@ export class HalfyearlyComponent implements OnInit {
 
 
 
-  clickMonthEvent(val) {
+  clickMonthEvent(event, val) {
     if (val === 0) {
       this.getDateTimeEvent(val);
       this.febDate = null;
@@ -173,7 +173,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 1) {
       this.getDateTimeEvent(val);
@@ -189,7 +189,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 2) {
       this.getDateTimeEvent(val);
@@ -205,7 +205,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 3) {
       this.getDateTimeEvent(val);
@@ -221,7 +221,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 4) {
       this.getDateTimeEvent(val);
@@ -237,7 +237,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 5) {
       this.getDateTimeEvent(val);
@@ -253,7 +253,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.firstHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 6) {
       this.getDateTimeEvent(val);
@@ -269,7 +269,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 7) {
       this.getDateTimeEvent(val);
@@ -285,7 +285,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 8) {
       this.getDateTimeEvent(val);
@@ -301,7 +301,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 9) {
       this.getDateTimeEvent(val);
@@ -317,7 +317,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 10) {
       this.getDateTimeEvent(val);
@@ -333,7 +333,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     } else if (val === 11) {
       this.getDateTimeEvent(val);
@@ -349,7 +349,7 @@ export class HalfyearlyComponent implements OnInit {
       calenderModel1.start_date = jan;
       calenderModel1.end_date = jan;
       this.secondHalfyearly.push(calenderModel1);
-      this.prepareQuaterlyObj();
+      this.prepareQuaterlyObj(event);
 
     }
   }

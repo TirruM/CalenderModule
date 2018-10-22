@@ -171,11 +171,11 @@ export class EverydayComponent implements OnInit {
     }
   }
 
-  private onWeekdaysChange() {
+  private onWeekdaysChange(event) {
     this.weeksDays = !this.weeksDays;
     this.handleChange(event);
   }
-  private onGovHolidaysChange() {
+  private onGovHolidaysChange(event) {
     this.govHolyDays = !this.govHolyDays;
     this.handleChange(event);
   }
