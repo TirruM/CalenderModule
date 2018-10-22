@@ -108,7 +108,7 @@ input[type=checkbox], input[type=radio]{
 
 .change-top-left{
     top: 2px !important;
-    left: -12px !important;
+    left: 10px !important;
 }
 
 .checkmark::after {

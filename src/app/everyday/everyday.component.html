@@ -24,8 +24,8 @@
 <div class="col-sm-6">
   <div class="form-group">
     <label class="checkcontainer">
-      <input class="form-check-input" type="checkbox" id="weekendholidays" value="1" (click)="onWeekdaysChange($event)"
-        [(ngModel)]="weeksDays"> {{weeksDaysCount}}
+      <input type="checkbox" id="weekendholidays" value="1" (click)="onWeekdaysChange($event)" [(ngModel)]="weeksDays">
+      {{weeksDaysCount}}
       <span class="checkmark change-top-left"></span>
     </label>
   </div>
@@ -34,8 +34,8 @@
 <div class="col-sm-6">
   <div class="form-group">
     <label class="checkcontainer">
-      <input class="form-check-input" type="checkbox" id="publicholidays" value="2" (click)="onGovHolidaysChange($event)"
-        [(ngModel)]="govHolyDays"> {{govtHolidaysCount}}
+      <input type="checkbox" id="publicholidays" value="2" (click)="onGovHolidaysChange($event)" [(ngModel)]="govHolyDays">
+      {{govtHolidaysCount}}
       <span class="checkmark change-top-left"></span>
     </label>
   </div>
