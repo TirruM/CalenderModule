@@ -103,7 +103,7 @@ export class HalfyearlyComponent implements OnInit {
       this.decDate = null;
 
     }
-    this.prepareQuaterlyObj();
+    this.prepareQuaterlyObj(event);
   }
 
   selectedOptions() {
