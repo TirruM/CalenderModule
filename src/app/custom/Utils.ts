@@ -30,12 +30,12 @@ export class Utils {
                     dates.push(currentDate);
                 }
             } else {
-                
+
                 if (d == selectedWeekDay) {
                     dates.push(currentDate);
                 }
                 else {
-                   
+
                     dates.push(currentDate);
                 }
             }
@@ -69,7 +69,6 @@ export class Utils {
                     dates.push(currentDate);
                 }
             } else {
-                console.log("else case")
                 for (var i = 0; i < selectedWeekDays.length; i++) {
                     if (d == selectedWeekDays[i]) {
                         dates.push(currentDate);
@@ -80,7 +79,7 @@ export class Utils {
 
             currentDate = addDays.call(currentDate, 1);
         }
-        console.log("dates in utls--->" + JSON.stringify(dates));
+
         return dates;
 
     }

@@ -18,6 +18,8 @@ import { ByweeklyComponent } from './byweekly/byweekly.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { ValidatorComponentComponent } from './validator-component/validator-component.component';
 import { SelectYearComponent } from './select-year/select-year.component';
+import { MultiDatePickerComponent } from './multi-date-picker/multi-date-picker.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { SelectYearComponent } from './select-year/select-year.component';
     ByweeklyComponent,
     MonthlyComponent,
     ValidatorComponentComponent,
-    SelectYearComponent
+    SelectYearComponent,
+    MultiDatePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { SelectYearComponent } from './select-year/select-year.component';
     ReactiveFormsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

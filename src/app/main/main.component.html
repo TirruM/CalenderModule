@@ -18,7 +18,10 @@
 
     <app-everyday *ngIf="session_type_name === 'Everyday'" (dateChanged)="everyDateChangedHandler($event)"></app-everyday>
 
-    <app-weekly *ngIf="session_type_name === 'Weekly'" (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-weekly>
+    <!-- <app-weekly *ngIf="session_type_name === 'Weekly'"
+     (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-weekly> -->
+
+    <app-multi-date-picker *ngIf="session_type_name === 'Weekly'" (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-multi-date-picker>
 
     <app-byweekly *ngIf="session_type_name === 'Bi-weekly'" (biWeeklyCalendarChanged)="biWeeklyCalendarChangedHandler($event)"></app-byweekly>
 
