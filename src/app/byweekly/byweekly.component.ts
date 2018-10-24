@@ -193,8 +193,8 @@ export class ByweeklyComponent {
     let eDate = eCalDate.getDate();
 
 
-    let dates = this.utilsObj.getBiWeekDates(new Date(sYear, sMonth, sDate),
-      new Date(eYear, eMonth, eDate),
+    let dates = this.utilsObj.getDates(new Date(sYear, sMonth, sDate),
+      new Date(eYear, eMonth, eDate), false,
       this.selectedWeekDays);
 
     console.log("dates array", JSON.stringify(dates));
@@ -202,29 +202,39 @@ export class ByweeklyComponent {
     this.datesSelected = [];
     let calArr = [];
 
+    for (let j = 0; j < this.selectedWeekDays.length; j++) {
+      let ctr = 0;
+      for (let i = 0; i < dates.length; i++) {
 
-    for (let i = 0; i < dates.length; i++) {
+        let year = this.datePipe.transform(dates[i], 'yyyy');
+        let date = this.datePipe.transform(dates[i], 'dd');
+        let month = this.datePipe.transform(dates[i], 'MM');
 
-      let year = this.datePipe.transform(dates[i], 'yyyy');
-      let date = this.datePipe.transform(dates[i], 'dd');
-      let month = this.datePipe.transform(dates[i], 'MM');
+        now = new Date(parseInt(year), parseInt(month) - 1, parseInt(date));
 
+        if (now.getDay() === this.selectedWeekDays[j]) {
+          if (ctr % 2 == 0) {
+            let dateObj = {
+              "year": parseInt(year),
+              "month": parseInt(month),
+              "day": parseInt(date)
+            };
 
+            this.datesSelected.push(dateObj);
 
-      // if (i % 2 === 0) {
-      let dateObj = {
-        "year": parseInt(year),
-        "month": parseInt(month),
-        "day": parseInt(date)
-      };
+            let calenderModel = new CalenderModel();
+            calenderModel.start_date = year + "-" + month + "-" + date;
+            calenderModel.end_date = year + "-" + month + "-" + date;//this.datePipe.transform(date, 'dd-MM-yyyy');
+            calArr.push(calenderModel);
+            ctr = ctr + 1;
+          } else {
+            ctr = ctr + 1;
+          }
+        }
+        // if (i % 2 === 0) {
 
-      this.datesSelected.push(dateObj);
-
-      let calenderModel = new CalenderModel();
-      calenderModel.start_date = year + "-" + month + "-" + date;
-      calenderModel.end_date = year + "-" + month + "-" + date;//this.datePipe.transform(date, 'dd-MM-yyyy');
-      calArr.push(calenderModel);
-      // }
+        // }
+      }
     }
 
 
