@@ -70,6 +70,7 @@ export class MultiDatePickerComponent {
   public mainErrorMsg = '';
   public startDate = new FormControl(moment());
   public endDate = new FormControl(moment());
+
   @Output() public weeklyCalendarChanged = new EventEmitter();
 
   @Input()

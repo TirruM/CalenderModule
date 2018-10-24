@@ -84,4 +84,38 @@ export class Utils {
 
     }
 
+
+    public getBiWeekDates(startDate, endDate, selectedWeekDay): any {
+        let day = startDate;
+        let selectedWeekDays = selectedWeekDay;
+        let ctr = 0;
+        let dates = [],
+            currentDate = startDate,
+            addDays = function (days) {
+                let date = new Date(this.valueOf());
+                date.setDate(date.getDate() + days);
+
+                return date;
+            };
+        while (currentDate <= endDate) {
+            var d = currentDate.getDay();
+            if (selectedWeekDays.length > 0) {
+
+                for (var i = 0; i < selectedWeekDays.length; i++) {
+                    let ctr = 0;
+                    // console.log("date with day", currentDate + "day" + d + "-->" + selectedWeekDays[i]);
+                    if (d == selectedWeekDays[i]) {
+                        dates.push(currentDate);
+                    }
+                }
+
+            }
+
+            currentDate = addDays.call(currentDate, 1);
+        }
+
+        return dates;
+
+    }
+
 }
