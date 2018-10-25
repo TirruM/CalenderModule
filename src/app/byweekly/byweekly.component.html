@@ -20,12 +20,8 @@
     </div>
   </div>
 </div>
-<!-- <div class="mar-bot-20"></div>
-<owl-date-time-inline class="date-center" (click)="handleChange($event)" [disabled]="dateValidationFlag" [(ngModel)]="selectedMoment"
-  [pickerType]="'calendar'" #dt3></owl-date-time-inline> -->
 
-
-<ngb-datepicker #dp [displayMonths]="1" [dayTemplate]="t">
+<ngb-datepicker [(ngModel)]="model" [disabled]="disabled" #dp [displayMonths]="1" [dayTemplate]="t">
 </ngb-datepicker>
 
 <ng-template #t let-date="date" let-focused="focused">

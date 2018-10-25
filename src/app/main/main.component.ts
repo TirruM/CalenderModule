@@ -167,8 +167,15 @@ export class MainComponent implements OnInit {
           this.dateValidationFlag = false;
           this.oportunityInstanceModel.session_type_name = this.session_type_name;
           this.oportunityInstanceModel.days = [];
-          this.oportunityInstanceModel.days = this.weeklyCalendarObj;
-          this.message = JSON.stringify(this.oportunityInstanceModel);
+          if (this.weeklyCalendarObj.length > 0) {
+            this.oportunityInstanceModel.days = this.weeklyCalendarObj;
+            this.message = JSON.stringify(this.oportunityInstanceModel);
+          } else {
+            this.message = "";
+            this.mainErrorMsg = 'Please Select Week';
+            this.dateValidationFlag = true;
+          }
+
         }
       } else if (this.session_type_id === '4') {
         this.session_type_name = 'Bi-weekly';
@@ -179,8 +186,15 @@ export class MainComponent implements OnInit {
           this.dateValidationFlag = false;
           this.oportunityInstanceModel.session_type_name = this.session_type_name;
           this.oportunityInstanceModel.days = [];
-          this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
-          this.message = JSON.stringify(this.oportunityInstanceModel);
+          if (this.biWeeklyCalendarObj.length > 0) {
+            this.oportunityInstanceModel.days = this.biWeeklyCalendarObj;
+            this.message = JSON.stringify(this.oportunityInstanceModel);
+          } else {
+            this.message = "";
+            this.mainErrorMsg = 'Please Select Week';
+            this.dateValidationFlag = true;
+          }
+
         }
       } else if (this.session_type_id === '5') {
         this.session_type_name = 'Monthly';

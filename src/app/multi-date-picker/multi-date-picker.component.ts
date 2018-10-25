@@ -66,6 +66,9 @@ export class MultiDatePickerComponent {
   public endDateValidation = true;
   public dateValidationFlag = true;
 
+  model: NgbDateStruct;
+  disabled = true;
+
   public weeklyValidationFlag = false;
   public mainErrorMsg = '';
   public startDate = new FormControl(moment());
@@ -86,6 +89,7 @@ export class MultiDatePickerComponent {
 
   constructor(calendar: NgbCalendar, public datePipe: DatePipe) {
     this.datePipe = datePipe;
+    this.model = calendar.getToday();
   }
 
   chosenYearHandler(normalizedYear: Moment) {
@@ -123,8 +127,10 @@ export class MultiDatePickerComponent {
 
     if (this.endsDate === undefined || this.endsDate.toString() === '') {
       this.dateValidationFlag = true;
+      this.disabled = true; //Disable Calender
     } else {
       this.dateValidationFlag = false;
+      this.disabled = false; //Enable Calender
     }
 
     if (this.strDate > this.endsDate) {
@@ -147,71 +153,66 @@ export class MultiDatePickerComponent {
 
 
   onDateSelection(event: any, date: NgbDateStruct) {
-    let now;
-    if (date === null) {
-    } else {
-      now = new Date(date.year, date.month - 1, date.day);
-      if (this.selectedWeekDays.length > 0) {
-        if (this.selectedWeekDays.includes(now.getDay())) {
-          console.log("onDateSelection  includes " + now.getDay() + this.selectedWeekDays.length);
-          for (let i = 0; i < this.selectedWeekDays.length; i++) {
-            console.log("selected day--->" + now.getDay());
-
-            if (this.selectedWeekDays[i] === now.getDay()) {
-              console.log("selected weekday from Array--->" + this.selectedWeekDays[i]);
-              this.selectedWeekDays.splice(i, 1);
+    if (this.disabled === false) {
+      let now;
+      if (date === null) {
+        console.log("null");
+      } else {
+        now = new Date(date.year, date.month - 1, date.day);
+        if (this.selectedWeekDays.length > 0) {
+          if (this.selectedWeekDays.includes(now.getDay())) {
+            for (let i = 0; i < this.selectedWeekDays.length; i++) {
+              if (this.selectedWeekDays[i] === now.getDay()) {
+                this.selectedWeekDays.splice(i, 1);
+              }
             }
-          }
 
+          } else {
+            this.selectedWeekDays.push(now.getDay());
+          }
         } else {
           this.selectedWeekDays.push(now.getDay());
         }
-      } else {
-        this.selectedWeekDays.push(now.getDay());
       }
+
+      let sCalDate = new Date(this.strDate);
+      let sYear = sCalDate.getFullYear();
+      let sMonth = sCalDate.getMonth();
+      let sDate = sCalDate.getDate();
+      let eCalDate = new Date(this.endsDate);
+      let eYear = eCalDate.getFullYear();
+      let eMonth = eCalDate.getMonth();
+      let eDate = eCalDate.getDate();
+
+
+      let dates = this.utilsObj.getMultipleWeekDates(new Date(sYear, sMonth, sDate),
+        new Date(eYear, eMonth, eDate),
+        false, this.selectedWeekDays);
+
+      this.datesSelected = [];
+      let calArr = [];
+      for (let i = 0; i < dates.length; i++) {
+
+        let year = this.datePipe.transform(dates[i], 'yyyy');
+        let date = this.datePipe.transform(dates[i], 'dd');
+        let month = this.datePipe.transform(dates[i], 'MM');
+
+        let dateObj = {
+          "year": parseInt(year),
+          "month": parseInt(month),
+          "day": parseInt(date)
+        };
+        this.datesSelected.push(dateObj);
+
+        let calenderModel = new CalenderModel();
+        calenderModel.start_date = year + "-" + month + "-" + date;
+        calenderModel.end_date = year + "-" + month + "-" + date;//this.datePipe.transform(date, 'dd-MM-yyyy');
+        calArr.push(calenderModel);
+      }
+
+      this.weeklyCalendarObj = calArr;
+      this.weeklyCalendarChanged.emit(this.weeklyCalendarObj);
     }
-
-    let sCalDate = new Date(this.strDate);
-    let sYear = sCalDate.getFullYear();
-    let sMonth = sCalDate.getMonth();
-    let sDate = sCalDate.getDate();
-    let eCalDate = new Date(this.endsDate);
-    let eYear = eCalDate.getFullYear();
-    let eMonth = eCalDate.getMonth();
-    let eDate = eCalDate.getDate();
-
-
-    let dates = this.utilsObj.getMultipleWeekDates(new Date(sYear, sMonth, sDate),
-      new Date(eYear, eMonth, eDate),
-      false, this.selectedWeekDays);
-
-    this.datesSelected = [];
-    let calArr = [];
-
-
-    for (let i = 0; i < dates.length; i++) {
-
-      let year = this.datePipe.transform(dates[i], 'yyyy');
-      let date = this.datePipe.transform(dates[i], 'dd');
-      let month = this.datePipe.transform(dates[i], 'MM');
-
-      let dateObj = {
-        "year": parseInt(year),
-        "month": parseInt(month),
-        "day": parseInt(date)
-      };
-      this.datesSelected.push(dateObj);
-
-      let calenderModel = new CalenderModel();
-      calenderModel.start_date = year + "-" + month + "-" + date;
-      calenderModel.end_date = year + "-" + month + "-" + date;//this.datePipe.transform(date, 'dd-MM-yyyy');
-      calArr.push(calenderModel);
-    }
-
-    this.weeklyCalendarObj = calArr;
-    this.weeklyCalendarChanged.emit(this.weeklyCalendarObj);
-    // console.log("datesSelected", JSON.stringify(this.datesSelected));
-    // console.log("weeklyCalendarObj", JSON.stringify(this.weeklyCalendarObj));
   }
 
 
