@@ -89,7 +89,7 @@ export class AnnuallyComponent implements OnInit {
     }
   }
 
-  private selectDateHandler(event) {
+  public selectDateHandler(event) {
 
     if (this.startYear === undefined && this.endYear === undefined) {
     } else if (this.selectDate !== null) {

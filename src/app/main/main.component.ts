@@ -14,15 +14,15 @@ import { EveryDayModel } from '../models/everyDayModel';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  private start_time = null;
-  private end_time = null;
-  private message = '';
+  public start_time = null;
+  public end_time = null;
+  public message = '';
   private selectedDate: string;
   private start_date = '';
-  private session_type_name = 'One Time';
+  public session_type_name = 'One Time';
   private session_type_id = '1';
 
-  private sessionObj: any[] = [
+  public sessionObj: any[] = [
     { id: '1', name: 'One Time' },
     { id: '2', name: 'Everyday' },
     { id: '3', name: 'Weekly' },
@@ -113,7 +113,7 @@ export class MainComponent implements OnInit {
     this.biWeeklyCalendarObj = biWeeklyCalendarObj;
   }
 
-  private saveCalender(payload: NgForm): void {
+  public saveCalender(payload: NgForm): void {
     if (this.start_time === undefined || (this.start_time === null)) {
       this.mainErrorMsg = 'Please select start time !';
       this.dateValidationFlag = true;

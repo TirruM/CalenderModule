@@ -74,7 +74,7 @@ export class MonthlyComponent implements OnInit {
 
     this.monthlyCalendarChanged.emit(this.monthlyCalendarObj)
   }
-  private numberOfDays(event) {
+  public numberOfDays(event) {
     if (this.noOfDays == undefined || this.noOfDays == 0) {
       this.validationFlag = true;
     } else {

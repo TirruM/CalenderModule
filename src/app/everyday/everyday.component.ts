@@ -49,7 +49,7 @@ export class EverydayComponent implements OnInit {
 
   }
 
-  private startDateEventHandler(event) {
+  public startDateEventHandler(event) {
     if (this.startDate === undefined || this.startDate.toString() === '') {
       this.endDateFlag = true;
     } else {
@@ -72,7 +72,7 @@ export class EverydayComponent implements OnInit {
 
   }
 
-  private endDateEventHandler(event) {
+  public endDateEventHandler(event) {
     if (this.startDate === undefined || this.startDate.toString() === '') {
       this.endDateFlag = true;
     } else {
@@ -171,7 +171,7 @@ export class EverydayComponent implements OnInit {
     }
   }
 
-  private onWeekdaysChange(event) {
+  public onWeekdaysChange(event) {
     if (this.weeksDays === true) {
       this.weeksDays = true;
     } else {
@@ -179,7 +179,7 @@ export class EverydayComponent implements OnInit {
     }
     this.handleChange(event);
   }
-  private onGovHolidaysChange(event) {
+  public onGovHolidaysChange(event) {
     if (this.weeksDays === true) {
       this.weeksDays = true;
     } else {
