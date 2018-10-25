@@ -20,65 +20,66 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                            <app-onetimecalender *ngIf="session_type_name === 'One Time'" (dateChanged)="dateChangedHandler($event)"></app-onetimecalender>
-                            <app-everyday *ngIf="session_type_name === 'Everyday'" (dateChanged)="everyDateChangedHandler($event)"></app-everyday>
+                        <app-onetimecalender *ngIf="session_type_name === 'One Time'" (dateChanged)="dateChangedHandler($event)"></app-onetimecalender>
+                        <app-everyday *ngIf="session_type_name === 'Everyday'" (dateChanged)="everyDateChangedHandler($event)"></app-everyday>
 
-                            <app-weekly *ngIf="session_type_name === 'Weekly'" (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-weekly>
-                        
-                            <app-byweekly *ngIf="session_type_name === 'Bi-weekly'" (biWeeklyCalendarChanged)="biWeeklyCalendarChangedHandler($event)"></app-byweekly>
-                        
-                            <app-monthly *ngIf="session_type_name==='Monthly'" (monthlyCalendarChanged)=" monthlyCalendarChangeHandler($event)">
-                            </app-monthly>
-                        
-                            <app-quarterly *ngIf="session_type_name === 'Quarterly'" (dateChanged)="quarterlyDateChangedHandler($event)"></app-quarterly>
-                            <div [hidden]="quartValidation" style="color: red">please select month value</div>
-                            <app-halfyearly *ngIf="session_type_name === 'Half Yearly'" (dateChanged)="halfYearlyDateChangedHandler($event)"></app-halfyearly>
-                            <div [hidden]="halfValidation" style="color: red">please select month value</div>
-                            <app-annually *ngIf="session_type_name === 'Annually'" (annuallyCalendarChanged)="annuallyCalendarChangeHandler($event)"></app-annually>
-                        
-                        </div>
-                        <div class="col-md-12">
-                            
-                                <h4 class="main-heading">Start Time & End Time</h4>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12 col-lg-5 ">
-                                        
-                                        <div class="form-group">
-                                            <timepicker [(ngModel)]="start_time" name="start_time" id="start_time" class="time-picker"></timepicker>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12 col-lg-5 ">
-                                        <div class="form-group">
-                                            <timepicker [(ngModel)]="end_time" name="end_time" id="end_time" class="time-picker"></timepicker>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12 col-lg-2 ">
-                                        <div class="form-group text-center">
-                                            <input type="submit" class="btn btn-primary btn-style" value="ADD 1 MORE">
-                                        </div>
-                                    </div>
+                        <!-- <app-weekly *ngIf="session_type_name === 'Weekly'"
+     (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-weekly> -->
+
+                        <app-multi-date-picker *ngIf="session_type_name === 'Weekly'" (weeklyCalendarChanged)="weeklyCalendarChangedHandler($event)"></app-multi-date-picker>
+
+                        <app-byweekly *ngIf="session_type_name === 'Bi-weekly'" (biWeeklyCalendarChanged)="biWeeklyCalendarChangedHandler($event)"></app-byweekly>
+
+                        <app-monthly *ngIf="session_type_name==='Monthly'" (monthlyCalendarChanged)=" monthlyCalendarChangeHandler($event)">
+                        </app-monthly>
+
+                        <app-quarterly *ngIf="session_type_name === 'Quarterly'" (dateChanged)="quarterlyDateChangedHandler($event)"></app-quarterly>
+                        <div [hidden]="quartValidation" style="color: red">please select month value</div>
+                        <app-halfyearly *ngIf="session_type_name === 'Half Yearly'" (dateChanged)="halfYearlyDateChangedHandler($event)"></app-halfyearly>
+                        <div [hidden]="halfValidation" style="color: red">please select month value</div>
+                        <app-annually *ngIf="session_type_name === 'Annually'" (annuallyCalendarChanged)="annuallyCalendarChangeHandler($event)"></app-annually>
+
+                    </div>
+                    <div class="col-md-12">
+
+                        <h4 class="main-heading">Start Time & End Time</h4>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-5 ">
+
+                                <div class="form-group">
+                                    <timepicker [(ngModel)]="start_time" name="start_time" id="start_time" class="time-picker"></timepicker>
                                 </div>
-                                <div class="alert alert-danger" role="alert" *ngIf="dateValidationFlag">{{mainErrorMsg}}</div>                     
-                          
-
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-5 ">
+                                <div class="form-group">
+                                    <timepicker [(ngModel)]="end_time" name="end_time" id="end_time" class="time-picker"></timepicker>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-2 ">
+                                <div class="form-group text-center">
+                                    <input type="submit" class="btn btn-primary btn-style" value="ADD 1 MORE">
+                                </div>
+                            </div>
                         </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="dateValidationFlag">{{mainErrorMsg}}</div>
 
-                        <div class="col-md-12">
-                                <h4 class="main-heading">Responsive Object : </h4>
-                                {{message}}
-                                <div class="mar-bot-40"></div>
-                      
 
-                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <h4 class="main-heading">Responsive Object : </h4>
+                        {{message}}
+                        <div class="mar-bot-40"></div>
+
+
+                    </div>
 
                 </div>
 
 
 
 
-          </form>
+            </form>
         </div>
     </div>
 </div>
-
-
