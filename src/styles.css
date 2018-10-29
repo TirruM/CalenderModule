@@ -226,6 +226,7 @@ margin: 30px  0px;
 .custom-day.selected{
     background-color: #ffd902 !important;
     border-radius: 50%;
+    color:#ffffff;
 }
 
 

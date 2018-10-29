@@ -328,7 +328,7 @@ export class QuarterlyComponent implements OnInit {
       this.getDateTimeEvent(val);
       this.novDate = null;
       this.octDate = null;
-      this.thirdQuart = [];
+      this.fourthQuart = [];
       let calenderModel1 = new CalenderModel();
       let apr = this.datePipe.transform(this.decDate, 'yyyy-MM-dd');
       calenderModel1.start_date = apr;
