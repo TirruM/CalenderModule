@@ -35,7 +35,7 @@
 </div>
 <div [hidden]="firstCheckBox">
   <div class="row justify-content-md-center mar-bot-10">
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="janDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,0)"
@@ -45,38 +45,30 @@
           <owl-date-time [startAt]="startAt" #dt1 [pickerType]="'calendar'" [pickerMode]="'dialog'" [pickerMode]="dialog"></owl-date-time>
           <label class="lbl-month" for="jan">JAN</label>
 
-          <p class="btm-year text-center">
-            {{janDate | date : "y" }}
-          </p>
 
 
 
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="febDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,1)"
             [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
           <owl-date-time [startAt]="febDate" #dt2 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <label class="lbl-month" for="feb">FEB</label>
-          <p class="btm-year text-center">
-            {{febDate | date : "y" }}
-          </p>
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="marchDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,2)"
             [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
           <owl-date-time [startAt]="marchDate" #dt3 [pickerType]="'calendar'" [pickerMode]="'dialog'"></owl-date-time>
           <label class="lbl-month" for="mar">MAR</label>
-          <p class="btm-year text-center">
-            {{marchDate | date : "y" }}
-          </p>
+
         </div>
       </div>
     </div>
@@ -86,7 +78,7 @@
 
 <div [hidden]="secondCheckBox">
   <div class="row justify-content-md-center mar-bot-10">
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="aprDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,3)"
@@ -99,7 +91,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="mayDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,4)"
@@ -112,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="juneDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,5)"
@@ -130,7 +122,7 @@
 
 <div [hidden]="thirdCheckBox">
   <div class="row justify-content-md-center mar-bot-10">
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="julDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,6)"
@@ -143,7 +135,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="augDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,7)"
@@ -156,7 +148,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="sepDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,8)"
@@ -174,7 +166,7 @@
 
 <div [hidden]="fourCheckBox">
   <div class="row justify-content-md-center">
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2 ">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="octDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,9)"
@@ -187,7 +179,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="novDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,10)"
@@ -200,7 +192,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4">
+    <div class="col-4 col-sm-4 col-md-2">
       <div class="cylindrical">
         <div class="form-group">
           <input class="form-control inp-month" [(ngModel)]="decDate" [min]="min" [max]="max" (focus)="clickMonthEvent($event,11)"
